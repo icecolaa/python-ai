@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html data-page-node-id="U45ImWItYOCsR3nGsdKXyf" lang="zh-CN">
+<head data-page-node-id="aG3cBm5Q89HjBwEimqRNdb">
+<script data-page-node-id="V937gLhFFbuyKWEBWmIeJi" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="MFwKKMZkHhWlrQ9pj6MaVR" charset="utf-8">
+<meta data-page-node-id="UdQdIOkbGIRXxuMAAHtVAu" content="width=device-width, initial-scale=1" name="viewport">
+<title data-page-node-id="NKOHrdiE2mRCjcgP07iOEw" data-pnid-children="MCAmHm0nA6PC8U9BQTnl9B">大模型应用开发全栈</title>
+<link data-page-node-id="v4gZ3rgcqAv2KUxTzouHkc" crossorigin href="https://cdn.jsdelivr.net" rel="preconnect">
+<link data-page-node-id="GSNICkIPDSrRGxUXBq3Ghy" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.2.6/700.css" rel="stylesheet">
+<link data-page-node-id="8bpYnxP8cGmmHKUh1uCn0y" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.2.6/800.css" rel="stylesheet">
+<link data-page-node-id="5KgOnYsfrmtsFgRAbozYyI" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.3.0/chinese-simplified-700.css" rel="stylesheet">
+<link data-page-node-id="TRgJMQi2MR9NXSVGRUOtTq" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@5.3.0/400.css" rel="stylesheet">
+<link data-page-node-id="BV9i6ip4DBZIhQVXyHanNX" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@5.3.0/500.css" rel="stylesheet">
+<style data-page-node-id="nWaVbKBgawl4oEp9jtZuie" data-pnid-children="4F3GgA7Ynh5tRD1UAIr5Uw">
+
+:root{
+  --primary:#2f6fdb;
+  --primary-hover:#1d4f9e;
+  --primary-glow:rgba(47,111,219,.14);
+  --bg:#ffffff;
+  --bg-elevated:#f5f8fc;
+  --surface:#ffffff;
+  --surface-hover:#f8fbff;
+  --border:rgba(15,25,45,.10);
+  --text:rgba(10,16,28,.95);
+  --text-secondary:rgba(10,16,28,.62);
+  --text-tertiary:rgba(10,16,28,.40);
+  --radius-sm:5px;
+  --radius:10px;
+  --radius-lg:16px;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:"Plus Jakarta Sans","Noto Serif SC",Georgia,"Songti SC","STSong",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --sh-1:0 1px 2px rgba(15,25,45,.05),0 1px 3px rgba(15,25,45,.04);
+  --sh-2:0 4px 18px rgba(15,25,45,.05),0 2px 8px rgba(15,25,45,.03);
+  --sh-3:0 16px 40px rgba(15,25,45,.08);
+  --code-bg:#0d1524;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:16px;line-height:1.78;
+  -webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+a{color:var(--primary);text-decoration:none}
+strong{font-weight:700;color:#0c1424}
+
+/* 行内代码 —— 原 <font> 硬编码灰底标签统一后的规范样式 */
+code{font-family:var(--mono);font-size:.88em;letter-spacing:-.01em;
+  background:linear-gradient(180deg,rgba(47,111,219,.10),rgba(47,111,219,.055));
+  border:1px solid rgba(47,111,219,.20);color:#12408f;
+  padding:.13em .44em;border-radius:var(--radius-sm);white-space:nowrap}
+
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:70;
+  background:linear-gradient(90deg,#2f6fdb,#2f9fd4);transition:width .12s linear}
+
+/* ---------- 顶部导航 ---------- */
+.topbar{position:sticky;top:0;z-index:55;
+  background:rgba(255,255,255,.82);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease,box-shadow .25s ease,background .25s ease}
+.topbar.is-stuck{border-bottom-color:var(--border);
+  box-shadow:0 6px 24px rgba(15,25,45,.06);background:rgba(255,255,255,.93)}
+.topbar-inner{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex:none}
+.brand-mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#2f6fdb,#2f9fd4);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.03em;
+  box-shadow:0 2px 8px rgba(47,111,219,.28)}
+.brand-text{font-family:var(--display);font-size:14.8px;font-weight:700;
+  color:#0d1626;letter-spacing:.01em;white-space:nowrap}
+.brand-text em{font-style:normal;color:var(--primary)}
+.topnav{display:flex;align-items:center;gap:2px;margin:0 auto;padding:0;list-style:none;
+  overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav-a{display:block;padding:7px 12px;border-radius:8px;text-decoration:none;
+  font-size:13.4px;font-weight:600;color:var(--text-secondary);white-space:nowrap;
+  transition:color .18s ease,background .18s ease}
+.topnav-a:hover{color:#0d1626;background:rgba(47,111,219,.09)}
+.topnav-a.active{color:var(--primary);background:var(--primary-glow)}
+.topbar-cta{display:flex;align-items:baseline;gap:4px;flex:none;text-decoration:none;
+  padding:7px 13px;border-radius:999px;border:1px solid rgba(47,111,219,.28);
+  background:rgba(47,111,219,.07);transition:background .18s ease,border-color .18s ease}
+.topbar-cta .cta-num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--primary)}
+.topbar-cta .cta-unit{font-size:11.5px;font-weight:700;color:var(--text-secondary)}
+.topbar-cta:hover{background:rgba(47,111,219,.14);border-color:rgba(47,111,219,.46)}
+section[id]{scroll-margin-top:80px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;
+  padding:clamp(44px,6.4vw,88px) 0 clamp(40px,5.4vw,68px);
+  background:
+    radial-gradient(ellipse 70% 62% at 88% -12%,rgba(47,111,219,.14),transparent 62%),
+    radial-gradient(ellipse 55% 50% at 2% 110%,rgba(47,159,212,.11),transparent 60%),
+    linear-gradient(176deg,#fbfdff,#f4f8fd 70%,#ffffff);
+  border-bottom:1px solid var(--border)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);
+  gap:clamp(24px,4vw,56px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;
+  letter-spacing:.11em;color:var(--primary);background:rgba(47,111,219,.08);
+  border:1px solid rgba(47,111,219,.18);padding:6px 13px;border-radius:999px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--primary)}
+h1.display{font-family:var(--display);font-weight:700;color:#0a1220;
+  font-size:clamp(32px,5vw,56px);line-height:1.08;letter-spacing:-.034em;margin:18px 0 0}
+h1.display em{font-style:normal;
+  background:linear-gradient(118deg,#2f6fdb 10%,#22a3c9 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin:18px 0 0;font-size:clamp(14.5px,1.5vw,17.5px);line-height:1.72;
+  color:var(--text-secondary);max-width:58ch}
+.hero-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero-fact{font-family:var(--mono);font-size:12px;color:#123a70;
+  background:rgba(47,111,219,.08);border:1px solid rgba(47,111,219,.16);
+  border-radius:999px;padding:6px 13px}
+.hero-side{border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;
+  background:linear-gradient(160deg,rgba(255,255,255,.94),rgba(244,248,253,.88));
+  box-shadow:var(--sh-2)}
+.hero-side h4{margin:0 0 12px;font-size:11.5px;letter-spacing:.12em;
+  color:var(--text-tertiary);font-weight:600}
+.stack-list{list-style:none;margin:0;padding:0}
+.stack-list li{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px;color:var(--text-secondary)}
+.stack-list li:last-child{border-bottom:0}
+.stack-list b{color:#0d1626;font-weight:600;font-size:14px}
+.stack-list span{font-family:var(--mono);color:var(--primary);font-size:12.5px}
+
+/* ---------- 源码资源条 ---------- */
+.res-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:28px 0 0;
+  padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--surface);box-shadow:var(--sh-1)}
+.res-label{font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--text-tertiary)}
+.res-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;
+  border:1px solid var(--border);background:var(--surface);font-size:13.5px;color:#12203a;
+  box-shadow:var(--sh-1);transition:transform .16s cubic-bezier(.2,0,0,1),box-shadow .2s,border-color .2s}
+.res-chip:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:rgba(47,111,219,.35)}
+.res-chip:active{transform:translateY(0) scale(.975)}
+.res-ic{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.05em;color:#fff;
+  background:linear-gradient(135deg,#357abd,#1f5fa8);border-radius:4px;padding:2px 5px}
+.res-chip svg{width:12px;height:12px;stroke:var(--text-tertiary);stroke-width:1.6;fill:none;opacity:.7}
+
+/* ---------- 布局 ---------- */
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);
+  gap:clamp(24px,4vw,56px);padding:clamp(36px,5vw,64px) 0 88px}
+.toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 108px);overflow:auto;padding-right:6px}
+.toc-title{font-size:11.5px;letter-spacing:.13em;color:var(--text-tertiary);font-weight:600;margin:0 0 12px}
+.toc-a{display:block;font-size:13.4px;line-height:1.5;color:var(--text-secondary);
+  padding:6px 12px;border-left:2px solid var(--border);
+  transition:color .18s,border-color .18s,background .18s}
+.toc-a.lv3{padding-left:24px;font-size:12.8px;color:var(--text-tertiary)}
+.toc-a:hover{color:#0d1626;background:var(--surface-hover)}
+.toc-a.active{color:var(--primary);border-left-color:var(--primary);font-weight:600;
+  background:rgba(47,111,219,.05)}
+.content{min-width:0;max-width:820px}
+
+/* ---------- 章节标题 ---------- */
+.sec{margin:0 0 clamp(44px,5.5vw,68px)}
+.subsec{margin:0 0 34px}
+.part-cover{margin:0 0 44px;padding-top:22px;border-top:1px solid var(--border)}
+.part-kicker{font-size:11.5px;letter-spacing:.16em;font-weight:700;color:var(--primary)}
+.part-title{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.16;
+  font-size:clamp(25px,3.4vw,38px);color:#0a1220;margin:12px 0 16px}
+.part-rule{height:4px;width:88px;border-radius:4px;
+  background:linear-gradient(90deg,var(--primary),rgba(47,159,212,.35))}
+.sec-rule{height:1px;background:var(--border);margin-bottom:20px}
+.sec-title{font-family:var(--display);font-weight:700;color:#0a1220;
+  font-size:clamp(22px,2.8vw,32px);line-height:1.26;letter-spacing:-.022em;margin:0 0 18px;
+  display:flex;align-items:baseline;gap:12px}
+.ss-title{font-family:var(--display);font-weight:700;color:#0a1220;
+  font-size:clamp(18px,2.1vw,24px);line-height:1.3;letter-spacing:-.018em;margin:0 0 14px;
+  display:flex;align-items:baseline;gap:10px}
+.sec-num{font-family:var(--mono);font-size:.74em;font-weight:600;flex:none;color:#fff;
+  background:linear-gradient(140deg,#3a7ce0,#1d5fb0);border-radius:8px;padding:.1em .5em;
+  letter-spacing:.02em;box-shadow:0 3px 10px rgba(47,111,219,.28)}
+.ss-title .sec-num{font-size:.8em;border-radius:6px}
+.h4{font-family:var(--display);font-weight:700;color:#0d1626;margin:34px 0 14px;
+  font-size:19px;line-height:1.35;letter-spacing:-.012em}
+.h4.stage-head{display:flex;align-items:center;gap:12px;margin:38px 0 16px;font-size:17px;color:#0d1626}
+.h4.stage-head::after{content:"";flex:1;height:1px;background:var(--border)}
+p{margin:0 0 16px;max-width:72ch}
+
+/* ---------- 引言 / 警示 ---------- */
+.quote{margin:24px 0;padding:18px 22px;border-left:3px solid var(--primary);
+  background:linear-gradient(100deg,rgba(47,111,219,.055),rgba(47,111,219,.012));
+  border-radius:0 var(--radius) var(--radius) 0;
+  font-family:var(--display);font-size:16.5px;line-height:1.72;color:#101c30;max-width:72ch}
+.quote::after{content:"";display:block;clear:both}
+.quote p{margin:0}
+.warn{margin:24px 0;padding:16px 20px;border-radius:var(--radius);max-width:72ch;
+  border:1px solid rgba(180,83,9,.24);
+  background:linear-gradient(100deg,rgba(180,83,9,.07),rgba(180,83,9,.02));color:#7c3d09;font-size:15.5px}
+
+/* ---------- 数据条 ---------- */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0 0 26px}
+.metric{padding:18px 20px;border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--surface);box-shadow:var(--sh-1);
+  transition:transform .2s cubic-bezier(.2,0,0,1),box-shadow .2s}
+.metric:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.metric .num{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;
+  font-size:clamp(26px,3.2vw,34px);line-height:1.05;letter-spacing:-.03em;
+  background:linear-gradient(150deg,#2f6fdb,#1f8fb8);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.metric .unit{font-family:var(--mono);font-size:14px;color:var(--primary);margin-left:4px;font-weight:600}
+.metric .cap{margin-top:8px;font-size:12.6px;line-height:1.55;color:var(--text-secondary)}
+
+/* ---------- 优势卡 ---------- */
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px;margin:16px 0 8px}
+.adv{display:flex;gap:12px;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--surface);box-shadow:var(--sh-1);
+  transition:transform .2s cubic-bezier(.2,0,0,1),border-color .2s,box-shadow .2s}
+.adv:hover{transform:translateY(-2px);border-color:rgba(47,111,219,.3);box-shadow:var(--sh-2)}
+.adv .tick{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  background:rgba(5,150,105,.12);color:#059669;font-size:12px;font-weight:700}
+.adv p{margin:0;font-size:14.4px;line-height:1.65;color:var(--text-secondary);max-width:none}
+.adv strong{display:block;color:#0d1626;font-size:15px;margin-bottom:3px}
+
+/* ---------- 阶段条 ---------- */
+.stages{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.stage-chip{font-size:12.6px;padding:6px 13px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-secondary);transition:all .18s}
+.stage-chip:hover{border-color:rgba(47,111,219,.4);color:var(--primary-hover);transform:translateY(-1px)}
+
+/* ---------- 项目卡网格 ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin:14px 0 8px}
+.pcard{padding:18px 20px;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--surface);box-shadow:var(--sh-1);
+  transition:transform .2s cubic-bezier(.2,0,0,1),box-shadow .2s,border-color .2s}
+.pcard:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:rgba(47,111,219,.28)}
+.pcard h4{font-family:var(--display);font-weight:700;font-size:15.5px;color:#0a1220;margin:0 0 8px;letter-spacing:-.01em}
+.pcard p{margin:0 0 12px;font-size:13.6px;line-height:1.62;color:var(--text-secondary);max-width:none}
+.chips.tight{margin:0;gap:6px}
+.chips.tight .chip{font-size:11.4px;padding:3px 8px}
+
+/* ---------- 表格 ---------- */
+.table-wrap{margin:16px 0 24px;border:1px solid var(--border);border-radius:var(--radius-lg);
+  overflow-x:auto;background:var(--surface);box-shadow:var(--sh-1)}
+table{border-collapse:collapse;width:100%;font-size:13.6px;min-width:520px}
+.table-wrap.wide table{min-width:780px}
+th{text-align:left;font-weight:700;color:#0b1424;
+  background:linear-gradient(180deg,#f7fafd,#f1f6fc);
+  padding:12px 16px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid rgba(15,25,45,.06);
+  vertical-align:top;line-height:1.62;color:var(--text-secondary)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-hover)}
+tbody tr.cont td:first-child{border-left:2px solid rgba(47,111,219,.22)}
+td strong{color:#0d1626}
+
+/* 合计行 */
+tfoot.sum-row td{background:linear-gradient(180deg,#f3f8ff,#eaf2fe);
+  border-top:2px solid rgba(47,111,219,.30);border-bottom:0;
+  color:#0d1626;padding:14px 16px;vertical-align:middle}
+tfoot.sum-row:hover td{background:linear-gradient(180deg,#eef5ff,#e3edfd)}
+.sum-label{font-family:var(--display);font-size:15px;font-weight:700;
+  color:var(--primary);letter-spacing:.02em}
+.sum-note{display:block;margin-top:5px;font-weight:400;font-size:12.4px;
+  line-height:1.62;color:var(--text-secondary)}
+.sum-val{white-space:nowrap;font-family:var(--mono);font-size:22px;
+  line-height:1.15;color:var(--primary)}
+.sum-val .sum-unit{font-family:var(--sans);font-size:13px;font-weight:700;margin-left:3px}
+.sum-sub{display:block;margin-top:5px;font-style:normal;font-family:var(--sans);
+  font-size:12.2px;font-weight:600;color:var(--text-secondary);
+  white-space:normal;line-height:1.55}
+@media (max-width:640px){
+  .sum-val{font-size:19px}
+  .sum-note,.sum-sub{font-size:11.8px}
+}
+
+/* ---------- 代码 ---------- */
+.code-panel{margin:18px 0 24px;border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--code-bg);box-shadow:0 10px 30px rgba(15,25,45,.16);
+  border:1px solid rgba(148,163,184,.14)}
+.code-panel figcaption{display:flex;align-items:center;gap:9px;padding:10px 16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border-bottom:1px solid rgba(148,163,184,.14)}
+.code-panel .dot{width:9px;height:9px;border-radius:50%;background:#5b6b82;box-shadow:14px 0 0 #3f4c60}
+.code-panel .lang{font-family:var(--mono);font-size:11px;letter-spacing:.11em;color:#8ea1bb;margin-left:16px}
+.code-panel pre{margin:0;padding:18px;overflow-x:auto}
+.code-panel code{display:block;background:none;border:0;padding:0;border-radius:0;
+  white-space:pre;color:#d7e3f4;font-family:var(--mono);font-size:13px;line-height:1.72;letter-spacing:0}
+
+/* ---------- 列表 ---------- */
+.dl{margin:14px 0 20px;padding-left:0;list-style:none}
+.dl > li{position:relative;padding:9px 0 9px 30px;
+  border-bottom:1px dashed rgba(15,25,45,.08);
+  font-size:15.2px;line-height:1.72;color:var(--text-secondary);max-width:74ch}
+.dl > li:last-child{border-bottom:0}
+.dl > li::before{content:"";position:absolute;left:4px;top:1.05em;width:7px;height:7px;
+  border-radius:2px;background:linear-gradient(140deg,#3a7ce0,#22a3c9)}
+ol.dl{counter-reset:item}
+ol.dl > li::before{content:counter(item);counter-increment:item;width:20px;height:20px;
+  border-radius:6px;display:grid;place-items:center;color:#fff;font-family:var(--mono);
+  font-size:10.5px;font-weight:600;background:linear-gradient(140deg,#3a7ce0,#1d5fb0);top:.62em;left:0}
+.dl ul{list-style:none;padding:10px 0 0 4px;margin:0}
+.dl ul li{position:relative;padding:5px 0 5px 20px;font-size:14.2px;color:var(--text-tertiary)}
+.dl ul li::before{content:"";position:absolute;left:2px;top:1em;width:6px;height:6px;
+  border-radius:50%;background:rgba(47,111,219,.45)}
+.dl.dense > li{padding:6px 0 6px 30px;border-bottom:0;font-size:14.8px}
+.dl strong{color:#0d1626}
+
+/* ---------- 符号格 ---------- */
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0 22px}
+.sym{display:flex;align-items:baseline;gap:12px;padding:14px 18px;border:1px solid var(--border);
+  border-radius:var(--radius);background:var(--surface);box-shadow:var(--sh-1);
+  transition:transform .18s,box-shadow .2s}
+.sym:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.sym-k{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--primary);flex:none}
+.sym-v{font-size:13.2px;color:var(--text-secondary);line-height:1.55}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chip{font-family:var(--mono);font-size:12px;color:#1b3a63;background:var(--primary-glow);
+  border:1px solid rgba(47,111,219,.18);border-radius:var(--radius-sm);padding:4px 10px}
+
+/* ---------- 简历级项目卡 ---------- */
+.proj-card{margin:0 0 22px;border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--surface);box-shadow:var(--sh-2);overflow:hidden;
+  transition:box-shadow .25s ease,transform .25s cubic-bezier(.2,0,0,1)}
+.proj-card:hover{transform:translateY(-2px);box-shadow:var(--sh-3)}
+.proj-head{display:flex;align-items:center;gap:14px;padding:16px 22px;
+  background:linear-gradient(100deg,rgba(47,111,219,.08),rgba(47,159,212,.025));
+  border-bottom:1px solid var(--border)}
+.proj-idx{font-family:var(--mono);font-weight:600;font-size:14px;color:#fff;flex:none;
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(140deg,#3a7ce0,#1d5fb0);box-shadow:0 4px 12px rgba(47,111,219,.3)}
+.proj-head h3{font-family:var(--display);font-weight:700;font-size:17.5px;margin:0;
+  color:#0a1220;letter-spacing:-.015em}
+.proj-body{padding:18px 22px 22px}
+.proj-label{font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--primary);
+  margin:20px 0 8px}
+.proj-body > .proj-label:first-child{margin-top:0}
+.meta-line{display:flex;flex-wrap:wrap;gap:10px 24px;margin:0 0 20px;padding:13px 18px;
+  border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated)}
+.meta-k{font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--primary)}
+.meta-v{font-size:14px;color:var(--text-secondary);margin-left:8px}
+
+/* ---------- 动画 ---------- */
+.reveal{opacity:0;transform:translateY(20px);filter:blur(6px);
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease}
+.reveal.in{opacity:1;transform:none;filter:none}
+
+footer{border-top:1px solid var(--border);background:var(--bg-elevated);
+  padding:30px 0 36px;color:var(--text-tertiary);font-size:12.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+
+@media (max-width:1024px){
+  .topbar-cta{display:none}
+  .shell{grid-template-columns:1fr;gap:0}
+  .toc{position:static;max-height:none;margin-bottom:32px;padding:16px 18px;
+    border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-elevated)}
+  .content{max-width:none}
+}
+@media (max-width:640px){
+  /* ---------- 屏幕适配增强 ---------- */
+  body{font-size:15.4px}
+  .topbar-inner{height:54px;gap:10px}
+  .brand-text{display:none}
+  .topnav{margin:0 0 0 auto}
+  .topnav-a{padding:6px 10px;font-size:12.8px}
+  section[id]{scroll-margin-top:70px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-side{padding:16px 18px}
+  .metrics{grid-template-columns:1fr 1fr;gap:10px}
+  .metric{padding:14px 16px}
+  .adv-grid,.proj-grid,.sym-grid{grid-template-columns:1fr}
+  .proj-head,.proj-body{padding:15px 16px}
+  .toc-a{padding:9px 12px;display:flex;align-items:center}
+  .quote,.warn{font-size:15px}
+  .quote{padding:15px 18px}
+  .res-bar{padding:14px 16px}
+  .code-panel pre{padding:14px;font-size:12.6px;line-height:1.7}
+  table{min-width:0}
+  .table-wrap.wide table{min-width:600px}
+  .table-wrap{border-radius:var(--radius)}
+  .sec-title{gap:10px}
+  .part-cover{padding-top:18px}
+}
+/* ---------- 屏幕适配增强：中间断点 / 极窄屏 / 超宽屏 ---------- */
+@media (max-width:768px){
+  .topbar-inner{height:58px;gap:12px}
+  .topnav-a{padding:7px 10px;font-size:13px}
+  .brand-text{font-size:14px}
+  .hero{padding-top:clamp(34px,8vw,56px)}
+  .h4{font-size:17.5px}
+}
+@media (max-width:420px){
+  .topbar-inner{height:52px;gap:8px}
+  .brand-mark{width:28px;height:28px;border-radius:8px}
+  .topnav-a{padding:6px 9px;font-size:12.4px}
+  .metrics{grid-template-columns:1fr}
+  .hero-facts{gap:6px}
+  .hero-fact{padding:5px 11px;font-size:11.4px}
+  section[id]{scroll-margin-top:66px}
+}
+@media (min-width:1440px){
+  .wrap{max-width:1240px}
+  .shell{grid-template-columns:244px minmax(0,1fr)}
+  .content{max-width:860px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;filter:none;transition:none}
+}
+
+</style>
+</head>
+<body data-page-node-id="j8kYizq0RUaS4TAG5nEmUP">
+<div data-page-node-id="NnHbxATsHojzAC3LIkQOcN" class="progress"></div>
+<nav data-page-node-id="b6X6vnCAHxWKGOwAtogsQ3" aria-label="主导航" class="topbar" id="topbar">
+  <div data-page-node-id="KUjljbI1VNFG9ziyhPQPiy" class="wrap topbar-inner">
+    <a data-page-node-id="NTvluI52rLlYkMzFyE1rrF" aria-label="回到顶部" class="brand" href="#top">
+      <span data-page-node-id="uNRA1u0esdNks8G2CZKqo4" class="brand-mark"><!--pnid:gmALIbNJj4ZDwuQttwGLaL-->LLM</span>
+      <span data-page-node-id="5p74Zh5hcH4TepGq7TNbgX" class="brand-text"><!--pnid:1aY2bDYPbbzlBtaqlsaEGc-->大模型应用开发<em data-page-node-id="q2JgFamIPJuGCA2XUIF5TV"><!--pnid:1SdeF1nFMhKVf8faPtH1Pv-->全栈</em></span>
+    </a>
+    <ul data-page-node-id="UQE2CEzlmTsCDNSQ5lMinU" class="topnav">
+      <li data-page-node-id="zsiWAnWNorN60Z6AH6Pwwl"><a data-page-node-id="bAvnmAXu4JEW9w6219eCIr" class="topnav-a" href="#一-ai-重构千行百业-黄金赛道已至"><!--pnid:iLLQInU5HK3Q96GeAsoQIk-->行业前景</a></li>
+      <li data-page-node-id="lEHAtoNjd3IZB8xwL5PRyU"><a data-page-node-id="8kNjdoP1jxHnKRRe2twDd2" class="topnav-a" href="#二-课程定位-从零基础到企业级大模型开发工程师"><!--pnid:63XSsWXbhg91rzDWX5IlYO-->课程定位</a></li>
+      <li data-page-node-id="K9zIAMy3g0Y629X1821uXS"><a data-page-node-id="OnqCUJv7FV6XaNwo6Vz9mX" class="topnav-a" href="#三-大模型全栈开发实战课程学习路线"><!--pnid:cKXss5sSE0jtyZ09hyNhjK-->学习路线</a></li>
+      <li data-page-node-id="pjeFgSVoyyUEtWheaXLDPB"><a data-page-node-id="RdLdXPMGaPwSNtXezuLNpT" class="topnav-a" href="#四-各阶段练手项目"><!--pnid:o2GzgIvkqyXbC47GFPMCtQ-->练手项目</a></li>
+      <li data-page-node-id="fJzClxyIhgEvnNftotovsd"><a data-page-node-id="npJLRU0XpeVu6Ql7Otnbto" class="topnav-a" href="#五-简历级项目"><!--pnid:Gu3ubCJOBrqUKGSK8Pyz6H-->简历级项目</a></li>
+      <li data-page-node-id="3Fp26udKGNIOPF0bauhhNZ"><a data-page-node-id="DwLZxrFcyTEjjb1ktcg6J7" class="topnav-a" href="#零基础入门-从零搭建你的第一个ai聊天机器人"><!--pnid:7EeilBOnQicpMyyE6NknJN-->实战手册</a></li>
+    </ul>
+    <a data-page-node-id="8r2SMGyfjmwO8c8OhpnbBu" class="topbar-cta" href="#三-大模型全栈开发实战课程学习路线" title="课程总时长">
+      <span data-page-node-id="2EOOhlL4MEucIuqe392wSG" class="cta-num"><!--pnid:VnB3ukIMgyyel8BysDAWVl-->145</span><span data-page-node-id="ZMHIiEvwghXzzpOhOl0wuA" class="cta-unit"><!--pnid:Yc3K9z3cC2rUVVBZOUty13-->课时</span>
+    </a>
+  </div>
+</nav>
+
+<header data-page-node-id="zKAxtWfXmfn85AUYi8WjSg" class="hero" id="top">
+  <div data-page-node-id="2tM9Kr5b5D4lY5VNziFVEX" class="wrap hero-grid">
+    <div data-page-node-id="y7u5E8Q7UPqGdLnUed3NVX">
+      <span data-page-node-id="NyitpsKHCvmeuzy3aouWUy" class="eyebrow"><!--pnid:XFxurHFgacxhuXe3okAuVG-->LLM APPLICATION DEVELOPMENT</span>
+      <h1 data-page-node-id="AYXvsXdxZj1WSxtKz1eWvj" class="display"><!--pnid:sReLYVqz3UOA0sm6SolfFy-->大模型应用开发<em data-page-node-id="kzjp5HLG3lHNidJikPGl7B"><!--pnid:o373ixtFwRhA2vgPbSkAW7-->全栈</em></h1>
+      <p data-page-node-id="riCRaENdR27NAfg0WJTgBX" class="hero-sub"><!--pnid:B1ifpF3rC9ebUPuF8Kuofp-->从 Python 基础到 Agent、RAG、多模态与具身智能的完整路线 —— 六阶段课程大纲、各阶段练手项目、4 个企业级简历级项目，外加一份零基础可跟做的大模型 API 实战手册。</p>
+      <div data-page-node-id="wzbvZduwSxi5rMK2ro1nmp" class="hero-facts">
+        <span data-page-node-id="Qqtf8wo6IRRfJkzOSvTfkO" class="hero-fact"><!--pnid:RoI5soV5KhgwZOBBMYfqwe-->6 学习阶段</span>
+        <span data-page-node-id="Gow8WjQcNc3deCdlGRpC04" class="hero-fact"><!--pnid:fYWbCSQ2rqZBakgsxC24oR-->20+ 练手项目</span>
+        <span data-page-node-id="99yEIWFj4h50RmXuCE2tmk" class="hero-fact"><!--pnid:HHl0QOsaZdBHytNF2jiAia-->4 简历级项目</span>
+        <span data-page-node-id="c2k8s654x9570YBuHHvYEo" class="hero-fact"><!--pnid:3hfyA14LsFzmc61zEuWQqi-->Python · LangChain · FastAPI</span>
+      </div>
+    </div>
+    <aside data-page-node-id="ThsuLQTwssTr7VTpSXsivo" class="hero-side">
+      <h4 data-page-node-id="6MSEyEx3496569Y8SjdLTG"><!--pnid:eOy2T9l2PGcQ4Vcx11yT9i-->全链路技术覆盖</h4>
+      <ul data-page-node-id="s7rfOHAbqC7aCosjzHvn4Y" class="stack-list">
+        <li data-page-node-id="BwxSmD1CYmAujIWdhAJxgf"><b data-page-node-id="I71PlZnXOhgM785b1fxEpH"><!--pnid:Wl3vfZ8ELZ0H6gzyXQkQH2-->入门</b><span data-page-node-id="k1K2LpA2bmbhHN205oDInb"><!--pnid:DCxXLbi3TzpnWkB4bE6gVK-->聊天机器人</span></li>
+        <li data-page-node-id="OxNjOyZ79cFSSHsWCnUMCU"><b data-page-node-id="GhlKRVLkmYvGaUWi0yqFx9"><!--pnid:S4aefpO9YjbaA0zLLnm9tA-->核心</b><span data-page-node-id="OXOgpCBRejfo7SgrwSAodW"><!--pnid:8HQRoaO1zc5dfhiukNtjsb-->Python · 数据 · ML</span></li>
+        <li data-page-node-id="BUYruBEj22wQydhpdJ9oUz"><b data-page-node-id="GvQcF2lNIUihSAyfBNTmEx"><!--pnid:7BvVGL2stsDtZNxhFqPulv-->NLP</b><span data-page-node-id="yJjqbSdEUpmebcSkcAc586"><!--pnid:UO21abhoYDuFK0xUIBUpbm-->RNN · Transformer</span></li>
+        <li data-page-node-id="87jz1U3YUYfJx9cPdfwqRO"><b data-page-node-id="nwo4pmiyAU80ebBWs4VO1g"><!--pnid:TTQZPsAPx73Iop4CDJYeeG-->进阶</b><span data-page-node-id="U0U0ZjX2mPX9lVsGnc6LHA"><!--pnid:YPGIBp9h3KGPz0KxnWkmqi-->微调 · Agent · RAG</span></li>
+        <li data-page-node-id="YIrAdChnY1CH7rgySdU5rb"><b data-page-node-id="o6GqQie8wet6xcr3UG9vUX"><!--pnid:54PMUeXnj24Lb6NWzaKmdd-->多模态</b><span data-page-node-id="sqvinorHvCWfemzMon5VaU"><!--pnid:DRUWE1zu53mz7voigLzI5R-->CV · YOLO · 语音</span></li>
+        <li data-page-node-id="vL2pSSvr4kgkkh4dThE6ts"><b data-page-node-id="BGvxZvgs6oZoehAxzDK3S9"><!--pnid:JCV3MhqqlrV0AKWUAUEvC7-->前沿</b><span data-page-node-id="iLhTHEJ3ozJULDT6OLiYrN"><!--pnid:UGdcd3Bzli0FoI1NnPxy5S-->具身智能</span></li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<div data-page-node-id="eMf1IYFmqKHmZQIztcMnU8" class="wrap shell">
+  <nav data-page-node-id="y2xyosys8L5UWPPI8eC07C" class="toc">
+    <p data-page-node-id="fwEdI1RpitGJas0aOnKwWP" class="toc-title"><!--pnid:Ksu4zjfqjPb7sLyuFDJ6BC-->目录</p>
+    <a data-page-node-id="5li9jm6BAE4dqJqRqUPPMZ" class="toc-a lv3" href="#一-ai-重构千行百业-黄金赛道已至"><!--pnid:TZb6q7SX5np6YnC5ceb1HF-->一、AI 重构千行百业，黄金赛道已至</a>
+<a data-page-node-id="JDQ6ZowokpyGLqfop1XwWL" class="toc-a lv3" href="#二-课程定位-从零基础到企业级大模型开发工程师"><!--pnid:ySnDm77v6hhDzIksiEHnc1-->二、课程定位：从零基础到企业级大模型开发工程师</a>
+<a data-page-node-id="7w7x5kXR5X3ULWMvQ5Rh64" class="toc-a lv3" href="#三-大模型全栈开发实战课程学习路线"><!--pnid:0LeBGzpl2RQZPETyN02UhP-->三、大模型全栈开发实战课程学习路线</a>
+<a data-page-node-id="PDCwG0eYL4tZED4CRYrCE4" class="toc-a lv3" href="#四-各阶段练手项目"><!--pnid:TcoJ4LhUcOnDgtdvEJpQLf-->四、各阶段练手项目</a>
+<a data-page-node-id="am1DWUg6OSYvyAEJ7jRePl" class="toc-a lv3" href="#五-简历级项目"><!--pnid:cs9zwh2XCUFH8aV8NNsV3L-->五、简历级项目</a>
+<a data-page-node-id="tDTiLKJiTpwwfDReIzNkQf" class="toc-a lv2" href="#零基础入门-从零搭建你的第一个ai聊天机器人"><!--pnid:XrqpaI9dbDcAqNCujZKNM2-->零基础入门：从零搭建你的第一个AI聊天机器人</a>
+<a data-page-node-id="gpELejxCzA36jPNDzN59F2" class="toc-a lv2" href="#1-ai发展简史与大模型原理"><!--pnid:U8Iq57TS6pJ7EVJmYsc3EY-->1. AI发展简史与大模型原理</a>
+<a data-page-node-id="60y3XBMzzjXRlG46VA9PDk" class="toc-a lv3" href="#1-1-ai发展的四大阶段"><!--pnid:KfAtaGYZwhgwHVeDcD3bRL-->1.1 AI发展的四大阶段</a>
+<a data-page-node-id="ddidqDoSZBjGfMbaFSgbA8" class="toc-a lv3" href="#1-2-智能产生的三大要素"><!--pnid:a8D2ObyvYJwEW1byjmflXv-->1.2 智能产生的三大要素</a>
+<a data-page-node-id="40qcP6TNfGOx3OWfRBZmF3" class="toc-a lv3" href="#1-3-大语言模型原理"><!--pnid:JZbdP3jOcFZQ2VdwmOovSQ-->1.3 大语言模型原理</a>
+<a data-page-node-id="9z2IbLMl5y9jnTfrVUt3kV" class="toc-a lv2" href="#2-大模型应用开发-是什么-怎么做"><!--pnid:dZxaweLOhJ1wBGJjaTE2Xd-->2. 大模型应用开发：是什么？怎么做？</a>
+<a data-page-node-id="EL8MM7EgJ4eLcloTZN6r3I" class="toc-a lv3" href="#2-1-什么是大模型应用"><!--pnid:W83tTR89o95g6VphgeD2SH-->2.1 什么是大模型应用？</a>
+<a data-page-node-id="gfcfpniS7vxQHxAh13XAox" class="toc-a lv3" href="#2-2-与大模型交互"><!--pnid:xAMkuD6rricgsKOWxq85uq-->2.2 与大模型交互</a>
+<a data-page-node-id="kygyEg421pWdhv7tqJnUFo" class="toc-a lv3" href="#2-3-再次区分-训练-vs-调用"><!--pnid:Z0OWF1djcELvnT17QBXJkh-->2.3 再次区分：训练 vs 调用</a>
+<a data-page-node-id="2gNLuxYrk3WXcrCwPRw6qq" class="toc-a lv2" href="#3-获取大模型api密钥-key"><!--pnid:w9CgPmc95nerlJytNkgacf-->3. 获取大模型API密钥（Key）</a>
+<a data-page-node-id="qdxhwkuastubAfBytZNwLD" class="toc-a lv3" href="#3-1-百度千帆-文心一言生态"><!--pnid:gGjIcYCdfmkbV3WCU3Etkz-->3.1 百度千帆（文心一言生态）</a>
+<a data-page-node-id="czjfQ3qUR2fHotzfyfe6XL" class="toc-a lv3" href="#3-2-阿里云百炼-通义千问生态"><!--pnid:uLt2tVU95r53wGAVgObKod-->3.2 阿里云百炼（通义千问生态）</a>
+<a data-page-node-id="jjlSMjLNx3ymBPCzWGPaX5" class="toc-a lv3" href="#3-3-硅基流动-siliconflow-多模型兼容-推荐"><!--pnid:ZK2Uzk7qLqdfPcnZ7YAEJe-->3.3 硅基流动 SiliconFlow（多模型兼容，推荐）</a>
+<a data-page-node-id="mliFoDzR2RljgbaRUMIUai" class="toc-a lv2" href="#4-免安装云端开发环境"><!--pnid:apugSHzNZJ9L2wz4zd5gko-->4. 免安装云端开发环境</a>
+<a data-page-node-id="W5I6uDVef5XjwnWZaR4gzF" class="toc-a lv2" href="#5-实战-从零搭建聊天机器人"><!--pnid:vzNtZD5OHukWCPB33rwwLU-->5. 实战：从零搭建聊天机器人</a>
+<a data-page-node-id="BruK7WvIf7MJLtEcNS62oV" class="toc-a lv3" href="#5-1-阶段一-单次对话机器人"><!--pnid:jAYGmWqdc0eqqFIXlZlH27-->5.1 阶段一：单次对话机器人</a>
+<a data-page-node-id="YA19bJ30cXMFnfePTMVuij" class="toc-a lv3" href="#5-2-阶段二-多轮对话机器人-带记忆功能"><!--pnid:f033dJsWrMf0Al4eHVeYG7-->5.2 阶段二：多轮对话机器人（带记忆功能）</a>
+<a data-page-node-id="uCBDvYy50lqXV5hdCPAbiF" class="toc-a lv3" href="#5-3-扩展功能"><!--pnid:WxfBr87d1u3ner4NE1ijrf-->5.3 扩展功能</a>
+<a data-page-node-id="McLnmAstHsmmMW1BlfjPYd" class="toc-a lv2" href="#6-一些常见的符号"><!--pnid:122HTnGkR8hDEbdT2ORx6E-->6. 一些常见的符号</a>
+<a data-page-node-id="XtE8pICSTk19aSvP5XdvdH" class="toc-a lv3" href="#模型参数大小"><!--pnid:ZiVIl81eMQimJGVcBCQeH5-->模型参数大小</a>
+<a data-page-node-id="olCekNWNbJIBQRdxUkA3Pf" class="toc-a lv3" href="#上下文窗口"><!--pnid:uhe4UARYiA9zv11oXqZFlr-->上下文窗口</a>
+<a data-page-node-id="syP7RGxiTxsx9IwjOX2stA" class="toc-a lv3" href="#一句话分清"><!--pnid:dT44LlLJMmpWyd5XlYX8Yx-->一句话分清</a>
+<a data-page-node-id="iWhlnAuA9kvBMv2GAPVKxn" class="toc-a lv3" href="#模型命名规则"><!--pnid:o0a4j2zffI7oSBMIO7elpI-->模型命名规则</a>
+<a data-page-node-id="OllTn81kLmxDFrB2LwBqo7" class="toc-a lv2" href="#7-小结"><!--pnid:8buaI1mpCE6SVlheTmPU70-->7. 小结</a>
+  </nav>
+  <main data-page-node-id="vEWWjRyJTyBEJUMjTP7XqJ" class="content">
+    <section data-page-node-id="jqdvxX39ntCNvF03YG9Gor" class="res-bar reveal"><span data-page-node-id="wzhE0Ymh6i267hK1ncYTe1" class="res-label"><!--pnid:4mijpbPXBB4xdpV2NrQjSk-->项目源码</span><a data-page-node-id="xQQC0HnTNx0mvo4bBjopwM" class="res-chip" href="https://www.yuque.com/attachments/yuque/0/2026/py/35881593/1784539956086-f01059b2-63b9-4fc0-a27e-b79ff863f25f.py" rel="noopener" target="_blank"><span data-page-node-id="rSClDOlvO9vDI6aZVMwk6d" class="res-ic"><!--pnid:hOiZDHOcjBBawNMypgW4EU-->PY</span><span data-page-node-id="UIAxc3VWkgPtApXYRkyrEO" class="res-name"><!--pnid:EIyQpl2I1JNbGTaSaYNX1v-->02-多轮对话机器人(1).py</span><svg data-page-node-id="Lln5ETEMBUFX5DrzBWcTd9" aria-hidden="true" viewBox="0 0 16 16"><path data-page-node-id="ikTjjVW1nyLbqssULuD8dE" d="M6 3h7v7M13 3L4 12"/></svg></a><a data-page-node-id="DYiyAauLjE9AsyxLC4B8B9" class="res-chip" href="https://www.yuque.com/attachments/yuque/0/2026/py/35881593/1784539956191-707a20a7-5076-4cfd-952f-800ecd44be74.py" rel="noopener" target="_blank"><span data-page-node-id="Dz1GDaR5On3C7KZeDhsZ7Q" class="res-ic"><!--pnid:5NGv61ar2v3fqr81jEij0e-->PY</span><span data-page-node-id="gfBhVSperiHEp69hLSR89V" class="res-name"><!--pnid:vqiCM3LKfUZBHybs8CErKt-->02-多轮对话机器人.py</span><svg data-page-node-id="jKXtloDfzeBZQxBo337lNj" aria-hidden="true" viewBox="0 0 16 16"><path data-page-node-id="AYO7NzqzFgJXLoNNZfyUvD" d="M6 3h7v7M13 3L4 12"/></svg></a><a data-page-node-id="Zeplcd6JZqaEAOyjBIB601" class="res-chip" href="https://www.yuque.com/attachments/yuque/0/2026/py/35881593/1784539956300-79e9c4d1-b61d-4069-91ae-c65dc31ae1c0.py" rel="noopener" target="_blank"><span data-page-node-id="ijIYleuuxGjrXjb7Xm2cDJ" class="res-ic"><!--pnid:t5TRWIPrApYPOSpYN0igpx-->PY</span><span data-page-node-id="6LSvVKtvqOWnMlN7Q9UVJY" class="res-name"><!--pnid:0VtPSjtMB0DqlYmoB2W2TQ-->01-单次对话机器人(1).py</span><svg data-page-node-id="rsA4YTfU40yLDJYyL7x9kP" aria-hidden="true" viewBox="0 0 16 16"><path data-page-node-id="23L6rY1AbcGuav6R62hjSF" d="M6 3h7v7M13 3L4 12"/></svg></a><a data-page-node-id="v4tMzBVbKNPf1XE17irSRZ" class="res-chip" href="https://www.yuque.com/attachments/yuque/0/2026/py/35881593/1784539956403-e8586fb5-1769-4a2e-918b-230822755e24.py" rel="noopener" target="_blank"><span data-page-node-id="Aip5PA2GJ9VoBNDTYjtNQL" class="res-ic"><!--pnid:MbOLSzyvxlKxLYCZAApwlr-->PY</span><span data-page-node-id="PLpBHA5wkZCb3bB6eqLfi4" class="res-name"><!--pnid:tPuyoj6idnV7dpuVz3Cj18-->01-单次对话机器人.py</span><svg data-page-node-id="zIVjYKorDARVogMDQH4kwz" aria-hidden="true" viewBox="0 0 16 16"><path data-page-node-id="WWt0OySuNRcHSttG3YnPYY" d="M6 3h7v7M13 3L4 12"/></svg></a></section>
+<section data-page-node-id="SRJSHXFJllV06j617tvXZb" class="sec reveal" id="一-ai-重构千行百业-黄金赛道已至"><div data-page-node-id="vVFYUnxPS3oJ8F02pwzA0E" class="sec-rule"></div><h2 data-page-node-id="Mv9kGtaNCobLJ2BRk66OwP" class="sec-title"><span data-page-node-id="4ThF33z2p8X5tLHgGebXGN" class="sec-num"><!--pnid:FNfrM0w2QbiERJSPUrPYZd-->一</span><!--pnid:GZ7fLVd4fdjS8BUVhUVnHh-->AI 重构千行百业，黄金赛道已至</h2>
+<p data-page-node-id="VMejrmDxi02lYVGXhl0GHz" class="reveal"><!--pnid:pkO5HWJX65sUEhMw3AkJz2-->AI 大模型正以颠覆性力量渗透金融、医疗、教育、制造、电商、物流等全行业，所有行业都将被 AI 深度重构，超50% 的行业核心场景将深度整合大模型，市场规模突破 600 亿元，<strong data-page-node-id="hLRRcJriOXG2fHdLIi98U9"><!--pnid:YgfLuo58idtaCj0bUJnIsv-->预计人才缺口高达 400 万</strong><!--pnid:R0Bn9hTO6klOFP0bUXzHoT-->！</p>
+<div data-page-node-id="goNFjDy7694uFYaGRni5TY" class="metrics reveal"><div data-page-node-id="gALa54Hqx7G4RtqGgiv97W" class="metric"><div data-page-node-id="NbBLv2KB0ZbPEQMxZHz6PC"><span data-page-node-id="nMDn4yGLxREbzSZutTTciN" class="num" data-count="600"><!--pnid:6UfyaUHikRDiLMRkxtbzV5-->0</span><span data-page-node-id="77CR7Lb97okOHUBKpLp1NF" class="unit"><!--pnid:dLkSV4g2xfYWjroAdhKJNQ-->亿元</span></div><div data-page-node-id="m1UGSB80Ly9nRpJtj6HHTP" class="cap"><!--pnid:MDnk1wqJIBgEsFgyInigtf-->行业核心场景整合后的市场规模</div></div><div data-page-node-id="XwPglabAmwJ9j65N4AYVr8" class="metric"><div data-page-node-id="azUC5176PDFbF3xfXZ1Yyg"><span data-page-node-id="H84t8jbybRvJ4Joz2Fwytn" class="num" data-count="400"><!--pnid:68bZsHeCegKrl77yL3HOy3-->0</span><span data-page-node-id="E0YLK9DRS8Kzn81uSMaL9Y" class="unit"><!--pnid:XOIy5fSsiiYDEdxZcv5h1h-->万</span></div><div data-page-node-id="To6UfwktuwlDAU4snMY9HK" class="cap"><!--pnid:SRrjL17Qcrendm4hqRokQp-->预计大模型人才缺口</div></div><div data-page-node-id="JxBSXfBLpt3gZUZXSczubR" class="metric"><div data-page-node-id="KuxLDxihftysDwpXaOzRyb"><span data-page-node-id="K6fTAkIoOBQOIBxvjot94x" class="num" data-count="300"><!--pnid:VlubT5ZgsbIWe0hy5TICp1-->0</span><span data-page-node-id="uVCpYn1J8LFnfISPtnFs0P" class="unit"><!--pnid:ne87cNM9vmfcejavVczrkd-->%</span></div><div data-page-node-id="7aNoKUg3VTLv4p13KXDTwY" class="cap"><!--pnid:aA6U9TuzE2eHWepj0Um8de-->全球 AI 岗位增速超</div></div><div data-page-node-id="6ikJqR77TzS5TcWcsScd6S" class="metric"><div data-page-node-id="2s6nkhFMtq8TxxZN8zbnZT"><span data-page-node-id="5zGTMARQeDBMiHiK6ZT4sJ" class="num" data-count="70"><!--pnid:PPqatvuw89cM56H9k2WmTl-->0</span><span data-page-node-id="Uz0I15jV5fMA1OJjtl0bh5" class="unit"><!--pnid:kXyQSVAhX2MHv7Ff6oRpsE-->%</span></div><div data-page-node-id="zPQXl10hDUeBFvwjgUsfWs" class="cap"><!--pnid:iOTjLZxWADnvLxLx9fMJu0-->每 10 个高薪 offer 中来自 AI 领域占比</div></div></div>
+<p data-page-node-id="CYveoonEbmpLBVqlJsfj3h" class="reveal"><!--pnid:sW690q37PtWu3XW6SzG3XR-->全球 AI 岗位增速超 300%，中国已成为全球最大 AI 人才需求市场。IDC 数据显示，全球 AI 市场规模将从200 亿美元飙升至2000 亿美元，猎聘研究院数据更印证：每 10 个高薪 offer 中就有 7 个来自 AI 领域，大模型开发工程师、Agent 开发工程师、NLP 工程师等岗位供不应求，应届毕业生起薪 18k-28k / 月，3 年经验工程师薪资可达 35k-50k / 月，技术专家年薪百万已成常态。</p>
+<p data-page-node-id="YosovdQdeo8lNIhizA88vm" class="reveal"><!--pnid:UIhFe2gdZ3eQETOVXQ0ca5-->国家 “十五五” 数字经济战略将大模型列为核心引擎，北上广深等多地设立专项 AI 扶持基金，政策强力驱动下，大模型应用开发已成为<strong data-page-node-id="F6SPPCGhsjLySwT3MXzJMA"><!--pnid:26odL4YtOmq5PNRCIiaL2w-->最具前景的黄金职业</strong><!--pnid:IAgJC07EW1hWFsFGbehNWC-->，零基础也能抓住时代风口！</p>
+</section>
+<section data-page-node-id="E81U2xjNnJvBFWw05F2k1p" class="sec reveal" id="二-课程定位-从零基础到企业级大模型开发工程师"><div data-page-node-id="nXu2BndcCidtz5Rh4kY8IS" class="sec-rule"></div><h2 data-page-node-id="TOi3SUNBW2ExzlUju8H5qy" class="sec-title"><span data-page-node-id="svEk9tmQ1oQGdlPnoRHY7H" class="sec-num"><!--pnid:oz4Cni3jGB5vD2Vi5mVG8H-->二</span><!--pnid:fFlOZhNlaMH3FgieH8iNku-->课程定位：从零基础到企业级大模型开发工程师</h2>
+<p data-page-node-id="5yRJNYDSb8ewmIJoPpj9HJ" class="reveal"><!--pnid:8q2xfeLarfx26Z84p1Mbkt-->本课程专为零基础 / 转行者打造，以「实战驱动、全栈覆盖、岗位匹配」为核心，从 Python 基础入门，到 NLP 核心、大模型微调、Agent 智能体、RAG 检索增强、多模态开发、具身智能前沿，完整覆盖大模型应用开发全链路技术，培养企业紧缺的全栈式大模型开发人才，精准匹配大模型开发、NLP、多模态三大热门岗位需求。</p>
+<div data-page-node-id="Gc4yHJI8YdaG3KBa2vOI9H" class="h4 reveal"><!--pnid:GNi4V0jzI5h2sCJ37uuAvJ-->课程核心优势</div><div data-page-node-id="TqV3n38SjWB1jlN5zlzHB9" class="adv-grid">
+<div data-page-node-id="KJICcIAwJtpzGfvemKA459" class="adv reveal"><span data-page-node-id="nMw2yXGiydNgDvX2BteQAW" class="tick"><!--pnid:WPt7z9dB8CT5DA5FyUBut5-->✓</span><p data-page-node-id="8rNRChYDU0ZtciyatcK7r7"><strong data-page-node-id="w37Aon475YEIhqPctxVsmP"><!--pnid:iQgnf5ZsixWiQaLPGHWK9C-->全栈技术体系</strong><!--pnid:5P7pv3h51jAQjGmKgWttY3-->覆盖 Python 基础→数据处理→机器学习→深度学习→Transformer→大模型微调→Agent→RAG→多模态→具身智能，从入门到进阶一站式掌握</p></div>
+<div data-page-node-id="MiUk6qaItfEoVoIIW77H0q" class="adv reveal"><span data-page-node-id="s8jQPN25oWAmJ8pZUVMk0F" class="tick"><!--pnid:HVFTaeG75djMAz6VkSagXm-->✓</span><p data-page-node-id="NbEPoVVGoetQ6oVAhd0NIA"><strong data-page-node-id="IaYIRXvNpYF2UMjAuZ3FqJ"><!--pnid:VwdhyPpcYU6jd8LWRdmF5F-->实战项目驱动</strong><!--pnid:dWHqv7Wkds7toxDl13VHPN-->每个阶段配套练手项目，最终打造 4 个企业级简历项目，直接对标企业招聘要求</p></div>
+<div data-page-node-id="wrus4nZip7XVln2HhxhNP7" class="adv reveal"><span data-page-node-id="hiFUZ41e5lPEn89eivDo56" class="tick"><!--pnid:YaVu8tceihVwjFDmzyAJnI-->✓</span><p data-page-node-id="gWSCQS0P6zm3F1gO7s7Zuc"><strong data-page-node-id="mKUUOq51FNPj4mPXSiX2uz"><!--pnid:yGNDyDYRqBeY3WeUYgxVmZ-->岗位精准匹配</strong><!--pnid:PznzyCFSwmydXIKRX5mAVr-->紧跟行业趋势，聚焦大模型开发、NLP、多模态三大高薪方向，学完即可投递高薪岗位</p></div>
+<div data-page-node-id="HfL4sqx8EcBLh4YVEN0qJj" class="adv reveal"><span data-page-node-id="J9lz4RPkVJEGxOXtjTZKHj" class="tick"><!--pnid:Gk6FvdPS55aiDEVsuCbVJx-->✓</span><p data-page-node-id="iDpvPkBqjjb1kbChSY1A0T"><strong data-page-node-id="evPNRqiGGffWAhljSFNPDZ"><!--pnid:Leajn5gr92ZOe5bx7Wyhst-->前沿技术同步</strong><!--pnid:ZG16HnQVkCpacQFZZ1HjOs-->融入最新政策导向与行业热点，覆盖 Qwen/DeepSeek 等国产大模型、Coze/Dify 低代码平台、MCP 等前沿技术</p></div>
+<div data-page-node-id="JuQopzNPx4OWO2ACG1zndr" class="adv reveal"><span data-page-node-id="MpR9NirxpFIgI3Kkb9ebsI" class="tick"><!--pnid:gdhurdHYtfPqzCMeTYYueL-->✓</span><p data-page-node-id="1y9JHfkJXCKV5QymxTpvqF"><strong data-page-node-id="lPQb8iGMF65gXshGTN6lDd"><!--pnid:5a0uRR5g7iOHuDYC2SQT9v-->零基础友好</strong><!--pnid:AliqgoqFpAqQ9KFiheXbNk-->从搭建第一个聊天机器人起步，循序渐进，无需编程基础也能快速上手</p></div>
+</div>
+</section>
+<section data-page-node-id="Un26sPF6is0TedAzLvN3GF" class="sec reveal" id="三-大模型全栈开发实战课程学习路线"><div data-page-node-id="HeTxnRCWn6F68HkX463AF0" class="sec-rule"></div><h2 data-page-node-id="Py0hfg4Axnlu2Xdx2eccmL" class="sec-title"><span data-page-node-id="x0UKsGXgP7gCE2v3xAQE2l" class="sec-num"><!--pnid:4UKSEBaIWDfAGOudI0PHZD-->三</span><!--pnid:q1qu3W3WgM8LsXWxHNvsBA-->大模型全栈开发实战课程学习路线</h2>
+<div data-page-node-id="pxYPTOFAryziovgIYKCyJI" class="stages reveal"><span data-page-node-id="QA47jsXAUMXOb6L0NmhMSq" class="stage-chip"><strong data-page-node-id="QbioFUnb4TspT6zdy1WDil"><!--pnid:zM4k2rritTNfX7pvTT451p-->第一阶段：大模型开发入门</strong></span><span data-page-node-id="E2VX2LtJ891gYleqZ3jkTU" class="stage-chip"><strong data-page-node-id="25nqZPLlZiwuCDAsUmWnIM"><!--pnid:RhAKODrhvLmZB60YIYc1kL-->第二阶段：大模型技术核心</strong></span><span data-page-node-id="mbcVjTscnw8OWzj2TSQgUR" class="stage-chip"><strong data-page-node-id="QyHjiF3rK3KLeENgd2JfWN"><!--pnid:apHWcaFt0icv5DLeim9Szw-->第三阶段：自然语言处理（NLP）核心</strong></span><span data-page-node-id="aZJfnJRlXBJrA6rIWqG1DC" class="stage-chip"><strong data-page-node-id="BYwPSF8M5MFfUIYV5G6uTh"><!--pnid:BUtlY32YN5ri1bhn5VguBw-->第四阶段：大模型技术进阶</strong></span><span data-page-node-id="ffWcj8i1Wj5MrXneMkS4Vo" class="stage-chip"><strong data-page-node-id="ye3QltPBGPtD3TjjWrtAe9"><!--pnid:SjeQnZzcCVGI8HckzkeU2S-->第五阶段：多模态大模型</strong></span><span data-page-node-id="nXkHiE1WrMAw6K1qM62D5T" class="stage-chip"><strong data-page-node-id="MA3QQcZMvgMR0Ks7hOszj4"><!--pnid:m2ow5b3HZgYzKpY0zHRGnq-->第六阶段：前沿技术初探 —— 具身智能</strong></span></div>
+<div data-page-node-id="ujwfgcR1CNZPq4EvhQJyUa" class="reveal"><div data-page-node-id="m8P8NuSGdyUho5WCIlL3Kk" class="table-wrap wide"><table data-page-node-id="kDvWqWRmvW2ZME8FSMWhvr"><thead data-page-node-id="YFh5q6YHBw2kURZU2JYQ3H"><tr data-page-node-id="g5VvCetf3sMrqlIjsTv1xw"><th data-page-node-id="o88FSzLbbPwWsmAXq3w6QL"><strong data-page-node-id="JCZdqIR4S2bKAAGxfq6DDm"><!--pnid:S66lxWnYsQPNJsWPMEsxwG-->课程阶段</strong></th><th data-page-node-id="Pruz1cHQFfv5ndpbcmCFkz"><strong data-page-node-id="XTW8cl6syBHS2F1UrAFGEt"><!--pnid:T3FwC64ZWHz9N9k0gEdQXY-->模块名称</strong></th><th data-page-node-id="nuFZdCZgQsXHku2MufzEeI"><strong data-page-node-id="dblaCk94pO9Irvw9WEWIJx"><!--pnid:DgUkNESSosiitWKmsycwYD-->具体知识点</strong></th><th data-page-node-id="iKFRK38JZ9tUrrNlywhI4a"><strong data-page-node-id="7yqksvGeybkXAHGKilNoux"><!--pnid:U9La3OxarpIr9tUhHzIyPU-->课时（60 分钟 / 节）</strong></th></tr></thead><tbody data-page-node-id="RlaSXeiXHxQlzp6zERyZR7"><tr data-page-node-id="QTUw6RXRlNEBCwdZOYAszR"><td data-page-node-id="dyDOAJfSBxaHBAgG7yDdWW"><strong data-page-node-id="uMtQ0Di5tP82U4JxYxq7XN"><!--pnid:O5FibwYLwkmGPya6qnepZi-->第一阶段：大模型开发入门</strong></td><td data-page-node-id="qLgdWh4zCoYENNhhK5Ws0b"><!--pnid:aKUTryVHuxaNAYKravSEck-->从零搭建 AI 聊天机器人</td><td data-page-node-id="r3sg8Xk9BXU97ZuCixXB2U"><!--pnid:k92yNSUoGzKDxYs3HT7jMU-->1. 大模型应用场景与开发流程介绍（通用场景：客服 / 创作 / 数据分析；垂直场景：医疗 / 金融 / 教育）2. Python 核心基础入门（变量定义、print 输出、函数定义与调用、注释规范、代码调试技巧）3. 大模型 API 调用原理（密钥配置、请求构造（Headers/Body 封装）、请求频率限制处理、错误码解析）4. 聊天机器人核心逻辑实现（单轮 / 多轮对话（上下文存储）、指令接收与回复展示、指令校验与异常兜底）5. 应用调试与运行优化（日志打印、性能监控、资源占用优化）</td><td data-page-node-id="vKgmqlqt236B2MmW1i1XJ6"><!--pnid:TuwseSgekVl9bpSVOxlCyb-->1</td></tr><tr data-page-node-id="3CEFO3BdyydSbHn1I38SGe"><td data-page-node-id="PgmdT2V3pqW2ya60ixmrag"><strong data-page-node-id="UPe8r7FmoazLPxZIZMr8uF"><!--pnid:wNuyIg0BOCGi8tMpmT70aV-->第二阶段：大模型技术核心</strong></td><td data-page-node-id="c65nzoPCK1a6DyBYowrFPb"><!--pnid:VpHQwS2ssWPqNwf5emb32j-->2.1 Python 编程基础与进阶</td><td data-page-node-id="E79StLAm42txyIHFFSJi33"><!--pnid:JK2aaVqtTPwNsXHuKonUpV-->1. Python 介绍与发展史、行业应用场景（AI / 大数据 / 后端开发）2. 开发环境配置（Python/PyCharm/VSCode 安装与配置；pip 包管理（镜像源配置、版本锁定）；Jupyter Notebook/Conda 环境搭建（虚拟环境隔离、环境导出 / 导入））3. 输入输出（print/input 函数、格式化输出（f-string/format）、文件流输出）4. 分支与循环（if-elif-else、for/while 循环、break/continue、循环效率优化）5. 数据类型（数值 / 字符串 / 列表 / 元组 / 集合 / 字典的定义与常用操作、数据类型转换、深拷贝 / 浅拷贝）6. 函数（参数传递（位置 / 关键字 / 默认 / 可变参数）、返回值、匿名函数、装饰器基础（日志 / 缓存 / 权限装饰器））7. 面向对象（类与对象、继承（单 / 多继承）、多态、封装、魔术方法）8. 迭代器与生成器、异常处理机制（try-except-finally、自定义异常、异常链）9. 文件操作（文本 / 二进制文件读写、路径处理（os.path/pathlib）、大文件分块读写）10. 模块与包（导入机制；os/sys/json/requests/datetime 高频库实战、自定义包开发）11. 进程 / 线程 / 协程（并发编程基础、GIL 原理、实战应用（多线程爬虫 / 协程接口调用））12. 网络编程与 MQTT（TCP/UDP 通信、网络请求原理、MQTT 协议应用（设备消息收发））13. Git 安装与使用（版本控制、代码提交 / 拉取 / 分支管理、冲突解决、GitFlow 工作流）</td><td data-page-node-id="oT4wrawaKCM2IqNEgmzwuo"><!--pnid:nb5SD6wmckml8nqxajpJ56-->16</td></tr><tr data-page-node-id="9CkSsbUECoCA1NXMK2jYKw" class="cont"><td data-page-node-id="2QUBTT9Zb0p9zBGCmIN2QK"></td><td data-page-node-id="DPU47nLNPN1RYZtjB78Hhy"><!--pnid:8Hnx3LfCsV6rKSsjCelWpu-->2.2 数据处理与统计分析</td><td data-page-node-id="WDrmvHx6AIghJeO0iHjtY1"><!--pnid:eF2ZwlUGO5X0XaDLcWbtf0-->1. Linux 常用命令（文件操作（ls/cp/rm/mkdir）、权限管理（chmod/chown）、进程查看（ps/top/kill）、日志查看（cat/tail/grep））2. MySQL 数据库（基础语法（增删改查）、条件查询（模糊 / 范围 / 聚合）、联表查询（内 / 外 / 左 / 右连接）、索引优化、事务；PyMySQL 库操作实战（连接池、ORM 基础））3. Numpy 矩阵运算（数组创建、索引切片、广播机制、统计函数、矩阵分解、向量化运算优化）4. Pandas 数据处理（Series/DataFrame 创建、数据读取（csv/excel/sql）/ 清洗（缺失值 / 异常值 / 重复值处理）/ 筛选 / 分组统计、透视表、数据合并）5. Matplotlib 可视化（折线图 / 柱状图 / 直方图 / 热力图绘制、样式优化、子图布局、动态可视化）</td><td data-page-node-id="xzxfQLXZnC2sFG06TXQ2V3"><!--pnid:o08mI8c7tMLMzn6cqZ8aGP-->13</td></tr><tr data-page-node-id="MEMLMNe7na89a8glzxbbrj" class="cont"><td data-page-node-id="XfSuG6e0NvND2VR8LOqYJg"></td><td data-page-node-id="3QmIo5xqy2iUV5ocGRNr7O"><!--pnid:hOlqTZhBAzNxvZYSv8o7oM-->2.3 机器学习基础</td><td data-page-node-id="IEdQKvfzE9irrM4LkxejhM"><!--pnid:RmeGY841pQ2FEj6gAZuhyz-->1. 机器学习概述（定义、分类（监督 / 无监督 / 半监督 / 强化学习）、核心流程（数据采集→预处理→模型训练→评估→部署）、应用场景）2. 经典算法详解（K 近邻（距离度量 / 参数 k 选择）、线性回归（损失函数 / 正则化）、逻辑回归（分类原理 / 阈值调整）、决策树（特征选择 / 剪枝）、集成学习（随机森林 / XGBoost/LightGBM）、聚类（K-Means/DBSCAN）、支持向量机（核函数选择）、朴素贝叶斯（平滑处理））3. 算法原理、超参数调优（网格搜索 / 随机搜索 / 贝叶斯优化）、实战案例（分类 / 回归 / 聚类任务）4. 模型评估指标（准确率 / 精确率 / 召回率 / F1/ROC-AUC/MAE/MSE/R²）</td><td data-page-node-id="3syiYcwN4Gq3TAHh2ulUL4"><!--pnid:tlF0QJW8peRk6KLSmte1JL-->12</td></tr><tr data-page-node-id="bWLQpaxrWiUXzjdSM9GAuu"><td data-page-node-id="uaEdVV7tdzAiOpWrnARGji"><strong data-page-node-id="NkPIRdHRxbOFRLGUEgIclg"><!--pnid:ayIIIaRYZUVoDjMY4YRQC0-->第三阶段：自然语言处理（NLP）核心</strong></td><td data-page-node-id="PSk7N1nydz4hZVuuxUpUlK"><!--pnid:IHomn9B0VdDf1hFAdw0al5-->3.1 深度学习基础</td><td data-page-node-id="LpaENE4oQi0qeX7QaAXfUU"><!--pnid:f04PURIRN3OsSCjWK9iJjw-->1. 深度学习概述（与机器学习的区别、应用场景（CV/NLP/ 语音）、算力需求（GPU/TPU 介绍））2. PyTorch 框架讲解（环境搭建（CUDA 配置）、张量操作（创建 / 运算 / 索引）、自动求导（梯度计算 / 梯度清零）、模型定义（Sequential/Module 方式））3. 线性回归 / 逻辑回归实现（前向传播、反向传播、数据集划分（train/test/val）、训练流程（早停机制））4. 优化器与学习率调度器（SGD/Adam/RMSprop 原理、学习率调整策略（余弦退火 / 阶梯下降）、梯度裁剪）5. 模型保存与加载（state_dict / 整模型保存、断点续训）6. 数据加载（Dataset/Dataloader 自定义、数据增强）</td><td data-page-node-id="LzBN3QsRQR8jAKbVEcHXya"><!--pnid:W8jEw6o97QiVCra4amo0yh-->10</td></tr><tr data-page-node-id="k3Uc5QMKPic3DAnNMn29L4" class="cont"><td data-page-node-id="98oqeoDveobG0DJbRKZ5T7"></td><td data-page-node-id="6F2Xaor50R3mAaHeTjqMeq"><!--pnid:5rvstRqGgZ6Dvf4b7PgUm9-->3.2 RNN+Transformer 核心</td><td data-page-node-id="Fmxqd1pScy11eCUHvWkE3N"><!--pnid:YMIG3TUgGw2vpmO9bR18Je-->1. 文本预处理（词元化、词表构建（频率过滤 / 未知词处理）、分词库（jieba/tiktoken/huggingface tokenizers）、文本向量化（One-Hot/Word2Vec/Embedding/TF-IDF）、文本清洗（停用词 / 特殊字符处理））2. 循环神经网络（RNN/LSTM/GRU 模型原理、结构、长距离依赖解决（梯度消失 / 爆炸）、双向 RNN 实现）3. 编码器 - 解码器架构、注意力机制（QKV 模型、自注意力 / 多头注意力计算过程、注意力可视化）、位置编码（正弦余弦编码 / RoPE/ALiBi）4. Transformer 模型详解（整体架构、编码器 / 解码器层（多头注意力 / 前馈网络 / Add&amp;Norm）、残差连接、层归一化）5. 手搓 Transformer 核心结构代码（多头注意力、编码器 / 解码器层、完整模型拼接）6. HuggingFace Transformers 库使用（模型加载 / 微调 / 推理）</td><td data-page-node-id="S3nP9TmxVpETeJoecn0ATo"><!--pnid:Rubsan9Tu4Df4Uf4CsUv4O-->18</td></tr><tr data-page-node-id="Ajl1v7Pt32WynYmr4IsJYG"><td data-page-node-id="F07RCCnEZJXpr3HuR92vFY"><strong data-page-node-id="CQoqHA0Seok4Am73ffp6Pf"><!--pnid:RUsbpCQKwgAwVDMPzc5Fsb-->第四阶段：大模型技术进阶</strong></td><td data-page-node-id="TVvin9K6mS8dJPypMudVys"><!--pnid:l6qFXb5FNUfuSk4GAUh181-->4.1 大模型微调与部署</td><td data-page-node-id="DlnwfME5onPdCk5UybwNpM"><!--pnid:1Ys8Ua0cc7iRAHauC0wvkr-->1. LLM 发展与用途、主流架构分类（GPT/LLaMA/BERT/Qwen/DeepSeek 系列）、模型选型依据（参数量 / 推理速度 / 开源协议）2. GPT 系列模型原理与区别（GPT-1/2/3/4 进化、LLaMA 1/2/3 改进）、主流开源大模型介绍（Qwen/DeepSeek/ZhipuAI）3. LLM 部署（本地部署（Ollama/Transformers 本地推理）、云端 API 调用（OpenAI / 阿里云 / 百度智能云）、推理优化（批量推理 / 缓存））4. RESTful 设计与 FastAPI 入门（接口开发（GET/POST/PUT/DELETE）、请求参数校验、接口文档（Swagger）、异常处理、跨域配置）5. Python 前端开发（Streamlit/Gradio 环境搭建、页面开发（组件封装 / 样式定制）、模型联动（前后端交互）、部署上线）6. Docker 部署模型（镜像构建（Dockerfile 编写）、容器化实战（多容器编排 /docker-compose）、镜像仓库使用）7. 大模型微调与量化（微调原理（全量微调 / LoRA/QLoRA/PTuning）、数据集准备（格式规范 / 数据清洗）、INT8/FP16/FP8 量化优化、微调框架（PEFT/Transformers Trainer）、微调后评估）8. 模型推理加速（VLLM/TensorRT 部署、量化感知训练）</td><td data-page-node-id="AOMzAZdfcuabwbby5v9ZBI"><!--pnid:n9LRbHsaJu4OYQFazt5xEO-->18</td></tr><tr data-page-node-id="4mmujp7hO0tzMoi7bH9pfz" class="cont"><td data-page-node-id="HgmD6vC7FzLhA79BJsDfUA"></td><td data-page-node-id="FFARnDbNZvUlLnRRetjHNX"><!--pnid:wWkAYyXBBKWtguNk9Udcdg-->4.2 大模型 Agent 开发</td><td data-page-node-id="e2Vqn4eVytfrn4TZhyFerP"><!--pnid:T7xSNH1TVzP3Oy3ljLUPIU-->1. 智能体概念与技术前景、核心能力（记忆（短期 / 长期 / 矢量记忆）/ 工具调用（函数调用）/ 决策（规划 / 反思））2. Coze 平台实战（智能体创建、工作流编排（条件分支 / 循环）、插件 / 知识库集成（自定义知识库上传）、个人学习助手开发（知识点问答 / 学习计划生成））3. Dify 平台 Agent 开发（应用搭建（可视化流程）、逻辑配置（提示词工程 / 工具绑定）、多模型集成、用户权限管理）4. MCP 介绍与实践（MCP 与 Cherry Studio 配置、基础使用、多智能体协作）5. 自定义 Agent 开发（基于 LangChain Agent 框架、工具封装（搜索 / 计算 / 数据库查询）、记忆模块开发、决策链设计）6. Agent 评估（任务完成率 / 响应准确率 / 效率）</td><td data-page-node-id="xvgycPwcqML7oFgIJg8wGh"><!--pnid:IRHRhYsVddkan98wONkCLc-->12</td></tr><tr data-page-node-id="2aGS3nGweLTohHsxm3yx2K" class="cont"><td data-page-node-id="DHvUBDThVURrPZ1iUGg83G"></td><td data-page-node-id="YwzqVVO0HV1R26lOEpfYe8"><!--pnid:9PUWsplWL89iJARcrn2VBw-->4.3 大模型 RAG 开发</td><td data-page-node-id="bCdRHXooMJ6KDfIs3lpfyK"><!--pnid:7HFVqRUKZrDZ8XZC4PDGD0-->1. Langchain 环境搭建（API 调用 LLM、Ollama 本地部署 LLM、环境变量管理）2. Langchain 核心组件（提示词模板（PromptTemplate）、输出解析器（StructuredOutputParser）、链（Chain/SequentialChain/RouterChain））3. Langchain 流式输出实现（SSE 协议、前端实时接收）4. Langchain 记忆系统（短期 / 长期记忆、多轮对话记忆（ConversationBufferMemory/ConversationSummaryMemory））5. Langchain 工具封装与调用（自定义工具开发、注册、调度、工具优先级设置）6. RAG 技术详解（文本加载（PDF/Word/Markdown 加载）、文本分割（RecursiveCharacterTextSplitter）、向量数据库与向量化（Milvus/Chroma/Pinecone、Embedding 模型选择）、RAG 评估与优化（检索召回率 / 答案准确率、重排序 / 提示词优化））7. 本地知识库私有化部署（离线 Embedding 模型、向量数据库本地部署）</td><td data-page-node-id="hfCHUHVU7tVcvsmVuDs18O"><!--pnid:0UrW1KR18bETPszW00LzjN-->12</td></tr><tr data-page-node-id="shAG1xZ7PVns213m3Ofmhw"><td data-page-node-id="lq7Z6CVIbtVJZXnBBlYUk1"><strong data-page-node-id="h5g3jnRgUWaJnaiP5odNrd"><!--pnid:j1SXMm7IolefelVimDWkmF-->第五阶段：多模态大模型</strong></td><td data-page-node-id="Om3cSBfmXvIODghN5BcalT"><!--pnid:mIDThfy2eMxmbpicT7HR87-->5.1 图像认知与 OpenCV</td><td data-page-node-id="Dn7DmmKTZZW7ulsjEa2Bye"><!--pnid:gxlyDIJzuYralGxCf1eXWt-->1. 计算机图像基础（像素、通道（RGB / 灰度 / HSV）、分辨率、图像格式（JPG/PNG/WEBP）、图像压缩原理）2. 图像基础操作（灰度化、二值化、缩放、旋转、矫正、图像拼接）3. 图像算法（模糊 / 滤波（均值 / 高斯 / 中值滤波）、梯度 / 边缘检测（Sobel/Canny/Laplacian）、轮廓检测（轮廓提取 / 拟合））4. 高级图像处理（形态学操作（膨胀 / 腐蚀 / 开运算 / 闭运算）、直方图（均衡化 / 匹配）、霍夫变换（直线 / 圆检测）、模板匹配、图像分割）5. OpenCV 实战（图像标注、视频帧处理、实时摄像头采集）</td><td data-page-node-id="8BuEk7ZZ2ftZtcxLPGbfv1"><!--pnid:4cv3Y5syysNRvlzFy7KZOe-->8</td></tr><tr data-page-node-id="hLBsQD4lkrfGb5p0hxPMWK" class="cont"><td data-page-node-id="ObnHh1ZHDAziczVFBNepfM"></td><td data-page-node-id="V34Kqtzx4fUDCNXV0rRlb0"><!--pnid:uKilqU5IbsclPurMuOYKDW-->5.2 CNN+YOLO 目标检测</td><td data-page-node-id="Daz3OuNFoXlSxuShz0bRr6"><!--pnid:JPFlY9TEwHYgGPC4bqUBDp-->1. 图像数据集构建与标注（LabelImg/LabelMe 工具、VOC/COCO 格式、数据集划分、数据增强（翻转 / 裁剪 / 色域变换））2. 卷积与池化原理（卷积核、stride/padding、感受野、最大 / 平均池化、空洞卷积）3. 经典 CNN 复现（LeNet/AlexNet/VGGNet/GoogLeNet/ResNet/MobileNet 原理与代码实现、模型轻量化）4. 目标检测理论（两阶段（Faster R-CNN）/ 一阶段（YOLO/SSD）区别、锚框设计、正负样本匹配）5. YOLOv1-v4 核心改进（骨干网络 / 检测头 / 损失函数）；YOLOv5/v8/v10/v11 模型部署与实战（模型加载、推理加速、批量检测、实时视频检测）6. 目标检测评估指标（mAP/IOU/Precision/Recall）、模型优化（剪枝 / 量化）</td><td data-page-node-id="n255DiUEudTelw5sTMqzCD"><!--pnid:GPv0xun4jwuEJubZPAJsCT-->16</td></tr><tr data-page-node-id="uBDb6Zhz9RAXUaPB27UxpW" class="cont"><td data-page-node-id="fTl2tXkskTJQwTXP8d35oh"></td><td data-page-node-id="V0kG7lm18yN8AfK0tlScQf"><!--pnid:fvDrWGGvDiBbaXCgvT11aE-->5.3 语音大模型基础</td><td data-page-node-id="ZwDnA0FxM3xfM1uNS6sArc"><!--pnid:AL9DvcwIBogY4WPBCjlZ4q-->1. 语音技术概述（语音信号特征（时域 / 频域、梅尔频谱）、ASR（语音转文字）/TTS（文字转语音）原理、语音唤醒）2. 基于 ASR+LLM+TTS 的端到端对话系统实现（语音采集→ASR 转写→LLM 生成回复→TTS 合成语音→播放）3. 主流语音 API 使用（百度语音 / 阿里语音 / 讯飞语音）、本地语音模型部署（Whisper/FastSpeech）</td><td data-page-node-id="U5raSSgaZv1Q8l1zujthOC"><!--pnid:eSdEFzmQbae3jH9sTl5puI-->4</td></tr><tr data-page-node-id="oYNAcEpEkRctnMRN4XDcCT"><td data-page-node-id="PuGRrDuIIWhxDB5zFcwyIt"><strong data-page-node-id="o3BUDnt3P8IH5CVuGG2FXe"><!--pnid:8HOBg1IDDsJ7hAQrvPIHP2-->第六阶段：前沿技术初探 —— 具身智能</strong></td><td data-page-node-id="QlvGkCmkGO4kxn2dYZwCmB"><!--pnid:YfdgaHL0Z7FByH5cjnZV0G-->具身智能基础与实践</td><td data-page-node-id="gR4Wvmc29D9a2bkcppkgAf"><!--pnid:4oBhFzFpoIGspbd3H0z6ls-->1. 具身智能核心理论（定义、技术架构（感知 / 决策 / 执行）、应用场景（机器人 / 自动驾驶））2. PyBullet 仿真环境搭建与实践（物理引擎配置、机器人模型加载、关节控制、碰撞检测、代码运行、实验现象分析）3. 简单具身智能项目（仿真机器人导航、基于视觉的物体抓取、LLM 驱动的机器人决策）</td><td data-page-node-id="C83F3YSNBktv2DrHydQhtU"><!--pnid:DVTHHML31tXrlS3xGMnaAK-->5</td></tr></tbody><tfoot data-page-node-id="Z0lqi11NVE8mqP0duBjWd4" class="sum-row">
+<tr data-page-node-id="yUssHBuETp5vH9AxEfze62">
+<td data-page-node-id="hEKPscurkG3ebpIFohPwwm" colspan="3"><span data-page-node-id="apT7FNy6djvsWwTzNfL06Y" class="sum-label"><!--pnid:eHVTMnDJr04HWyWl5VyLzp-->课程总时长（合计）</span><span data-page-node-id="qIGUsYExjkYXyixkAqu9Bo" class="sum-note"><!--pnid:37Eer01Wat3ylCQZ9smTfj-->13 个模块累计 · 阶段分布：入门 1 课时 · 技术核心 41 课时 · NLP 核心 28 课时 · 技术进阶 42 课时 · 多模态 28 课时 · 具身智能 5 课时</span></td>
+<td data-page-node-id="MXjHAVeLl6BeIWGHTzMm6z" class="sum-val"><span data-page-node-id="xJBhfLCuKNCpndcBSF6efy" data-count="145"><!--pnid:fyyip12eWJz5Jkj3vTWCv6-->145</span><span data-page-node-id="zyzKoHb08GsmCRUQs88Ibw" class="sum-unit"><!--pnid:6bgKuWpgGwBqIMJSInXvkt-->课时</span><em data-page-node-id="DGOOUJs8cjW5y2Gizr5gGK" class="sum-sub"><!--pnid:e905SRUIT4tSICov6ZhF4e-->≈ 145 小时（8,700 分钟）· 按每周 10 课时约 14.5 周学完</em></td>
+</tr>
+</tfoot></table></div></div>
+</section>
+<section data-page-node-id="c76z3MyMqZnD3PtpMr3FXT" class="sec reveal" id="四-各阶段练手项目"><div data-page-node-id="CWkS0mDlxXFbYerlFuDqpM" class="sec-rule"></div><h2 data-page-node-id="uqjCnFKotcCQX4MNwKsClf" class="sec-title"><span data-page-node-id="aofxSSu5Clxx8ejGQcSQth" class="sec-num"><!--pnid:mXFhSqkYsHi2DVF9khEXw5-->四</span><!--pnid:Gf3zdVgTwXKFIzLiE9AmCJ-->各阶段练手项目</h2>
+<div data-page-node-id="t3YOCLDU7xeVdydWUilp6A" class="h4 stage-head reveal"><!--pnid:q8DzHrZauTUyNOWfdjKKxa-->第一阶段：大模型开发入门</div>
+<div data-page-node-id="GvETVlnBbGjnJX65DLaXxd" class="proj-grid reveal"><article data-page-node-id="4xOkuKh25kXOGX2jNBdEhl" class="pcard"><h4 data-page-node-id="bGg7z04NQ1wG0ZcusEws3V"><!--pnid:ttnPQ7SugYIs90EjYo4mkk-->基础 AI 聊天机器人</h4><p data-page-node-id="Gr0aEZmFMPwizRv0XJjLfC"><!--pnid:zM11q8Xj996LAiox5h8ZIe-->实现单轮 / 多轮对话，支持指令校验，输出格式化回复，包含基础错误兜底逻辑</p><div data-page-node-id="e0XIYsEHo3X2DheDqCqlb9" class="chips tight"><span data-page-node-id="1SXts5tfdRH4fqAMxi82HV" class="chip"><!--pnid:WlkmpBUJrPcVjiQ7eAj1Qn-->Python</span><span data-page-node-id="p3m4HurIiieTuHeBnixzWt" class="chip"><!--pnid:MpMS0QqsYjX4z9J08U0Efk-->requests</span><span data-page-node-id="Q7cRH4wA483bnX9sbGE9Yv" class="chip"><!--pnid:TEtDAKoxfWcHwwpNuDm6M1-->大模型 API</span></div></article><article data-page-node-id="1iU4yOBGLtHV9vRs9FTIiJ" class="pcard"><h4 data-page-node-id="qEw63pj5dvjC2Fqn6qaqC2"><!--pnid:rvkkZmSv8KqQLry06mh4DC-->命令行式聊天助手</h4><p data-page-node-id="hmQ68q5Io4KyzCNZv9njkj"><!--pnid:mmPKq805DJzhMalqpIlk3H-->基于终端交互的聊天机器人，支持历史对话记录保存与加载</p><div data-page-node-id="cf7NL7vNZaKO9D2aiBRScD" class="chips tight"><span data-page-node-id="2ncX6tvDm4ANF6cbuo03t2" class="chip"><!--pnid:MemuZ6U7V7n9auxnMsbXfx-->Python</span><span data-page-node-id="EABEz4ivH51LkB4ldnMyNN" class="chip"><!--pnid:hAoO37qRIDgtufHjfeHSRK-->文件操作</span><span data-page-node-id="AwMXQiaMEg6MP24QfvuuiW" class="chip"><!--pnid:US8IVZpsNZEk273GFuOfJO-->大模型 API</span></div></article><article data-page-node-id="6Nw0ZSHVSb8MlxGo4JZ6Cb" class="pcard"><h4 data-page-node-id="e1luIhieIVDVHQSB6TOXSv"><!--pnid:1vBXl3inR9DRXF0fxYfRds-->简易问答机器人</h4><p data-page-node-id="BXf2J2LxrIV3Vbc9pge16H"><!--pnid:5GBn6Alhb0jb2tjGuuq7fV-->限定领域（如 Python 基础问答），基于大模型 API 实现精准回复</p><div data-page-node-id="4SCGBRzToxGltmW1UIVwvw" class="chips tight"><span data-page-node-id="CBAcHPwfdgkkskooXR2wbI" class="chip"><!--pnid:i7M5fnyAVqERJGyQnnFJeR-->Python</span><span data-page-node-id="al2RPcUfPVZIxl1vUA8RJw" class="chip"><!--pnid:dL9Dv8XvXlDjOh2pzfuU7i-->字符串处理</span><span data-page-node-id="qcO9t0MZjLUerJVrCXtptw" class="chip"><!--pnid:JXby14OeIeBDJxO6wLTeHn-->大模型 API</span></div></article></div>
+<div data-page-node-id="N3g89GJlpRqOFrsznyIEFK" class="h4 stage-head reveal"><!--pnid:Kt4G2PXeJQLi2ZIj8Q9W7U-->第二阶段：大模型技术核心</div>
+<div data-page-node-id="PkRyIk331YGzMfyhjflk4l" class="proj-grid reveal"><article data-page-node-id="bRCbSIQboahHqVABE3yFRc" class="pcard"><h4 data-page-node-id="8zlVZPxjYsGwpbD7HN9ISz"><!--pnid:6eHRa4HIlPGJWbjMjAmhkz-->Python 自动化脚本集</h4><p data-page-node-id="VvaDE7XNgy9Qkr22HKXRZN"><!--pnid:sjosgli5FHiFQp1kGZmaQN-->包含文件批量处理、数据格式转换、定时任务执行等脚本，封装为可调用工具包</p><div data-page-node-id="wDIYQJuPLgZO8maJ3sqIJA" class="chips tight"><span data-page-node-id="1QNnWfLwWWWKJXpYoFxplz" class="chip"><!--pnid:svioz6lvGIDSSLK4AjNW2s-->Python</span><span data-page-node-id="nyhIZzQeZyhIyPqKqX1isn" class="chip"><!--pnid:9dceLes85tYhKu4NAY2Qqf-->os/sys/json</span><span data-page-node-id="1NaGfqiNfRF3waV5FQEibM" class="chip"><!--pnid:DHPwGuqYY13wEH4NWQS5J7-->schedule 库</span><span data-page-node-id="bA5qGrnCenSm8mASyEtgEo" class="chip"><!--pnid:gBS3VvYwaGsBNzfysigeYe-->面向对象</span></div></article><article data-page-node-id="KcxrCpmD0CpvFsN1WFJfHe" class="pcard"><h4 data-page-node-id="IT9cuuR9BKHjbWmOaUsFP8"><!--pnid:X17PuoXZYcub0x5NW0Pqk6-->电商数据清洗与分析</h4><p data-page-node-id="Qnw4KZcZtXKmaYvIaO2u8L"><!--pnid:nHDT5CBo9Rf3KKKVQ77Q0L-->对电商订单数据进行清洗（缺失值 / 异常值处理），统计销量 / 客单价等指标并可视化</p><div data-page-node-id="J9zFBgxbom889hWsMeDmuc" class="chips tight"><span data-page-node-id="U2n23pdW5mI1M2sGyeAvHS" class="chip"><!--pnid:21aPHUn6dA8rY8UwCMlHJS-->Python</span><span data-page-node-id="3kUD30GtiRaCem3gfHn8V0" class="chip"><!--pnid:bIUG5gmyrgY8UudO8FxUj7-->Pandas</span><span data-page-node-id="yoQZTpbiYE7xjyAoSlsET4" class="chip"><!--pnid:ADJoDVoq7jE3gFZu3itUhi-->Numpy</span><span data-page-node-id="P4sgzk4NodyF9AtBDbKhl7" class="chip"><!--pnid:arUnExdrCIUDj7czIUjqgf-->Matplotlib</span><span data-page-node-id="kfhqU4tzIL0kNRHBYoEcGI" class="chip"><!--pnid:8sElodqV5jCNk9bd23YIHJ-->MySQL</span></div></article><article data-page-node-id="1i2OPhuIarYjAlQHqhrowL" class="pcard"><h4 data-page-node-id="GSQwtD8lGKfgakoats63xL"><!--pnid:2iRuYe7BJI52UciGLJzqgc-->房价预测模型</h4><p data-page-node-id="RqcLRAAdfxJ6aW6Zm6WvGR"><!--pnid:QkpePbNQfKaaFKLTrmr6U9-->基于线性回归 / 随机森林实现房价预测，包含特征工程、模型调优、评估可视化</p><div data-page-node-id="SOB9k3zk2hScc53Tjn1Vki" class="chips tight"><span data-page-node-id="7HPcoVte5Sfo7bMIMtU4iw" class="chip"><!--pnid:sLiNbgOQMisuIXUm4LrNyG-->Python</span><span data-page-node-id="AHuutVLVkNtmVJnMAh8QaP" class="chip"><!--pnid:KpKzjifL7W0MlUbGgvPoDb-->Scikit-learn</span><span data-page-node-id="aUsTGiUrFV5ownGWvIPRux" class="chip"><!--pnid:n6AfK5IWvNWRbN6NMiaJQv-->Pandas</span><span data-page-node-id="4atKpIIYpSyaNda0bRFidf" class="chip"><!--pnid:wFJNuWkosMBbc3ZOeAzNUC-->Matplotlib</span></div></article><article data-page-node-id="lQe3v2CBXRe1LEFGAPsYaS" class="pcard"><h4 data-page-node-id="KMxawg3emIAhnhWH0nqvwb"><!--pnid:hF3JnOSS87Azxe2g2aFcu2-->客户流失预警系统</h4><p data-page-node-id="hQXtsRnyWFdt22sGT3xOUk"><!--pnid:Aaqinwm2ShMXL2RyKWgkAl-->基于逻辑回归 / XGBoost 实现客户流失预测，输出流失概率与关键影响因素</p><div data-page-node-id="3ut3DwdEikMZayQ2zhevmR" class="chips tight"><span data-page-node-id="PLSs31BGhgYOcDYKBMriLn" class="chip"><!--pnid:hFOK9ZXbne0FygWPZmoZc2-->Python</span><span data-page-node-id="yP1kyOrquY8GbZ8y8ONfTZ" class="chip"><!--pnid:EDjKD9zq0WScTR5iCfgZlu-->Scikit-learn</span><span data-page-node-id="9vAtmeeMsiatE8fI67fBgX" class="chip"><!--pnid:zzZ84JtaQ7EZGMDZFEJmoV-->XGBoost</span><span data-page-node-id="xTCdrUcuTkxLEixWnOnuKu" class="chip"><!--pnid:YHNdJWq9woskNh5S4rAZTM-->Pandas</span><span data-page-node-id="LdAw7yvFfeQfoXHfrbD9Vb" class="chip"><!--pnid:YSa9VMb06Sp1SvR2csg3jP-->MySQL</span></div></article><article data-page-node-id="7hPlvJvH2KYENLUpPNDML9" class="pcard"><h4 data-page-node-id="7dCPXGc21Sddj7VJRbIjAu"><!--pnid:j8WzyYAfbEywL50SjMmhMh-->文本关键词提取工具</h4><p data-page-node-id="hxuUYBOQ0hzHaPp8zF25rH"><!--pnid:LrWi1qlYJKOXTGXuoV2uS2-->基于 TF-IDF 实现文本关键词提取，支持多文件批量处理与结果导出</p><div data-page-node-id="ufwTRyC45UPsreLZvdAx3E" class="chips tight"><span data-page-node-id="S399UkibpmFKG3VKtdhFFu" class="chip"><!--pnid:Vu6fecVdoFd7yuVfwGg26G-->Python</span><span data-page-node-id="0PnXT3guwa6R0h9XbiZg4e" class="chip"><!--pnid:Dfn2t5zqtw7VQtAM1bXi6z-->Pandas</span><span data-page-node-id="sNz7CAebDEJ5PP3xC8AYlQ" class="chip"><!--pnid:CFxOWXkO52qYhWyjRDWPqp-->Numpy</span><span data-page-node-id="BaOv4PNU8pU1iuHUOEcWWT" class="chip"><!--pnid:MG0X7q0P1GqsMYp4bLeeCB-->jieba</span></div></article></div>
+<div data-page-node-id="V8WhY6LiQscvlrdGztIEm7" class="h4 stage-head reveal"><!--pnid:vzdfJArFw3vlGcu8fwr5XI-->第三阶段：自然语言处理（NLP）核心</div>
+<div data-page-node-id="oYybZTwLS8Xk7p1yEV9Evg" class="proj-grid reveal"><article data-page-node-id="jawqvfBMNEbVTIZsppuOZ6" class="pcard"><h4 data-page-node-id="gCIVht0FOW3kfugKyGI2Xj"><!--pnid:gCSvcR293h2cinpCWs6Bu0-->情感分析工具</h4><p data-page-node-id="nJaDYTGWey7WZpw4tWJjk1"><!--pnid:xAHmdzD9BnUiDWGW0tG8NR-->基于 LSTM/Transformer 实现文本情感分类（正面 / 负面 / 中性），支持批量文本检测</p><div data-page-node-id="x31BLCfmhJY5Edck0K299A" class="chips tight"><span data-page-node-id="w5QKkgbjwXwn4JwPooaDzz" class="chip"><!--pnid:BXbWmPDwOu2EPevdaNWWyf-->Python</span><span data-page-node-id="NbHbxat1z0mfGX8PDzpPUl" class="chip"><!--pnid:aKEwWOWqnh3FY13pReW0NY-->PyTorch</span><span data-page-node-id="8angt0KWIJm34tX7HyGgJU" class="chip"><!--pnid:4KtR8LZM8NUhzCjUxlZsa1-->Transformers</span><span data-page-node-id="HvGrbePYjJnAXkvjDKRzRD" class="chip"><!--pnid:DkBYtCuKXFh9KPIC5pc4kM-->jieba</span><span data-page-node-id="Ez5ZV7eA8LffKf1xKFyAw7" class="chip"><!--pnid:L1JjSWDqJLFwx5A6AaL9KA-->Pandas</span></div></article><article data-page-node-id="7kkgFTW09zGfTmwbedyljR" class="pcard"><h4 data-page-node-id="Rjl9R95JU5QiA5MDMBAWy8"><!--pnid:NfMZiWwxSRcaLX1N9lSGGs-->简易文本摘要工具</h4><p data-page-node-id="wYLWrIqvzD2lTkwq0tgZtQ"><!--pnid:ehFbTNWOg1v5dVGgUlXMOh-->实现抽取式文本摘要，基于 TF-IDF/TextRank 算法，支持自定义摘要长度</p><div data-page-node-id="DFwN5E6gme48mPhGOH0XNx" class="chips tight"><span data-page-node-id="zhJ48y6eEstZ9ertcvV0cQ" class="chip"><!--pnid:piLm353qfdLo2G5at5HGlD-->Python</span><span data-page-node-id="WgsIDK5oS6UYuXMyemtG3J" class="chip"><!--pnid:W5gn0Dm9N8XbRKlZfqBsjp-->Pandas</span><span data-page-node-id="ge08Y2KxZYcKc8HTSItseg" class="chip"><!--pnid:JMVgvPfX0Lfw1Lo1v6fmvv-->Numpy</span><span data-page-node-id="781VfsSRTB4lt2p3E4bKO9" class="chip"><!--pnid:YIt6D7kdOED2IyAk3ogqYe-->jieba</span></div></article><article data-page-node-id="t5dYNMk2xndcofh3OioJDv" class="pcard"><h4 data-page-node-id="X20FjITTRlfTvsrlUczdYs"><!--pnid:7DvjqPscghxiXYIDNNMlKu-->自定义分词工具</h4><p data-page-node-id="sazBtkSXkpFH5ty8AlHQKv"><!--pnid:E5YKsvhROxtC2nMtLoxh5m-->基于 jieba 扩展自定义词典，实现领域专属分词（如医疗 / 金融词汇）</p><div data-page-node-id="TEJPdtGKSnJPBRzIorJGTt" class="chips tight"><span data-page-node-id="bHj35IJpuChHyN7BGqoYWc" class="chip"><!--pnid:56i8LhDoRRXHtJPkynwFKE-->Python</span><span data-page-node-id="LZzPNi5rWUES6pRQdX26sw" class="chip"><!--pnid:cXsK86mkT0B8SHbeRlqDvE-->jieba</span><span data-page-node-id="5ohq886F3DOWSy83Ow2S2y" class="chip"><!--pnid:l6LYRW30N7JY2Aj8oXujJT-->文件操作</span></div></article><article data-page-node-id="92xHUvaOv4giLeaG7zyxKz" class="pcard"><h4 data-page-node-id="heBomoycVh7RXDS1iR5ETO"><!--pnid:C9AxvpXWxWuzQStkIHsXYD-->基础 Transformer 实现</h4><p data-page-node-id="8zjP6ZPLQUXouf4PYG4r0j"><!--pnid:ef4QaMnKJbfirjbUrO30DE-->手动实现 Transformer 核心结构（多头注意力、编码器层），验证文本匹配任务</p><div data-page-node-id="dYzOMt3mH0Gx6huqyCbgT2" class="chips tight"><span data-page-node-id="UmhnOMKwQ4axRM0ylPLNr3" class="chip"><!--pnid:07QxhPuDQ9HJxT1vDBJUq5-->Python</span><span data-page-node-id="1ozNvk8IHHTP7lVD1X0e9f" class="chip"><!--pnid:2HLBtwV9YKnHfB0Xqk4Y59-->PyTorch</span><span data-page-node-id="WuAIBjkO8SR4zm5Xqn04LU" class="chip"><!--pnid:XCSMmZRhaeivW1eLNojeK3-->Numpy</span></div></article></div>
+<div data-page-node-id="DYKXYAZKF1fEDVCA2yaWGn" class="h4 stage-head reveal"><!--pnid:wR2A3Y56eQD4vO5P4BmjwF-->第四阶段：大模型技术进阶</div>
+<div data-page-node-id="jwsluoNHRiAzjQAw5N6bSJ" class="proj-grid reveal"><article data-page-node-id="WMIikUSkPOurDWa9y578qY" class="pcard"><h4 data-page-node-id="YZBnVVoSaXGAfGtEW9uLN4"><!--pnid:tTr1gYp7STmzdiYWHDSkT0-->LLM 本地部署演示工具</h4><p data-page-node-id="iSyZd2UVn3oAdv0Sft6pnL"><!--pnid:8ScTxikHa241rX0RSGQPyT-->基于 Ollama 部署 Qwen/LLaMA 模型，实现本地文本生成、问答功能</p><div data-page-node-id="H6EiXYR1vAFT0ff0Sqrq0b" class="chips tight"><span data-page-node-id="48j03Ho3a0x0dM6UUCItfb" class="chip"><!--pnid:LWiFnHdI4Azj0NR4zHqiKO-->Python</span><span data-page-node-id="JtRrsI0VlkInAYW2C4Y9ij" class="chip"><!--pnid:tWecdpLtUpdnIWodeBv0yf-->Ollama API</span><span data-page-node-id="qcQYAbjZYILyzK82jKtBx4" class="chip"><!--pnid:EJ1osxzRT3dqua9zyzRo9u-->FastAPI</span></div></article><article data-page-node-id="GnWU4moj5wjJ8dELEpv9ju" class="pcard"><h4 data-page-node-id="z5KhEhoZOVLRtUcYEWi0wG"><!--pnid:SqJv4vKBxAyzDV9GDWbF5X-->LoRA 微调小模型</h4><p data-page-node-id="lfKSBCvCfNio3sDJv4NPbu"><!--pnid:i6rJEHnwYzb2yGzgj0QTHN-->基于 PEFT 对 Qwen-7B 进行 LoRA 微调，适配特定领域（如客服问答）</p><div data-page-node-id="RrcMC39hSjhQLY0vDOJDfd" class="chips tight"><span data-page-node-id="MGp3cqOQqx9Gi8ceAlNy5N" class="chip"><!--pnid:HSkNS0HFSUMFIQQaxiNnJH-->Python</span><span data-page-node-id="IRr7fwPYgUhn9EvTyr9XFT" class="chip"><!--pnid:YJ64IPlvHSU2Tal3YmUdwK-->Transformers</span><span data-page-node-id="sAtZNnTDWyYcpzmshBi0PD" class="chip"><!--pnid:Xyr2x1nwHTPXIipbTjlIFT-->PEFT</span><span data-page-node-id="7sSPj5fwMPH5Nv3UjIZMCe" class="chip"><!--pnid:PPEB0XR7ZFDUONyQtXIYOn-->PyTorch</span><span data-page-node-id="nd3gvSUry4NP8ISC9KpSHf" class="chip"><!--pnid:pUH1pNU13yQV8HAPcqwEmp-->CUDA</span></div></article><article data-page-node-id="oI57dpkmd9ZmtGdbBS4boN" class="pcard"><h4 data-page-node-id="GsucqKE2FmipiSWu3c5xal"><!--pnid:DbuGWeFAPlVXVzOty1BWsG-->简易 RAG 问答系统</h4><p data-page-node-id="Y6o3LEAz7s2aUoukutvcVu"><!--pnid:NkvDnpO6WOHSaoz3dkq8Z5-->加载本地文档（PDF/Markdown），基于 LangChain+Chroma 实现检索增强生成</p><div data-page-node-id="OIE45iRfZTgAKP9XAbxDdR" class="chips tight"><span data-page-node-id="dVzWa4JuM5p0AankUqagWe" class="chip"><!--pnid:WJJu59P0Uolr3ScfznTAwG-->Python</span><span data-page-node-id="1jpknsySiZTFRuPpE57TYz" class="chip"><!--pnid:wtbkdyHwXvJCyLgwwIFFlw-->LangChain</span><span data-page-node-id="ZAx6sutROKj5id5bWFgSDr" class="chip"><!--pnid:7RN3YSvJCR5k0MfhqX3iqQ-->Chroma</span><span data-page-node-id="TjGwXNSYEcCrt7lPv6ftdB" class="chip"><!--pnid:f7zG7e5Czhphm8N2M2c5xF-->Transformers</span><span data-page-node-id="cHGpAwpOIAtNxsHParEw64" class="chip"><!--pnid:h5eC3v86PgydLHiKtzowt1-->PyPDF2</span></div></article><article data-page-node-id="QzkTfScns8H1bNczApdsBt" class="pcard"><h4 data-page-node-id="lwllNvhHOTk5jkGOw1Mb3D"><!--pnid:2RTC7joWNsiPwXROfQEJMC-->Agent 学习助手</h4><p data-page-node-id="KGJNpHXeqYiiDsupMHWJBd"><!--pnid:cag5G8gLinpPwMetijwCxV-->基于 Coze/Dify 搭建智能学习助手，集成知识库、计算器、网页搜索工具</p><div data-page-node-id="k8hQMx4eFbvWcIXEQqDZre" class="chips tight"><span data-page-node-id="DIwt6axCk9yqAxM5eCb7Qt" class="chip"><!--pnid:82HoC93Hkc5tXX2YKEXOjZ-->Coze/Dify 平台</span><span data-page-node-id="OUAux4CUlaDAi2DjA9lVjy" class="chip"><!--pnid:yXmvLbKYgonV8bmbFd7o5D-->LangChain</span><span data-page-node-id="MhDpDBFWYrFMW4rKZB3qmJ" class="chip"><!--pnid:wHHeeNNLhr3ZFb96V5CkDB-->HTTP 接口</span></div></article></div>
+<div data-page-node-id="RxiY2dFHYfFJJmjKlfsZSD" class="h4 stage-head reveal"><!--pnid:zuVYwpgiHbaDXoC98X4h2z-->第五阶段：多模态大模型</div>
+<div data-page-node-id="W71aMnXaDBfV7PU1TY2uNV" class="proj-grid reveal"><article data-page-node-id="6KujkwXYOAOaiwmAXGrASm" class="pcard"><h4 data-page-node-id="h9JchbEWbFR7nqQHLLghuE"><!--pnid:lX1OtAhsGhu2yfb3JM51c3-->图像特效处理工具</h4><p data-page-node-id="ueawKnJtF1cxmE98OAE07P"><!--pnid:lZVX7h1UmcYRz0b9LvXLkV-->基于 OpenCV 实现图像灰度化、边缘检测、滤镜效果，支持批量处理</p><div data-page-node-id="IfywoJAZpY43amVQZspaiB" class="chips tight"><span data-page-node-id="FuqZzDVAi0meM3MGHETz7r" class="chip"><!--pnid:3j2AhqhThnSh2pjJUULxIB-->Python</span><span data-page-node-id="TqGqNEXqm3mVBLeSZiq8QP" class="chip"><!--pnid:R838r4APlbdDsAZkzWfK4g-->OpenCV</span><span data-page-node-id="h7W62tFqyAw4ZPLQJKNZqk" class="chip"><!--pnid:5TFDQRKmpSCGcKWNdnUInk-->Numpy</span></div></article><article data-page-node-id="ugXKsS7lrJu9xEMH8DciIl" class="pcard"><h4 data-page-node-id="LUW3aKBMPHRPfvGuguq9oN"><!--pnid:LA1NpkDuxY8Z75N7ltLBZG-->实时目标检测工具</h4><p data-page-node-id="gbVs5KVEoWabEHxa5zgIIw"><!--pnid:UXf7HFss9mjQ02d25fgwW3-->基于 YOLOv8 实现摄像头实时目标检测，标注类别与置信度</p><div data-page-node-id="zRsB4oX5DRzYtTJrMHeBWR" class="chips tight"><span data-page-node-id="R806OqaRDp7aWrreHs7gFI" class="chip"><!--pnid:WaHtnf3Y5IJMEb2g0wX4XW-->Python</span><span data-page-node-id="2dg05nYqGSHn1oEMQmtZiH" class="chip"><!--pnid:ONNd3Vg29KUcyQAAwWtccA-->YOLOv8</span><span data-page-node-id="Uc28auxtpgXOFrZ0uDDIqc" class="chip"><!--pnid:eQUVkpbWXtGLVGg06yswxU-->OpenCV</span><span data-page-node-id="VXtcToGZokZGCtTWqxhz7M" class="chip"><!--pnid:7pjvjGmIvaQ0urvjVIlKpA-->Pillow</span></div></article><article data-page-node-id="TsagBalqcj2PZqmKzZLsrw" class="pcard"><h4 data-page-node-id="qUp9PLhyIGZChg8TQXPxSC"><!--pnid:23auAAlLybEhErW3gcmZg5-->语音转文字工具</h4><p data-page-node-id="8es331IDXc5RYmybqnOWaM"><!--pnid:v2yhQg0BTdhrjO8cy5D4jx-->基于 Whisper 实现本地语音文件转文字，支持多语言、批量处理</p><div data-page-node-id="V9H2nscVVy9XU57t6sbeFo" class="chips tight"><span data-page-node-id="W1p2IijDTThfwpllJLunoE" class="chip"><!--pnid:xXRbIruGak83q7sJXyqlGW-->Python</span><span data-page-node-id="gvb99UeSi0nLcPd0sSaSPr" class="chip"><!--pnid:dngg5RlT3Nt81rqh317byx-->Whisper</span><span data-page-node-id="RxXiPojgFITJ29f1eTKhul" class="chip"><!--pnid:RW2qgq4KkCuEKtMO5xTC1U-->FFmpeg</span></div></article><article data-page-node-id="UrvjZeQVx0ihs2AySx54D1" class="pcard"><h4 data-page-node-id="gzMkY8yvCIX6qFb28lQxA4"><!--pnid:S2sSGT87bje08js9zmsMz1-->多模态图文问答工具</h4><p data-page-node-id="XGiJOUEydKLqwbOMbBga2a"><!--pnid:4RLa94gM6Kvgux3ik50ack-->基于 LLaVA 模型实现图文问答，上传图片并提问，返回精准回答</p><div data-page-node-id="r5CdVKI35thsW2nDOkJrCx" class="chips tight"><span data-page-node-id="4wq7hBwdGjDW5U0OO1qm8s" class="chip"><!--pnid:u0rBCvxuYgEYLcHbL3nAe3-->Python</span><span data-page-node-id="cbJRmVqISQDAtR83S19l9o" class="chip"><!--pnid:Fa74A9LlGImaXrAMzttJKO-->LLaVA</span><span data-page-node-id="dF0uwnm3Wbxq4hnatmuVKo" class="chip"><!--pnid:U7Thfy0g4F121UQMNkVkBQ-->Transformers</span><span data-page-node-id="x3cjYCNsFycORZnLCPbIU1" class="chip"><!--pnid:zO8keJepOe1Qh0GmDgqEh4-->PyTorch</span><span data-page-node-id="anGVA2nwCfYN1GujsQGoHj" class="chip"><!--pnid:nYvQ7lxISeMzDBbGmGahwO-->OpenCV</span></div></article></div>
+<div data-page-node-id="FEbU05NCrjdU5iINu19XNE" class="h4 stage-head reveal"><!--pnid:XIfZiauzwQgCOxHlkDhp51-->第六阶段：前沿技术初探 —— 具身智能</div>
+<div data-page-node-id="otuQ7D9vW06JjhsTLxkcp0" class="proj-grid reveal"><article data-page-node-id="atSdTsFiVzo6RSEAgLrP1Q" class="pcard"><h4 data-page-node-id="LX9mgvz5EtDGQKn0ijUz9C"><!--pnid:PNQVbUZOsvg7CtdipN7T7y-->PyBullet 仿真机器人</h4><p data-page-node-id="1d6wFdEZX4c9Ungpj5917F"><!--pnid:LCrrKApheJ5xtzPLscnR1C-->基于 PyBullet 搭建仿真环境，实现机器人关节控制、简单避障</p><div data-page-node-id="OMy6aZJCc3BbWw9EG06OCu" class="chips tight"><span data-page-node-id="stSqCsRAatwzlF5w1v9egp" class="chip"><!--pnid:E6dj0rv7TMhdTP2wooHK8v-->Python</span><span data-page-node-id="t2scqe4gh3lpL7IBllUdbz" class="chip"><!--pnid:90fASwipI7f0V4IpKAtrpy-->PyBullet</span><span data-page-node-id="zx5wpdoaIkHwTXMLz9K5pX" class="chip"><!--pnid:0XEjb3wDDu8FwMssSYmvAl-->Numpy</span></div></article><article data-page-node-id="NqtsjqKghGjY8BaffllGEt" class="pcard"><h4 data-page-node-id="Lf71QyPatoyoxhW4HZQC2L"><!--pnid:H4bZaFuKjywWGaJTKv6upM-->LLM 驱动仿真机器人决策</h4><p data-page-node-id="MW7z5XA3MtCh8FRSdZ30tS"><!--pnid:XsxVhfz6iBInHcYNaTalck-->结合大模型生成机器人动作指令，控制仿真机器人完成简单任务（如抓取物体）</p><div data-page-node-id="T56egyL1smT3xIOW8SdAve" class="chips tight"><span data-page-node-id="vjAKVPF2ShPKgwmrcLIbgb" class="chip"><!--pnid:DtNBeS5y5l9R9bAHQCD2Tb-->Python</span><span data-page-node-id="YbO6ViT4q2FzpN6csraPhA" class="chip"><!--pnid:dEkWmPPUTJ7qaIms5T7Msw-->PyBullet</span><span data-page-node-id="S1Hxq26xLrh5411NtglaxB" class="chip"><!--pnid:b7n9DCNIusiO0G09xdxCRs-->LangChain</span><span data-page-node-id="F7Y32JaHtDQA5SjGpn6MIp" class="chip"><!--pnid:3rJMjeFipz34Ivs7Sw8Qdb-->大模型 API</span></div></article></div>
+</section>
+<section data-page-node-id="gVpDrW9CBzqZSLzsMKog0z" class="sec reveal" id="五-简历级项目"><div data-page-node-id="dCa1On83O0XgjceOubgmjq" class="sec-rule"></div><h2 data-page-node-id="draRSYC905qERibAOs8DWO" class="sec-title"><span data-page-node-id="zckhR7KfgkkEOou6rpZ4CU" class="sec-num"><!--pnid:5vUoJxVSpTXkDBaaB1Y3h3-->五</span><!--pnid:7oS2MDhnejcvYfVO5tmsoI-->简历级项目</h2>
+<article data-page-node-id="bnCSwKlGBnHXhxlikQDZyZ" class="proj-card reveal"><div data-page-node-id="sUCypvyKRKcNe3tkijeNJd" class="proj-head"><span data-page-node-id="z4KkWp0Vi1hdRvS1uHPlOc" class="proj-idx"><!--pnid:11waHyo6KpKOjaO5LgDmne-->1</span><h3 data-page-node-id="v3EY8CQJVAKEcYlY1fbS3Q"><!--pnid:8eZ3euOGAwY4XSHpReGxtO-->企业级私有化 RAG 智能问答系统</h3></div><div data-page-node-id="UVkYLYzg6hc802s1BTx3k9" class="proj-body">
+<div data-page-node-id="JOs7VfIV4ZuySFURHPE25A" class="proj-label reveal"><!--pnid:YQBY9pSpSsQ13i8IQFHHSG-->项目介绍</div>
+<p data-page-node-id="dC7cKdOsYrUMriTA9zO4lz" class="reveal"><!--pnid:t8oGHLjimhn7pC5snCRLTc-->面向中小企业打造私有化部署的智能问答系统，支持企业内部知识库（PDF/Word/Excel/Markdown）、业务文档、历史对话的检索增强生成，解决企业内部知识沉淀与高效问答需求。系统支持离线部署，保障数据安全；支持多轮对话、意图识别、知识点追溯，可适配客服、研发、行政等多场景使用。</p>
+<div data-page-node-id="DJlSCFy86Om10Lj77PYP2z" class="proj-label reveal"><!--pnid:0QBvSxl9vVMJrDhzK5Afy4-->技术栈</div>
+<div data-page-node-id="HNAc2lS4Oj1cPVsV3WmMDw" class="chips"><span data-page-node-id="PNGMjpuMFCVT1gDlxHHzAq" class="chip"><!--pnid:Eb6fsZ32F1VKfW0JuWs22u-->Python</span><span data-page-node-id="vNJnvq3BcVveg1NZHCVLtj" class="chip"><!--pnid:7KgGksf3027XKOZWJgPsML-->LangChain</span><span data-page-node-id="9L7nt61woCb7XRLUE57bki" class="chip"><!--pnid:PvVU2YLA3WmIpotn31gIZL-->Chroma/Milvus（向量数据库）</span><span data-page-node-id="9tQSJRKYXphlam0hlZ5gQs" class="chip"><!--pnid:32ywcrPW0vee9Jl2ooPcS8-->Qwen-7B/DeepSeek-7B（本地大模型）</span><span data-page-node-id="6lsk9Gv1rdkMLM2TdLcW8M" class="chip"><!--pnid:Cisw7X1hAvjpvFp91OoL1T-->FastAPI</span><span data-page-node-id="jQQ1YobmTkQAjOyEGfyY00" class="chip"><!--pnid:LKATgWDtZPprtlrLelofef-->Streamlit</span><span data-page-node-id="jkV5HTPJCz7DJHRQtgBiYQ" class="chip"><!--pnid:09pLSmi8IFOt9X7f4EnRvG-->Docker</span><span data-page-node-id="QKYsyv8bD8QmYFP4qM7egn" class="chip"><!--pnid:1DrmRLIrjBc9nhSzRA2wkh-->PyPDF2</span><span data-page-node-id="YWZIFyi2hrAgl2gg7smZqZ" class="chip"><!--pnid:x0DqhjyDf2oQGJLQHkNnhm-->jieba</span><span data-page-node-id="OO43qiBWPOXd1Xp9GLu09B" class="chip"><!--pnid:M7FB5M1leCOqhxmmBbWIok-->Ollama</span></div>
+<div data-page-node-id="6Eg6YXPxSfml1Dkgx928ap" class="proj-label reveal"><!--pnid:VhXBkQMkVCYZhYI6ZjMw9G-->核心架构</div>
+<div data-page-node-id="kDhci9uRU7UYIGXc6BzI4i" class="reveal"><ol data-page-node-id="9v724q1v4qoWp97NSBKLcH" class="dl "><li data-page-node-id="KSKQ8uC2TbY3HEG8viy1yn"><strong data-page-node-id="rm5H6SbjseuFJ05ZAJJylh"><!--pnid:GT90MQdvWpVGCPxPsdUxrW-->数据层</strong><!--pnid:3s2oSqpLhazIXpnlx0X9yF-->：文件解析模块（多格式文档加载与分割）、Embedding 层（本地部署 BGE 嵌入模型，将文本转为向量）、向量数据库（存储文本向量与元数据）；</li><li data-page-node-id="m4AXqbf2eK8Q4dtfCn8aqm"><strong data-page-node-id="dvn4DY7rOYajGMqSHxvGv4"><!--pnid:6ejdEMfUbaugf24QowuiFP-->核心层</strong><!--pnid:UPfVyi5oQRxZaIk3FIum83-->：检索模块（相似性检索 + 重排序）、LLM 推理模块（本地大模型生成回复）、记忆模块（多轮对话上下文管理）、意图识别模块（规则 + 轻量模型）；</li><li data-page-node-id="Jnkl7vKvqCRneSeoXj4OhH"><strong data-page-node-id="l0u9xyVJ78TeVcp1hWbPPb"><!--pnid:yqAhZqw1wTfovHX5hk7aeW-->应用层</strong><!--pnid:V9tSdD5iqWsuhnTG5NOX1I-->：FastAPI 提供 RESTful 接口、Streamlit 实现可视化前端、权限管理模块（用户 / 角色 / 权限配置）；</li><li data-page-node-id="MKSH3knKJil4XfEzpR7Yqk"><strong data-page-node-id="Y4EjYpi2UIG5G35sQz2oNe"><!--pnid:qCSAIcq7Mw70XmmyN0O2Ei-->部署层</strong><!--pnid:nk4vUfKf1Ws5RmGwj3zPGu-->：Docker 容器化部署，支持单机 / 集群模式，提供一键启动脚本。</li></ol></div>
+</div></article>
+<article data-page-node-id="N5g7W7xy3ry1GUJABwXHMO" class="proj-card reveal"><div data-page-node-id="F55fJa269FSkRcUFFxw0I0" class="proj-head"><span data-page-node-id="OUObjiXhq2EVxMApOaYivg" class="proj-idx"><!--pnid:rcxIQ7QviYkmkzCMAk2NIT-->2</span><h3 data-page-node-id="a5WXPB9t15fIHcne12Ahct"><!--pnid:h9qBOUIBUbdlaySy0JQNxF-->大模型驱动的多模态智能客服系统</h3></div><div data-page-node-id="k7VVACZ8PHjaF3LECkzgRD" class="proj-body">
+<div data-page-node-id="l4ChcWGqvG3mkq6UjQnqCp" class="proj-label reveal"><!--pnid:pe8wcj9WW0GZfIIqDw3hj2-->项目介绍</div>
+<p data-page-node-id="oOSsmOEtHcuk3j9iytvcZC" class="reveal"><!--pnid:n1hmmKuJunwuYm96U9ynCp-->整合 ASR（语音转文字）、LLM（智能回复）、TTS（文字转语音）、YOLO（图像质检）能力，打造全流程智能客服系统。支持语音 / 文字 / 图片多渠道接入，自动识别用户意图（咨询 / 投诉 / 售后），处理商品咨询、订单查询、售后质检等场景；针对图片咨询（如商品破损），自动检测问题并生成标准化回复，大幅降低人工客服成本。</p>
+<div data-page-node-id="og5bo5w5R9gUVs07WhFfyD" class="proj-label reveal"><!--pnid:E0sRSYNkjjbm6FS6d3NQbl-->技术栈</div>
+<div data-page-node-id="kgd3jwKEVvqMHMLUNpQQuR" class="chips"><span data-page-node-id="i5GVYtFtTNRZFNwtoYIwE6" class="chip"><!--pnid:oQJkMwWCpHxKIUrfJGRKte-->Python</span><span data-page-node-id="BYjEhkxcTFmyXQWjdh3LbC" class="chip"><!--pnid:BjCvBRWxjrGdzuvwuydKRR-->Whisper（ASR）</span><span data-page-node-id="boGnQ962Ogx50QDc9cKGiG" class="chip"><!--pnid:A5EGR2nWmrlKegLmcBi5kn-->Qwen-14B（LLM）</span><span data-page-node-id="AHGyplb3mqixM4cxbU6nTM" class="chip"><!--pnid:Dar1B5j42tbolGtYICAgOk-->FastSpeech2/TTS API（TTS）</span><span data-page-node-id="QhDBAPkm7YDh4Rggg9OYaI" class="chip"><!--pnid:wZGJLVsbQHK8R3fGcRDKVz-->YOLOv11（目标检测）</span><span data-page-node-id="NGYh6HbA5AJAP0cla6FKkO" class="chip"><!--pnid:Xa9tjKqsEOpLUzkmLXM8bF-->FastAPI</span><span data-page-node-id="eUiv3qEUJma7d494KUi1aA" class="chip"><!--pnid:1w4m4aAVQnRRSKaaZFBx4L-->Redis</span><span data-page-node-id="qs8dklOW0HMmF2nnlrzS3d" class="chip"><!--pnid:7wHkIK3feP5Hkhe1QeEBMc-->MySQL</span><span data-page-node-id="JMjH9OiFAYzwNCyZ4apqyT" class="chip"><!--pnid:e0nhqPPo9LQ6wBW0LTXtMm-->Docker</span><span data-page-node-id="07Kc9dkNjgN1G9xMzPn7gp" class="chip"><!--pnid:HMaJaImfOj99ZAs7vwxeAs-->Gradio</span></div>
+<div data-page-node-id="M7skkTUzcsTBtEEjztsiE9" class="proj-label reveal"><!--pnid:qHGCQxnbLsKvjMOTQm9rQi-->核心架构</div>
+<div data-page-node-id="e8jZRw4EpsflGYKMQok77r" class="reveal"><ol data-page-node-id="aVMclo4CtrbwWkwELZpfu0" class="dl "><li data-page-node-id="jCjyluRhT9uxwN7AbbMapH"><strong data-page-node-id="iuzm5huoSbsGFr90nVJJcm"><!--pnid:FTrwSXc7xtjFEpaEoZxjlf-->接入层</strong><!--pnid:EwTKkQuxqtFeZCwDAOCG7P-->：语音采集 / 上传模块、文本输入模块、图片上传模块，统一格式转换与校验；</li><li data-page-node-id="eJVz3x7mBMWcI20kVp9vCF"><strong data-page-node-id="NLMTyLGL5RQ2vGKLxaxVJt"><!--pnid:tCYw8Yx6SuxyUwI5Bu9df4-->处理层</strong><!--pnid:zlVVxBxxzsWv4UqTGSGGDx-->：<ul data-page-node-id="SDaH6wyKlFLigUHfxPMmD7"><li data-page-node-id="3RH2alUd788Cdi9hsor27W"><!--pnid:99s4I6tdMorU6TDccuWYFu-->ASR 模块：将语音转为文本，进行降噪、断句处理；</li><li data-page-node-id="htcoRX6BFou5bLGILiOwhw"><!--pnid:zTMuSNYTB91WjzsbiArZOG-->意图识别模块：基于 Transformer 轻量模型识别用户意图与槽位；</li><li data-page-node-id="03Gsd1wa0dg3NseDPfo3Qm"><!--pnid:28sw0O6jQD0OSgHNMXgDV9-->多模态处理模块：YOLO 检测图片中的商品问题，提取关键特征；</li><li data-page-node-id="ZzjH5xG1MyYSGo93BGORLu"><!--pnid:fCvW7HPBNYDOhNCYgmMRXM-->LLM 生成模块：结合文本意图 + 图片特征生成回复文本；</li><li data-page-node-id="lXK7G56hUDrlZLT6kajkZp"><!--pnid:I8DqeaiHXOjYnig7x5nxYe-->TTS 模块：将回复文本转为自然语音；</li></ul></li><li data-page-node-id="jjEG9vbV8PnInOR16G7FdJ"><strong data-page-node-id="K5K4ot4bsF1eAzUhzaSY8a"><!--pnid:cA14SgyPKwtNCvVexSXdRN-->存储层</strong><!--pnid:kjJNRmm4rSwRaJnWjPZSS3-->：MySQL 存储用户对话记录、商品信息；Redis 缓存热门问题回复、会话上下文；</li><li data-page-node-id="UIioq5d2VDuQthhlmIrf7W"><strong data-page-node-id="qUFAcAak8SUdhE76X3d2b0"><!--pnid:TDf2QRZE7fzV19AJvdK7lf-->部署层</strong><!--pnid:YLpuI263ulPAlWuxOHgf0h-->：微服务拆分（ASR/LLM/TTS/YOLO 独立服务），Docker Compose 编排，支持水平扩展。</li></ol></div>
+</div></article>
+<article data-page-node-id="49abCjnT5ywGgyEAdv8GlZ" class="proj-card reveal"><div data-page-node-id="gKRhVvUihdE0iAoxFG1YEy" class="proj-head"><span data-page-node-id="nAeX83mctzduFGJ4fqYdJ6" class="proj-idx"><!--pnid:rlgvWUfqJXOUx1rNHW0tt0-->3</span><h3 data-page-node-id="Le3bPLAKlj9HzcSqHBzGw3"><!--pnid:GJ0Z7hgkbTEhDFeOqcettT-->大模型 LoRA 微调与量化部署平台</h3></div><div data-page-node-id="TkPb1dfaoZrYYyhccS7Yhs" class="proj-body">
+<div data-page-node-id="OBwPEsw3k0fT1wrSIlJULt" class="proj-label reveal"><!--pnid:sHO9O9JdNlzZmWalMqSAcW-->项目介绍</div>
+<p data-page-node-id="1zpcDWBe6NU3AxPn4K0chF" class="reveal"><!--pnid:zJdeNXgwgR8L4BJuKbvjRn-->面向开发者与企业打造低代码的大模型微调 + 部署平台，支持 Qwen/LLaMA/DeepSeek 等主流开源模型的 LoRA/QLoRA 微调，提供数据集清洗、超参数配置、训练监控、模型量化（INT4/INT8/FP16）、一键部署能力。平台内置多个行业模板（客服、教育、金融），降低大模型定制化门槛，支持微调后模型导出为 API 服务或本地部署包。</p>
+<div data-page-node-id="9cEpujobCU9xdvLSnohpdD" class="proj-label reveal"><!--pnid:5FTtN23XN4AqUSTvg3XKbe-->技术栈</div>
+<div data-page-node-id="KwHmYU9Nxkfhh2tfsuqhaY" class="chips"><span data-page-node-id="SMv6uvlLEgDO520w81XlUq" class="chip"><!--pnid:zy7Vtja44Eiy9A7VGDJ1Tx-->Python</span><span data-page-node-id="JPSq2mVAmqlWBnlXvqkul0" class="chip"><!--pnid:lLdZBZsPwvVFAEtggUuBSI-->Transformers</span><span data-page-node-id="I70CJnXRmNYbhp3GM5T65A" class="chip"><!--pnid:coL6zJP1cKBcXXCiekUkWt-->PEFT</span><span data-page-node-id="6eAu4Cv8UtTBa1prXD7dqC" class="chip"><!--pnid:vAlQ4Q2L5ul0jbjN1LhnpM-->Accelerate</span><span data-page-node-id="FFjvfUNgCE6u5PFDfAd17q" class="chip"><!--pnid:K8UUJkVhIrmckFMBLNVw3A-->PyTorch</span><span data-page-node-id="2rF4g4paGJeyDDgBAYYT10" class="chip"><!--pnid:1sVXtfPAYf5DbBetpyHMYT-->FastAPI</span><span data-page-node-id="ekg4OqXlLr5DYr9Ihy6mSZ" class="chip"><!--pnid:lVjNQYOCpQHk6Qia0PYJsd-->Gradio</span><span data-page-node-id="8JzjKLyOnLZvP7Gr6HW1ta" class="chip"><!--pnid:Nfg3QtDDkxa1MIQI5s8TuZ-->Docker</span><span data-page-node-id="kWKyX8PgqBW5PGDD7VijkY" class="chip"><!--pnid:GquBAQgUnOacJ6sdQXn5lc-->CUDA</span></div>
+<div data-page-node-id="Yo7oNsRmezWAd6vLK8ebxS" class="proj-label reveal"><!--pnid:pkqn5K1QyUSIG1IPG9mgi2-->核心架构</div>
+<div data-page-node-id="WxguSV71iQMl0cMPMZc22H" class="reveal"><ol data-page-node-id="D8TbMv6scXLFeVWOIpTeKQ" class="dl "><li data-page-node-id="baG7y1lzKrEwFUjabrDxo1"><strong data-page-node-id="XVtCvjXyIqP6HeUoFZi8E5"><!--pnid:ybKKJaFNxVNHGVrlvHSo8D-->数据模块</strong><!--pnid:DdIgLntcCjWIzGDIJpBjQx-->：数据集上传 / 清洗 / 格式转换（支持 JSON/CSV 等）、数据集划分（训练 / 验证）；</li><li data-page-node-id="bPhozZBczQNS7oayv1VJLM"><strong data-page-node-id="6X8T0wjNdjGi0XZSFgpiY6"><!--pnid:uMr466G3t4zfYezlr3T6Zj-->微调模块</strong><!--pnid:tMAEvpynszWET3EXJ2tTh5-->：<ul data-page-node-id="s9AOVN2XEYEA3kPJLG5IDO"><li data-page-node-id="PrRHUBtS9BN8fFu0UqZJsU"><!--pnid:Ud1UnvRwk7AitzZsAvZUmp-->模型加载层：自动适配不同开源模型权重，支持多卡训练；</li><li data-page-node-id="GugL2nCbZvt2XGhXQJUj0D"><!--pnid:piLW2dgfvrlmQM7vOXUjYd-->微调配置层：可视化配置 LoRA 秩、学习率、训练轮数等超参数；</li><li data-page-node-id="VcJGJc7c54xxCnHUBIP1AL"><!--pnid:2KWnbK2IV5QnjGmeCbDHxc-->训练监控层：实时展示 loss、准确率，支持断点续训；</li></ul></li><li data-page-node-id="HhdHhTPppFMSETVFEjleIc"><strong data-page-node-id="NEps6ti85gfRpC7sFalYH1"><!--pnid:ChngFAbMSxII25d2UHfxwV-->量化模块</strong><!--pnid:Cg38jxqyiYC6AS88BxqYCX-->：集成 GGUF/GGML 量化工具，支持不同精度量化，输出量化后模型；</li><li data-page-node-id="jj0nRh1J7SyJBSUqVNf60i"><strong data-page-node-id="j8GMh83a6aQeaQy8hml7Sb"><!--pnid:MuFDUabdlIoQmCdLdIKqUw-->部署模块</strong><!--pnid:a7zkMCSCDiNYuHbzGqz6ZN-->：一键生成 Docker 镜像，提供 FastAPI 接口模板，支持本地 / Ollama / 云端部署；</li><li data-page-node-id="IK4TlW4w61fB13rfTgiuvf"><strong data-page-node-id="nFAlbF9KeeKizGkkregQKB"><!--pnid:e2kc2xIZnLhumFjiT82l0W-->管理模块</strong><!--pnid:U6iXobBZnjxsSiPV6QFeli-->：实验记录、模型版本管理、权限控制。</li></ol></div>
+</div></article>
+<article data-page-node-id="foaWoCCFTTGU0Hms32pTqK" class="proj-card reveal"><div data-page-node-id="xuJEiEr5gTaMKIRcFtaRuf" class="proj-head"><span data-page-node-id="bar6SdJKFSlMB4jUEdbVU8" class="proj-idx"><!--pnid:DhoxFVjy4coidnoUxt23PA-->4</span><h3 data-page-node-id="XI4KQst4m10u2Uk9coWo9E"><!--pnid:F6RsHRFSO9OiSjCl7VIJJz-->基于 Agent 的企业智能办公助手</h3></div><div data-page-node-id="XaKnnmBJRLbocGqJuAqt3S" class="proj-body">
+<div data-page-node-id="Hejf6oT5IuASorGoaw1UoL" class="proj-label reveal"><!--pnid:nmeN6EDVFNZrySbWoxEk8f-->项目介绍</div>
+<p data-page-node-id="VCf7LNOmBbsnFb0iDEPdJD" class="reveal"><!--pnid:h3y7WNGxviycn5tZLERzPG-->针对企业办公场景，开发集 “文档处理、数据分析、流程自动化、知识问答” 于一体的智能办公 Agent。支持自动读取 Excel/CSV 数据并生成分析报告、根据需求生成会议纪要 / 工作总结、调用企业内部系统（OA/CRM）完成流程审批、解答企业制度 / 产品知识等问题；Agent 具备自主决策能力，可根据用户指令调用不同工具（数据分析工具、文档工具、API 调用工具），完成复杂办公任务。</p>
+<div data-page-node-id="VQaUumb4TIvwK3xyKcXbhQ" class="proj-label reveal"><!--pnid:94gFLcfKDkIfnPqwNekDKk-->技术栈</div>
+<div data-page-node-id="nEZogNJB3EmTzctRXyc9Db" class="chips"><span data-page-node-id="pTeWJVMOI15al2EYOE1t6H" class="chip"><!--pnid:T3VRhvY61lFJYydjcZEMTm-->Python</span><span data-page-node-id="t8dnXKtPKy8kiggkH1WXcf" class="chip"><!--pnid:HH5AI7Wtw971QfmfJvfkBT-->LangChain Agent</span><span data-page-node-id="iDWEyiAGkHnai1sWEq3UGH" class="chip"><!--pnid:HP3oW892OaTizvUIvWDwPG-->Qwen-7B</span><span data-page-node-id="t9LBizJEidvuivv1owXGZw" class="chip"><!--pnid:MKZOUoYy8aOYgRKFc4odOA-->Pandas</span><span data-page-node-id="a9gJRARQNOBtGzGUv8fYIL" class="chip"><!--pnid:JM4t0CfePHOY3HLAKtGWt1-->Matplotlib</span><span data-page-node-id="LIsbszn48PKizmwdyWetqa" class="chip"><!--pnid:vRz7qnKmXzDtAeBIaBeHub-->FastAPI</span><span data-page-node-id="fP3ZfoeiDCfzkC1yo6IeyI" class="chip"><!--pnid:ZBgKbbEnRre3n1oMKB3VSR-->Redis</span><span data-page-node-id="89030ZiYG1ud2EVSBabL1W" class="chip"><!--pnid:7bECR4UnSwyQCZZevDcUd4-->MySQL</span><span data-page-node-id="UBAjAiae3JmagM4oEo7571" class="chip"><!--pnid:Osp2YReaZWhFS1K8ABG0QK-->OA/CRM API</span><span data-page-node-id="PnkPDSej7FWzWwxc3aXsEQ" class="chip"><!--pnid:FYrILRbzzSfnexrSA1BJ6A-->Docker</span><span data-page-node-id="3h6n7REFB4YEWU4CGrdcvM" class="chip"><!--pnid:2OP3Xj6Zrg10A3b1YaG593-->Streamlit</span></div>
+<div data-page-node-id="H6ISjOipW65ukWb9KPNgRk" class="proj-label reveal"><!--pnid:jNdTUmerKtAjCD1Q7alfPj-->核心架构</div>
+<div data-page-node-id="TwWEQbP7asfB6j3Xv27R6W" class="reveal"><ol data-page-node-id="oVI1avmJCQq1CY5sAzcPhF" class="dl "><li data-page-node-id="ITgPPZWZvJJetPFCbbOF09"><strong data-page-node-id="3Rg70vAAhPBpQ4wfNpwdv2"><!--pnid:0zBvLWZv4Ggr2WsR22oYXp-->Agent 核心层</strong><!--pnid:OrNwamsHDcjtR92LQAr47o-->：<ul data-page-node-id="qxYcOwsnmVvybyGgPqNh08"><li data-page-node-id="sXT4M6tecgsEG1PnbziAzj"><!--pnid:RhDNhQP0buQBclF1owpJ6t-->规划模块：将用户复杂指令拆解为子任务（如 “生成销售报告” 拆解为 “读取数据→清洗→分析→可视化→生成文档”）；</li><li data-page-node-id="zNx4NgCJoWNflSfIh2CK7B"><!--pnid:0sjxkUaaigP2IB6KmGaryO-->工具调用模块：封装数据分析、文档生成、API 调用等工具，支持工具注册与调度；</li><li data-page-node-id="oVNqGYZ1c7C67utfwZjGbW"><!--pnid:yMlQWEaRGsIz0q3WnsTZkH-->记忆模块：长期记忆（存储用户常用指令 / 偏好）、短期记忆（会话上下文）；</li><li data-page-node-id="8MVTetaSqZRI42QYWk5JmL"><!--pnid:nqPybOhrkTG1TgCNrBSRE3-->反思模块：任务执行失败时自动重试或调整策略；</li></ul></li><li data-page-node-id="XArMFOsuKDr4bGoBKwBS7N"><strong data-page-node-id="ZnDuCCkRNC6fhBLmiA4tVv"><!--pnid:7wPPvBbmP8FpvCbvpKmptK-->工具层</strong><!--pnid:AYsV5FcuXQAVSrQmdD1JT8-->：数据处理工具（Pandas/Matplotlib）、文档工具（python-docx/PyPDF2）、API 工具（OA/CRM 接口封装）、知识问答工具（RAG）；</li><li data-page-node-id="ZAwXzwHKZfCUFLa2dcfTth"><strong data-page-node-id="iKyZ6esgQoehFBp6BwWPUC"><!--pnid:O1qh29iBn2VIoUSR23gBGp-->交互层</strong><!--pnid:9XaBR7Mir6NREKrdNmdmjt-->：Streamlit 前端（可视化操作界面）、API 接口（对接企业内部系统）；</li><li data-page-node-id="wo8Sj1wOEh8Bm5SgoBUVYo"><strong data-page-node-id="tl3wgtGjU7to6U2QWuDmRB"><!--pnid:6XKsTCkxwLDvnFOgPIQNYS-->存储层</strong><!--pnid:NviAuXKkYOiWVKEW11OZfZ-->：MySQL 存储企业数据 / 配置、Redis 缓存会话 / 工具调用结果、向量数据库存储知识库。</li></ol></div>
+</div></article>
+</section>
+<section data-page-node-id="uSKsMQONN1mujRzMoUu9gR" class="part-cover reveal" id="零基础入门-从零搭建你的第一个ai聊天机器人"><span data-page-node-id="4cKkKkI6rusTufIMgcejnV" class="part-kicker"><!--pnid:Lztc9KX2wQk80uMaw43XXE-->PART 02 · 动手实验</span><h2 data-page-node-id="fYJzDQbfDGoDw2ts7DgG7h" class="part-title"><!--pnid:Crcjr3adcWLF4H7NRw9PXS-->零基础入门：从零搭建你的第一个AI聊天机器人</h2><div data-page-node-id="DtLITjRVcOpmZMgCaaSaRW" class="part-rule"></div></section>
+<div data-page-node-id="bcsZwrdcmsQ6MoHcrjV43c" class="meta-line reveal"><span data-page-node-id="LS1Ytr1L9VXXH3ilN1dvL1" class="meta-k"><!--pnid:KGzLDYGGH4QQwz1cR3pk9V-->适用对象</span><span data-page-node-id="TIWu1yRirgHvEPSLv5LMqs" class="meta-v"><!--pnid:rE5riKH6Pns47yjA0opXsF-->零基础学员</span><span data-page-node-id="nHQwoUNVbr2sLaHxIWklSe" class="meta-k"><!--pnid:8AZuBqTkkdxko937s7gNe2-->学习目标</span><span data-page-node-id="5HlAH58aj8q2Wa6bTScQRe" class="meta-v"><!--pnid:XCRWaNjTyNVpaUvbP0X1v7-->理解大模型的基本原理与应用开发范式，掌握API密钥的获取方法，能够在云端环境中编写Python代码调用大模型，独立完成单轮和多轮对话机器人的开发。</span></div>
+<section data-page-node-id="MwSy5AUOEjkYvxBAUGZoV9" class="sec reveal" id="1-ai发展简史与大模型原理"><div data-page-node-id="E63MsjrpmCi9fmhSwtrL4N" class="sec-rule"></div><h2 data-page-node-id="7HFOck2EzsRQFikVf18Cwb" class="sec-title"><span data-page-node-id="GsJznicSFB0RFibCsIgf6N" class="sec-num"><!--pnid:EVMdLtCNrXxq8fgQ2QzOpT-->1</span><!--pnid:gUGc6xvN21lhq9kOuoBUDJ-->AI发展简史与大模型原理</h2>
+<section data-page-node-id="f2LZyPJdbHBjXCmr60Tafz" class="subsec reveal" id="1-1-ai发展的四大阶段"><h2 data-page-node-id="bN4C46FZbcycpYHFnbrHrk" class="ss-title"><span data-page-node-id="SKZgHKvJSdPOA6uq7qKXZK" class="sec-num"><!--pnid:8rhCO6cMQLSMftVRwQ2dki-->1.1</span><!--pnid:c4zl4w0eaGkK5NhOHoE1eS-->AI发展的四大阶段</h2>
+<div data-page-node-id="KbmchoBeVzhlBLcEKZzHEi" class="reveal"><div data-page-node-id="DOB0l68jsQvzJrZpYFifjN" class="table-wrap"><table data-page-node-id="adKHiIH11925rBn6CBV5wZ"><thead data-page-node-id="7977Do2Yqd69Acd8R0PCLG"><tr data-page-node-id="UJQxHuCkvQG07BmL0adwMG"><th data-page-node-id="JIckkc1GtUMO4vguiDrelx"><strong data-page-node-id="8n4yP1P1ahUvWt7NKwAuCj"><!--pnid:TynsrcrMNqWnrskjMS6jvc-->阶段</strong></th><th data-page-node-id="O1SpoxS1vL0ROZYWCZpoYQ"><strong data-page-node-id="F23muthtEuI2cHIuIUQN79"><!--pnid:Wc64eFOpWQhqHwqRdzinNm-->时期</strong></th><th data-page-node-id="HFBMuRW7Zed24WnrTnehdH"><strong data-page-node-id="3giChORdvZYkZbRR3ktTLX"><!--pnid:tvUOrQuRu8VNKBTdEAYFyg-->核心思想</strong></th><th data-page-node-id="QefjS3mM38R4gDu40rB0iK"><strong data-page-node-id="Iqay24Ll1CqAd3DMs0qGE4"><!--pnid:0J9FHSILnCwEOkZhwhuyxS-->代表成就</strong></th></tr></thead><tbody data-page-node-id="nlmxvUQNXb8LYK8VfDCmh0"><tr data-page-node-id="PHPfvIeoEOmwrGkZzcLqFa"><td data-page-node-id="9E8vrHvvz6kDvGvKmPpacF"><strong data-page-node-id="9mSySHqnpBqMhCcXS62g2Y"><!--pnid:uUWm8Qaum23fwKDLK4zds2-->规则与符号</strong></td><td data-page-node-id="Fi8VWLkw8AgZfF7i0wfxDf"><!--pnid:n11iKMfT0rnTdOFX4BLDqa-->1950s-1970s</td><td data-page-node-id="RlLbEOVxav81HZKnCd1PvO"><!--pnid:Gmy0unxtFvYjopkJ5TEvGW-->用预设的逻辑和符号规则复刻智能</td><td data-page-node-id="tE8PpXo1k1oH0J50GDCV6a"><!--pnid:eQv2JNNrTVlcsdoF99gikW-->象棋对弈、定理证明</td></tr><tr data-page-node-id="Z6zv2OlNO6rYT0npQJXJZ6"><td data-page-node-id="C8p8ckpJyvRSfFNHcCXZyv"><strong data-page-node-id="tfbmgY7OEsnl3XOq9dai3B"><!--pnid:OMwRp7SihjNdtotluDQuRY-->统计与学习</strong></td><td data-page-node-id="jA724nmFnXYo0Q8yH76TXw"><!--pnid:zxobo1hXwGa9jYqVFDoWp4-->1980s-1990s</td><td data-page-node-id="yM9oSZbBN6xPuWuYawib8b"><!--pnid:oqexe8EtpX2aFKTGIRIJ3l-->从数据中自行发现规律（机器学习）</td><td data-page-node-id="VaEwa9oSz8xxGacwFjG3Ld"><!--pnid:ypwNGRINosq2jB6cdjsMD0-->垃圾邮件过滤、推荐系统</td></tr><tr data-page-node-id="7vruEk4TninEK9ikTOSlZt"><td data-page-node-id="SiXOPWtDMbZSwJcFYzcLqt"><strong data-page-node-id="86Ei6ll3casvgqvehVnt11"><!--pnid:OBYcmeeFWSg7AnfW1ZYWjd-->深度学习</strong></td><td data-page-node-id="7obl0V5vkhSYLnhxQw8kBn"><!--pnid:2OYUr3ow25ObLWprGrku93-->2000s-2010s</td><td data-page-node-id="36ZuG5M7XzRYjsv0511Umu"><!--pnid:1D3mjMPcAjgW7soQ0gJjEE-->深层神经网络自动提取多层特征</td><td data-page-node-id="tbYh0JNE1R92cvU4IC2Ana"><!--pnid:XTr4UlsCE64g2lqPpgKLrx-->人脸识别、语音助手</td></tr><tr data-page-node-id="yaBod7805gMHpn9belmhqV"><td data-page-node-id="TXMyQIlvTZWQOWXZA3w9tn"><strong data-page-node-id="iB7MJOzg7yevSrRyAvj4sr"><!--pnid:q87vQYC6p2BkdhVnQVTBcA-->大模型革命</strong></td><td data-page-node-id="3FxGTemJVvFO4TITQHZbew"><!--pnid:QBM2zvU7KkZVmwPDpQRBEy-->2020s至今</td><td data-page-node-id="aY84sh525uFYSrVeVmWDOD"><!--pnid:htpiOs6waaAjm51eGCv6mu-->通用认知智能，通过对话完成复杂任务</td><td data-page-node-id="HNsogVT2I6kM13X2yiE4Y7"><!--pnid:PrDuLTwFJpViDp9ZlUxaQI-->ChatGPT、DeepSeek、通义千问</td></tr></tbody></table></div></div>
+</section>
+<section data-page-node-id="nw76msdvKSwJmmoJXvLqQv" class="subsec reveal" id="1-2-智能产生的三大要素"><h2 data-page-node-id="RuP6AfBH2ocxm1Mfq6ynZp" class="ss-title"><span data-page-node-id="CsE9rizoqpA3HtLnt9I6Wc" class="sec-num"><!--pnid:osEf8rer2xt3YggRbXvHC0-->1.2</span><!--pnid:98SWptaTTaY0hsYij41RpX-->智能产生的三大要素</h2>
+<p data-page-node-id="nRRyk6hftYmMkMGNSR24VG" class="reveal"><!--pnid:ELab4L4l2uFudP81Y03LNf-->大模型之所以能产生“智能”，依赖三个核心支柱：</p>
+<div data-page-node-id="S4F4LywXtfEOFfQtkx6vWa" class="reveal"><div data-page-node-id="O9ZcIrwpWa6yHerUlpDJ9m" class="table-wrap"><table data-page-node-id="eZBvh5hRQHgmQ3XuseiYuG"><thead data-page-node-id="2TEKqQgvKHYKuquLosdJki"><tr data-page-node-id="UTflsI1d9vjpilE5p8IqxJ"><th data-page-node-id="omNrLBPSHceMTitI72MJxB"><strong data-page-node-id="fpOHAox9hPUqn7TmAtCRlf"><!--pnid:3ytSiGddAvNGznu0CtRpcY-->要素</strong></th><th data-page-node-id="VLGxjHV2cBwRBMJtGRrjL9"><strong data-page-node-id="4jWkgiFCtMa1vVw2QGcc5i"><!--pnid:uz6ustnwHJLYliAMcv6vgz-->作用</strong></th><th data-page-node-id="RN534mdqCZlrYo4kAgsDUD"><strong data-page-node-id="oaKXvJImYbn1bhHexAzizy"><!--pnid:aXUaum60cWpVLXX3gWqVwN-->比喻</strong></th></tr></thead><tbody data-page-node-id="0bDq28CTuywLrABMp4UQQH"><tr data-page-node-id="fdDr1MdHaKL0kXczW6WuZz"><td data-page-node-id="LrKo7sdw5o2oqzfRsdqT8F"><strong data-page-node-id="Y3tws2ot2MBX1WiVAffvYP"><!--pnid:akqIFZZ1OkQvgo9gLfIe19-->模型算法</strong></td><td data-page-node-id="dQ77ufZIe5PE4yeIgdzz65"><!--pnid:1ptJW4jkURoRKWHD7vM0AY-->AI的“大脑”，神经网络架构</td><td data-page-node-id="XuIlA733M9tk4nJNuCj1Bc"><!--pnid:bhEpSj5RkBITZdjHOfWW16-->大脑的结构决定了智力上限</td></tr><tr data-page-node-id="ReeIpuXxFTtza47bVxjBMN"><td data-page-node-id="qvRXgVtUHzC4s5oYZjJBn2"><strong data-page-node-id="82aiyVh4iUDm63piXTel3Y"><!--pnid:FqkQoytRCAPnvLNmuEJQel-->海量数据</strong></td><td data-page-node-id="EygtllLNM4MruDMXOICdTI"><!--pnid:2w3ptKau4WFuz8nhmdwrM2-->AI的“知识”，训练材料</td><td data-page-node-id="FZzJ67fs1UWpiEaPZZs9BR"><!--pnid:Kr7KNYVf7Wj3ZKKHQbGW9m-->读的书越多，见识越广</td></tr><tr data-page-node-id="HszEUeqYbyuPUgtiU7u7Av"><td data-page-node-id="KXWrXdyR683JOZqIUpUYWR"><strong data-page-node-id="NRZDSx1KoQhAIconlsk91h"><!--pnid:MO2OcHX9YutJ8iRGN9mnT8-->超级算力</strong></td><td data-page-node-id="hGiJHCj2X905O49HVbKZHB"><!--pnid:rxp9yF9fVJ5pUYpB2cn4QJ-->AI的“能量”，计算资源</td><td data-page-node-id="8D35WVPftQnqcMW1UnNLdZ"><!--pnid:q4Nql3deGYv7Y1uTfNQZrW-->需要足够的能量才能运转</td></tr></tbody></table></div></div>
+<p data-page-node-id="O76Sofes70cj3bkPmpMTLO" class="reveal"><strong data-page-node-id="I0LtFNM39KrYqrio303prB"><!--pnid:04fa6CU03xafkT1M4EZa12-->直观理解</strong><!--pnid:zIw0jfgSghAsAnjBu9QyuI-->：算法决定了AI的学习能力上限，数据提供了学习的内容，算力则保证学习能够实际完成。三者缺一不可。</p>
+</section>
+<section data-page-node-id="qzse5D6vMISjB4SsP5BxxS" class="subsec reveal" id="1-3-大语言模型原理"><h2 data-page-node-id="zYuC0QXtI48Emi7yeID4zQ" class="ss-title"><span data-page-node-id="JRVkfrkgUbhr2cnk1apNBP" class="sec-num"><!--pnid:Td0ZufcJkwMGjpDu1qOitk-->1.3</span><!--pnid:eebvKz5V7ZkgHHPLU41NrC-->大语言模型原理</h2>
+<p data-page-node-id="4jTnNDkMy70sqIKkV6PSP2" class="reveal"><strong data-page-node-id="KyvMeUrUjF1dsTI9RPNerp"><!--pnid:cnRwGIMGCvsYSOr4eBmOht-->核心思想</strong><!--pnid:5uAaoczcVomjnJU2jzH9WA-->：把人类语言转化为数学向量，通过向量运算来理解和生成语言。</p>
+<p data-page-node-id="XLAm1WdjzXrGw1fF6pLFfP" class="reveal"><strong data-page-node-id="6hbaWi2jeT0QpKT9ERXny7"><!--pnid:vCwWQciRzTxGPZuBdINI09-->分步理解</strong><!--pnid:6HLXztel7LSML6yuKiL1S8-->：</p>
+<div data-page-node-id="kGiOA16ojzS3T0Or9tDYMe" class="reveal"><ol data-page-node-id="Ga8Goo04lJuJZpAuYnWjPt" class="dl "><li data-page-node-id="9bCczogZV20apzp8gKE0am"><strong data-page-node-id="XQePoAHWn1Czd3726jwzJh"><!--pnid:PPNkQktvydCrSDvajapxmN-->词向量化</strong><!--pnid:CHlb7ckkjR6MvFvRC7jgI1-->：每个词被表示为一个多维向量（一组数字）。例如“中国”是一个向量，“美国”是另一个向量。</li></ol></div>
+<p data-page-node-id="worBzlM64PeAJyKy2BraST" class="reveal"><strong data-page-node-id="4PcFG89SbtrHrggncNARip"><!--pnid:lZ1hQ6zPt70G5ET0fPtLPj-->语义运算</strong><!--pnid:g2SlSlgHHe9pUht0PnmsNt-->：<code data-page-node-id="wER1OgwEoo5CMaR0nut5XW" data-pnid-children="4Z3WKrYHdOEx81vrhKw10J">E(美国) - E(中国)</code><!--pnid:JxMdC90OHOX9Kdz8RqUgL5--> 得到的向量表示两个国家的差异。那么：</p>
+<div data-page-node-id="aHjJlRy87A455AmuGpnUu4" class="reveal"><ol data-page-node-id="407JLe9z0ppgjjZ2vlAqm2" class="dl "><li data-page-node-id="BkjNO3pQjYF62X9SUGCZEj"><!--pnid:WzyXXnQvAq0OaSXlOGwdqJ-->E(汉堡) + [E(美国) - E(中国)] ≈ E(肉夹馍)</li></ol></div>
+<p data-page-node-id="IXqvssaOMr2BOaRi0R9XPY" class="reveal"><!--pnid:V63Wv2Wm93lPnngcsamEJp-->正是这种向量运算能力，让模型能进行类比推理。</p>
+<div data-page-node-id="JSfH4iQhUqyHyXjyChlN0Q" class="reveal"><ol data-page-node-id="xGbNGq5l7JzHLjFXTUTWyf" class="dl "><li data-page-node-id="StUuvY3t1b8lHxnB1G6brk"><strong data-page-node-id="HPHwsyTZrGfYrY8aXWDsKC"><!--pnid:nfSZlY8iAX1HjAKMwNiD7F-->上下文预测</strong><!--pnid:ndOZpfRLvzo5ZVK97WQ7lZ-->：给定上文，计算下文最可能出现的词。模型本质上是一个“完形填空机器”，只是在海量训练后，这种能力泛化为了通用智能。</li><li data-page-node-id="kbW1IvS98USEXiDa5Ux9n3"><strong data-page-node-id="OV4iUkmQkg5KmPoxeGVhOv"><!--pnid:Di9E4whnpzPPwrZtNBANSH-->泛化涌现</strong><!--pnid:NxmToGRkzAidevBu8yzVW2-->：当模型和数据规模足够大时，模型不仅会填词，还能理解、推理、分析生活中的大部分问题——这被称为<strong data-page-node-id="HG4dIujSV5e2WDgXzkm8fK"><!--pnid:YwR65grSGDzjci6zy4uSmB-->泛化</strong><!--pnid:9SSyI0xk9gnwlhqwVWJyc9-->能力。</li></ol></div>
+</section>
+</section>
+<section data-page-node-id="5IQnem2qvaOP1afVc9tMoL" class="sec reveal" id="2-大模型应用开发-是什么-怎么做"><div data-page-node-id="huqLDYm3OT50tgwbbgg2PV" class="sec-rule"></div><h2 data-page-node-id="Q7ZrhdjRzy1lsDrEXjmtww" class="sec-title"><span data-page-node-id="dTDRGuZgPQ2vuJq3AVjLNk" class="sec-num"><!--pnid:7oonzPugAdbGObvuxPjzJi-->2</span><!--pnid:VYxEhLTGJXwWUO1LPUddXL-->大模型应用开发：是什么？怎么做？</h2>
+<section data-page-node-id="pKo0kV5hBbUkWv42EYUJGg" class="subsec reveal" id="2-1-什么是大模型应用"><h2 data-page-node-id="vhtoDXH3pFzJRlfnZA7M7c" class="ss-title"><span data-page-node-id="uutNXQnJwhazFgtcRo8rvO" class="sec-num"><!--pnid:wwiyVtLddNC2JMzzaJFNtO-->2.1</span><!--pnid:vQvoAujxTBz5Lfhy9OtFu8-->什么是大模型应用？</h2>
+<p data-page-node-id="0L3FmsMj7BOiU8UV3LgTih" class="reveal"><strong data-page-node-id="o1RYNoA5DxIJYfO7SVIFiZ"><!--pnid:XeTxKxgd3jDE2ybc7hnwRG-->大模型应用</strong><!--pnid:4Jo8YneEhGxrx27mcytpPt-->是将<strong data-page-node-id="emo2pK1OlvNjWRxVb0f2du"><!--pnid:BvWEKohDW0UP82F0n6G4f4-->大模型</strong><!--pnid:xlSj0ho3bieHqDCzfbLSQc-->的“思考”能力与<strong data-page-node-id="ZU81J4qIUv8oQhoghjA8aC"><!--pnid:U460WqVt67pVEO1psKmTp4-->传统程序</strong><!--pnid:kV5gIU78QRSTlBYIM60Ar6-->的“执行”能力相结合开发的软件。</p>
+<div data-page-node-id="Z1BhwGj74umB3TBkV9jHye" class="reveal"><div data-page-node-id="qQL5zJjggPH5FYr748ceW6" class="table-wrap"><table data-page-node-id="QZgRiY4g4DYd9sDoCP87JS"><thead data-page-node-id="tYg77H7oTDRtu6OJVjmVG5"><tr data-page-node-id="XncqjzUNgQCkC92sAon6Rg"><th data-page-node-id="zBCcXnUw02pzJ2uwFbo9Qi"><strong data-page-node-id="LMqUx432Mqi3SzVOJCAXkP"><!--pnid:4PiAFUAJjLOMBNw00ii99i-->能力</strong></th><th data-page-node-id="f9eckUrAtqd1nbA4Wgdhp4"><strong data-page-node-id="ozxGWJynOMSH6gy8zVhDWd"><!--pnid:kp1gT7olDKIi6w1efiLc1F-->传统程序</strong></th><th data-page-node-id="pZO8lFHh426RIXsoOQ1LwQ"><strong data-page-node-id="t1YFE9rUZT1LYDkDCOKI7a"><!--pnid:rjvqWbm2DDeaj5cwdCwDVU-->大模型</strong></th></tr></thead><tbody data-page-node-id="bg53FF8sx97KsxrBLCi72w"><tr data-page-node-id="EKnSkqMpvb9tPAcw7iiQQ7"><td data-page-node-id="Qt7c7CZHoe7FdmkeQmnoCO"><strong data-page-node-id="R1pafjrO6aIZTnrnbuomo0"><!--pnid:3kx0iTQ4vq903GnAFup40t-->擅长</strong></td><td data-page-node-id="pDxm52iCH1NMeuOYId2Rfr"><!--pnid:QS2lNpa8Q1xnUE9DCMQYLz-->规则明确的计算、固定流程、精确控制</td><td data-page-node-id="A5G529wM263g7nf0sjnElO"><!--pnid:Hu6ajmaPRFvojqPBzOBjOo-->自然语言理解、模糊问题回答、创作</td></tr><tr data-page-node-id="46hwSQcqukkZO5A0hlMFx4"><td data-page-node-id="8kYPVoJnvBvZth0HGyOkyK"><strong data-page-node-id="2IFO7H0MUQ0WPTnK0KFgEl"><!--pnid:1ccrszZ2mek3wwQVIUQ0so-->不擅长</strong></td><td data-page-node-id="fJpKsRsooAvKOQgtkRFgAC"><!--pnid:AK4U9POmqprpx77z2nGFvf-->理解自然语言、处理模糊需求</td><td data-page-node-id="H8DaBJIcVoESQbjJsg5KSi"><!--pnid:VthBcTojbyhtXY8PE6tRAa-->精确计算、稳定可预测的结果</td></tr></tbody></table></div></div>
+<p data-page-node-id="1gTeHIDC7HLOx769gAFguu" class="reveal"><strong data-page-node-id="4UNig0at7Y0G0dXBseR4ju"><!--pnid:2hlOSEHKk1twqLZlsbWxlR-->大模型应用的本质</strong><!--pnid:VChR9HK3k5sqjG3FbZU3Id-->：<strong data-page-node-id="4U3VXO2BjuSnFia8b9C3aK"><!--pnid:aZJn2uPbej9uaqvKyKBHJe-->大模型负责“思考”，传统程序负责“行动”</strong><!--pnid:J7kdpzr98PY7fSleWNMhyp-->。</p>
+<p data-page-node-id="f03RPGeXsW4aL7GJKs4uoY" class="reveal"><strong data-page-node-id="jP2WbRmoCuj2qyhsaHI5Q6"><!--pnid:Rz97iDHYdXsXhsQy7moCFS-->重要认知</strong><!--pnid:PHuPhhOarQ1dWN1CTZbkTU-->：你日常使用的通义千问、豆包、ChatGPT等，都是<strong data-page-node-id="F8gvXGuGDx9zoyMC6pVxdC"><!--pnid:Tz4DvLSYga5yBugL79XPAs-->基于大模型开发的应用</strong><!--pnid:5SKiKAzW7Jrhgfm1VtzNMd-->，而非大模型本身。它们额外实现了会话记忆、联网搜索、文件上传等功能。</p>
+</section>
+<section data-page-node-id="yTkaDP74e9m8TQzgiiVf4p" class="subsec reveal" id="2-2-与大模型交互"><h2 data-page-node-id="cSryl2waQOziL97vRgLaDO" class="ss-title"><span data-page-node-id="9W29DSnnoXx91CzqHgqpoG" class="sec-num"><!--pnid:T7nbmgGbF1IXKpPfIig0si-->2.2</span><!--pnid:aWBFZBbu5LSPbtji4Rwe2P-->与大模型交互</h2>
+<p data-page-node-id="LGzoRboKl6gbnmMGWhTcSh" class="reveal"><strong data-page-node-id="4QjWEz1xX46XAJZ7VHvCqv"><!--pnid:wCCot3G4zYFn0fjvJQcCx7-->传统程序该如何与大模型交互呢？</strong><!--pnid:qWjyvduCr7TjszOp8syuP6-->—— <strong data-page-node-id="R2pDKVcQe2knDPopXlskEd"><!--pnid:hyXltoUEKJyNXEujfVxe37-->调用接口</strong><!--pnid:5i538Tbr5O8ZsiRuSyd9Ax-->。</p>
+<p data-page-node-id="AemTEAZ2BeUSjTf0tcMPJ3" class="reveal"><!--pnid:HrRpIDqE5TmxU7IbJuYdBm-->大模型在部署时通常都会对外暴露<strong data-page-node-id="zLZrlXkrFna8S5hMQnhLKH"><!--pnid:injDwtqjXL7mkd7cGwSigm-->基于HTTP协议的API接口</strong><!--pnid:9iGVYVpOHNTfpHZaOsA9Lh-->，我们可以用任何自己喜欢的方式调用该接口，实现与大模型的交互。</p>
+<p data-page-node-id="48QmonDRJ9AFW3hAdZuIPU" class="reveal"><!--pnid:HEYAAJaQ3kx1n5bhu0roWB-->这里的传统应用，你可以简单理解为 python 代码。</p>
+</section>
+<section data-page-node-id="rUq48o0piYPanbb8DdoHTa" class="subsec reveal" id="2-3-再次区分-训练-vs-调用"><h2 data-page-node-id="J0UZdIlmXSlB2T5WuzEYus" class="ss-title"><span data-page-node-id="U393p6DZNfy6yPghGTNq94" class="sec-num"><!--pnid:sYDGS1GtNqJo64kl1Tqwr9-->2.3</span><!--pnid:Ssu2ZX1BUfYfoiYLB1RZ5M-->再次区分：训练 vs 调用</h2>
+<div data-page-node-id="DdsFWYnBuEMd9PDxlO39Nm" class="reveal"><div data-page-node-id="zXOkPNagNqzPZleS8bthl5" class="table-wrap"><table data-page-node-id="69co6DAoEFAmtuKy390ftK"><thead data-page-node-id="Oehk9DEhEm1iYyOddBfiWi"><tr data-page-node-id="EKAMWSC3ODkqfxDCreWj1N"><th data-page-node-id="idP9XsaI8nbfIM1Zg87qDe"><strong data-page-node-id="zZFMp02uHs9WRO4AaAsgcn"><!--pnid:u5KN2tJybreLpHBaiWWPdV-->维度</strong></th><th data-page-node-id="NuhzQ5YGQ8x5X28bQClGuU"><strong data-page-node-id="cEWL2gPykPdIR0zKUi4ku3"><!--pnid:8k5MeW4s8SmKuGlbZxGGFm-->训练大模型</strong></th><th data-page-node-id="pApDQu7sBGw608qF1k5I8S"><strong data-page-node-id="POCLAMz2Q2fCjCBmuKe2xY"><!--pnid:4613NDc5j9EtSATAzWc0cE-->调用大模型（本课程定位）</strong></th></tr></thead><tbody data-page-node-id="fjf4GXmUS8oNm9V9LMOE8c"><tr data-page-node-id="sGaLzJ0kN3GO7aRxg6wLgm"><td data-page-node-id="mZ4r3rHVzbTMGB2SQIYcAw"><strong data-page-node-id="UmkZMHDdiCveEw6SLpQbzq"><!--pnid:8HEHsrdeyhZEowwpBB0Lab-->核心目标</strong></td><td data-page-node-id="8qzc3jwEWJgR4YQaVoEIaP"><!--pnid:gKQs9mIrKkNO1gPmWY2iCn-->从零构建AI模型</td><td data-page-node-id="dGWauKvvwaRaykIa9wrll2"><!--pnid:5gI9FKP6nCdCz3AsfClDiw-->利用现成模型解决业务问题</td></tr><tr data-page-node-id="quswzJ5p1pWZt1kUrelrlh"><td data-page-node-id="bvlpvL7HjA5ST9Ay953MIB"><strong data-page-node-id="njwN2NrJoBOQfZGxPvABYk"><!--pnid:sniCYPfr4a4ze8WlNTJj7E-->技术门槛</strong></td><td data-page-node-id="yoQTWNYUysPPT04VkVdreB"><!--pnid:qdYCEOCcVzAi4NWlidAY7S-->深厚算法理论、海量数据、集群算力</td><td data-page-node-id="vKSSZhhwMV8cKGqxoU6PCJ"><!--pnid:vwQnr1zhwzEvSmRnZ5UAaF-->基础Python语法、API调用逻辑</td></tr><tr data-page-node-id="7jA7sqFHUv14dwXcMUXUB7"><td data-page-node-id="Ml1O1oXXjfpnqcwAJIKErx"><strong data-page-node-id="KuFFzoDL1ldQ5327iOTBCQ"><!--pnid:zZWrYTGIQCYzXzGY2BsNgi-->硬件要求</strong></td><td data-page-node-id="DXV0wBd4XZYg6nxU8zSz4C"><!--pnid:JSumCxy3tpqkFAonbgEY6R-->多卡GPU集群（A100/H100）</td><td data-page-node-id="yyy1aAkws1LtHO3DtAD6Me"><!--pnid:hG4do2x6pNM1VwbPmIimlj-->普通电脑或云端Notebook</td></tr><tr data-page-node-id="7bwAMOjCQ6a3hpD36ieIG2"><td data-page-node-id="37eAGhJo8nPQMHvWXbhoHQ"><strong data-page-node-id="u7R0y59gqzQPR5BuIwcJ0A"><!--pnid:H8piD4mvGfKUAS5tV0Ppdx-->典型角色</strong></td><td data-page-node-id="oeV9D1d4iOzIidxw6jVQsm"><!--pnid:FKGZhXdx1JeD6tFj7Ud07S-->算法工程师、研究员</td><td data-page-node-id="neKytOgpdijIOzOQYgTBUt"><strong data-page-node-id="GeJzaZtr0dqTJx4uIwUYOm"><!--pnid:pmwJhDuxXKU0ZFenpJVXnb-->应用开发者、产品经理</strong></td></tr></tbody></table></div></div>
+<p data-page-node-id="0CgACfTrApEsTG8f6KimGK" class="reveal"><strong data-page-node-id="mxrVP8Xy2O4RZet1BMof5a"><!--pnid:LIuTm5CmoQSW728Hb1wz8s-->形象类比</strong><!--pnid:4hVoBTTblKjhxvdPBM4J5D-->：大模型是“预制好的智能芯片”，API是“芯片的接口”，Python是“操控芯片的控制器”。你不需要知道芯片怎么造，只需要学会用控制器通过接口让芯片干活。</p>
+</section>
+</section>
+<section data-page-node-id="sDhcuJLayt4WzI6vUge1X0" class="sec reveal" id="3-获取大模型api密钥-key"><div data-page-node-id="FDjjWvMnrWW1scEPAHg4iW" class="sec-rule"></div><h2 data-page-node-id="sn6VkG6uvP8DoRGMCse9vz" class="sec-title"><span data-page-node-id="cK9JkZaTt1FhTmXw4GZS1C" class="sec-num"><!--pnid:N1353oSZY4NlXwILyF1IG2-->3</span><!--pnid:m858GNiAgwoZfmGRek7s2g-->获取大模型API密钥（Key）</h2>
+<p data-page-node-id="hvKj78n6oinf4buTTKaNP0" class="reveal"><!--pnid:X7JAy1rifY2QSJQWvDpwad-->大模型应用开发并不是在浏览器中跟AI聊天。而是通过<strong data-page-node-id="qZrbvfafVI9iEXhtIzTzkl"><!--pnid:4IeE0aTJB8ncSwS65IUTGn-->访问模型对外暴露的API接口，实现与大模型的交互</strong><!--pnid:k1lM5z2MiwYprC7TOUndgV-->。那就需要有一个可以调用的大模型服务调用，且大模型需要一个“身份凭证”——<strong data-page-node-id="SBoOwVlDwoerSXsMGcnzgb"><!--pnid:yG0kEuOwPSrCcGYlZvZALP-->API Key</strong><!--pnid:8ixUX6PiWvb902vcoifnga-->。以下为3个国内平台的获取步骤。</p>
+<section data-page-node-id="fw0gcgIbZeUqnRIjb86Jyo" class="subsec reveal" id="3-1-百度千帆-文心一言生态"><h2 data-page-node-id="wuAa3k0nZYYbtqHk0pAejt" class="ss-title"><span data-page-node-id="s3wmdqvUH0FlMJ6punqTKX" class="sec-num"><!--pnid:bxMmjtBBsh5IDyknUlPV32-->3.1</span><!--pnid:5cCRoXxr8jHWVsDOCXzUxy-->百度千帆（文心一言生态）</h2>
+<p data-page-node-id="XwihsSk7xGTIzRHPdF0x3G" class="reveal"><strong data-page-node-id="Nfz0LIerIgRnCVizsnTDbQ"><!--pnid:2d0yI73KA5Te9CnDI1fRRK-->Step 1</strong><!--pnid:M2iv5ep5lDV2ZCUIspLMvd-->：访问 <a data-page-node-id="XWH2TrSmzLOF4h8Rtv6TML" href="https://console.bce.baidu.com/qianfan" rel="noopener" target="_blank"><!--pnid:1TkHm3f1zdlfmCEHY1bisp-->console.bce.baidu.com/qianfan</a><!--pnid:c5YicDesLNPPdN7gKrZxxa--> 并登录。</p>
+<p data-page-node-id="huwWY6R0O9eWgAVJdOXBxy" class="reveal"><strong data-page-node-id="YSXNP7uTQ5tQn9TGCTrbCS"><!--pnid:ZIL3dQjXyV55Q3YYF3cdso-->Step 2</strong><!--pnid:MEiUKZisw8VtBUJM9eyaRy-->：左侧菜单栏找到“API Key”，点击创建。</p>
+<p data-page-node-id="6qZQ1Gyqep5h22se9fM6S9" class="reveal"><strong data-page-node-id="d2JzR0XWGhAlvmL8IPnFcP"><!--pnid:xkpNSLQaIakXyMWlU2mrDM-->Step 3</strong><!--pnid:UqyRlZCdoEeMy3uS2IPQXj-->：复制生成的API Key并妥善保存。</p>
+</section>
+<section data-page-node-id="uga2NbHIX5weTkI52MeMWn" class="subsec reveal" id="3-2-阿里云百炼-通义千问生态"><h2 data-page-node-id="SOt1SHa8BZ0nNMxTE6CXwe" class="ss-title"><span data-page-node-id="gWSWbmvxRCbZiWYQvh78WU" class="sec-num"><!--pnid:63Dp8IlNPsceUDzin3IKei-->3.2</span><!--pnid:yceNLSlosyrEoy6JslkDkf-->阿里云百炼（通义千问生态）</h2>
+<p data-page-node-id="1VAoapfOoZIJLC0ZO5pWF4" class="reveal"><strong data-page-node-id="IRgtW2CKxOiAKPdlgm1BSq"><!--pnid:olCjmiRTRdd33beH3c8mJt-->Step 1</strong><!--pnid:Lbqo8vf6uhXHBQxA287Mxa-->：访问 <a data-page-node-id="De66xZecVLhC7XG6Vz7GfQ" href="https://bailian.console.aliyun.com/" rel="noopener" target="_blank"><!--pnid:Rm2nh4o1BTCgDNx4WPWKZ6-->bailian.console.aliyun.com</a><!--pnid:WCvenp45wJmEPIuA5fzjIg--> 并登录（需实名认证）。</p>
+<p data-page-node-id="B6yOf2O1iNI8YqLu36GA7U" class="reveal"><strong data-page-node-id="0j59w6C2wLnFSV4eiBeDcc"><!--pnid:UzbirekCyGr2haIWOVOhUb-->Step 2</strong><!--pnid:LurdLINnx8urRqYuuEJkiQ-->：点击“立即开通”服务。</p>
+<p data-page-node-id="MowLruwKAFNgDHh6WN39EC" class="reveal"><strong data-page-node-id="fmEtFbmzWt7KI25wjTOrr9"><!--pnid:uCeDEAcrVSvH32ik9UwZCC-->Step 3</strong><!--pnid:lAsk0FaCjId4bEliqXF4Sl-->：进入“API Key”页面创建密钥。</p>
+</section>
+<section data-page-node-id="bmZr6w6DmK4zs5i9pNKVeD" class="subsec reveal" id="3-3-硅基流动-siliconflow-多模型兼容-推荐"><h2 data-page-node-id="ClzrSMP7AjUh1gnZnFGCTl" class="ss-title"><span data-page-node-id="HulpOydN3C6Ht0ptxym0rp" class="sec-num"><!--pnid:Bybe7lYasgQOwmcOQvKvtv-->3.3</span><!--pnid:vd9NHuDj44RyIkyuMtDwJz-->硅基流动 SiliconFlow（多模型兼容，推荐）</h2>
+<p data-page-node-id="j5OmMqZ8xyYXRjKh6X3hwq" class="reveal"><strong data-page-node-id="KCpTz7USoXXpBrT5DxcI5Q"><!--pnid:qN6CndUMpmK2tDHhUJ5BY3-->Step 1</strong><!--pnid:R9KJEEEQ0oRCSRMCStHhkP-->：访问 <a data-page-node-id="DH0mCgooAO0D8GRabWXi4t" href="https://account.siliconflow.cn/zh/login" rel="noopener" target="_blank"><!--pnid:NatFqHrfZVQnQwCaR3ZX8N-->account.siliconflow.cn</a><!--pnid:9lcHAs80e2z5Nv3mTLdq31--> 注册。</p>
+<p data-page-node-id="jmZNCVowEJijSlxVdtKqYa" class="reveal"><strong data-page-node-id="xjYDFdtiGSm9DQngWpuYVv"><!--pnid:h4grYlRWUdSU6rOYW1d0R5-->Step 2</strong><!--pnid:2HsPcFgAAk34KB2IykhPTH-->：进入“个人中心” → “API密钥” → “创建密钥”。</p>
+<p data-page-node-id="oCVvizEFF5W3wi1FTtX5vO" class="reveal"><strong data-page-node-id="hSCl9ouB2dPzao4zzoqq9f"><!--pnid:7lSSCLLVmS8HJVjw6EBEaB-->Step 3</strong><!--pnid:rw03j5sAIMsuNDBUm0KU5U-->：复制生成的Key（新用户通常有免费额度）。</p>
+<blockquote data-page-node-id="35SsypNIJBZeAunfciAHDz" class="warn reveal"><!--pnid:yVfzvjQk0oYzw2e9O7cnz9-->⚠️ <strong data-page-node-id="P8zP0v6E9pD835WFDDLFRG"><!--pnid:89ZF6XYSVeVIw2GrE9UPKY-->安全提示</strong><!--pnid:2silyztJFC6qfvX7yp8kHR-->：API Key等同于账号密码，<strong data-page-node-id="sq0N7CBNzjb34kOCEHJovN"><!--pnid:4IrcfRuiyU9Bl01u9ROBvi-->切勿</strong><!--pnid:T0s1jNANU2f3pI42KWYsOJ-->上传到GitHub或公开分享。如泄露，请立即在平台禁用并重新创建。</blockquote>
+</section>
+</section>
+<section data-page-node-id="gcS4ZpPacgnLxeuIQkKjB3" class="sec reveal" id="4-免安装云端开发环境"><div data-page-node-id="bMwOL295FvSwVf9qqsxfit" class="sec-rule"></div><h2 data-page-node-id="2YiuwgEd3LsJ6KDM2jYLwT" class="sec-title"><span data-page-node-id="kUq0ZTmHbYm8lGfVW25NIc" class="sec-num"><!--pnid:J09EOqR7JnXIPraU23C5LS-->4</span><!--pnid:e7kCIUdGMb1rUVskJX2vSR-->免安装云端开发环境</h2>
+<p data-page-node-id="utUnYiCRk83pNQjBpbVMyx" class="reveal"><!--pnid:XaxZEG4n85XxElnbn82ndJ-->想自动动手操作代码改写怎么做呢？无需安装任何软件，打开浏览器即可编写Python代码。</p>
+<div data-page-node-id="FJmKo3T3NpHn5xUPgTBCYu" class="reveal"><div data-page-node-id="GnZifA1BbikGUkAzbVvUVm" class="table-wrap"><table data-page-node-id="STT3Qikug2hGf8e9cdHiEx"><thead data-page-node-id="GV0gdPTXhKeONCwdBpnwbl"><tr data-page-node-id="E2n3ISRjMWNXb8DeGU8N8d"><th data-page-node-id="a1se6DDgiWxiLr1gAepyj7"><strong data-page-node-id="unoierqzxW6nJcOJIpRXuJ"><!--pnid:QrHKbsNdywc2Rxtk9FWjzE-->平台</strong></th><th data-page-node-id="Xw2V4s4hGA31hkgRIdk96d"><strong data-page-node-id="RZeZA9UnsW303RZxQuAFlw"><!--pnid:FLSFvJfXDXEB3G69H3Bjjt-->直达链接</strong></th><th data-page-node-id="9u53Wtr5tkFdDMFISrgqh0"><strong data-page-node-id="xHOUCZvRxo2mI5p2nOLpvh"><!--pnid:yJ1wkj0UgOTbnBAs82OWt7-->特点</strong></th></tr></thead><tbody data-page-node-id="Sc77eJVZDyMwYEu9rSkKUI"><tr data-page-node-id="Drf5yM6D057gtlFHZYZ0N4"><td data-page-node-id="QyoA91W8i6N8OfUe9sfp94"><strong data-page-node-id="uhluWQnVvmKmsS3kZJuGzw"><!--pnid:20b7MleHmwdQ0qoHpg6420-->百度飞桨AI Studio</strong></td><td data-page-node-id="Y5eeSj3IdrVs2gc5f0aa48"><a data-page-node-id="e8Ar3QlGljGNASiqE0DJaE" href="https://aistudio.baidu.com/" rel="noopener" target="_blank"><!--pnid:w31IpZ4j4T1PdCvSCRl0qK-->aistudio.baidu.com</a></td><td data-page-node-id="AAeaSAsSEELRKnfiwXYQLy"><!--pnid:beYSu1WhyjoILJGruasIoK-->免费GPU、国内访问快</td></tr><tr data-page-node-id="wu0sXKcgAlsmdBcZM0QjeB"><td data-page-node-id="eXq4ZlnfK8zjmzGKtI5Tlf"><strong data-page-node-id="KxIT3QoH9gKG6qW5bKOdpb"><!--pnid:VLQT0H0ARsB7WcG2kpeGPE-->阿里云PAI-DSW</strong></td><td data-page-node-id="ZVIeDhP3XeqNnBBk1SN1z7"><a data-page-node-id="3l6IwdcBQAuhbj57iaYOCw" href="https://free.aliyun.com/?productCode=learn" rel="noopener" target="_blank"><!--pnid:IjEXS8BjDM89DSIxjPBKkP-->free.aliyun.com</a></td><td data-page-node-id="uHJ8O4MBWToBL2qUBBCwWP"><!--pnid:d9oBrJqIkiBspIbkGZ6rh6-->企业级稳定、新用户免费试用</td></tr><tr data-page-node-id="xim1zyorA1MME4ZNhRiKNy"><td data-page-node-id="INLlSlT8gWar3XjVN8jpWF"><strong data-page-node-id="YLGCnKQrSmQ5u833zHBq8Y"><!--pnid:ZMPRp5bTltLFoqzWN4dFUd-->ModelScope（魔搭）</strong></td><td data-page-node-id="NFX9Vd7WIbouJyCxdg5icI"><a data-page-node-id="Q200KKIjOGUFCFJ1bcrTlH" href="https://www.modelscope.cn/" rel="noopener" target="_blank"><!--pnid:u9CL2z6t4ldcWdyhJlcKXk-->modelscope.cn</a></td><td data-page-node-id="Vqtv5mkp6eeqqUwja5V5rS"><!--pnid:rD8MhSJ0dkJKUTK5p7Rp1L-->开源模型丰富、一键部署</td></tr><tr data-page-node-id="v3gK2pcJf3L2gybgm3pQqo"><td data-page-node-id="3Qs4JjsA8K7wi07KIgH6oH"><strong data-page-node-id="9csSDvSq90SjfwueLBdcDx"><!--pnid:QGIj8BunpTh2sQpG72keGf-->Google Colab</strong></td><td data-page-node-id="ZdBiNzEmzSoOFIcDbffsHS"><a data-page-node-id="rL4OWbd6Na8ZxFUWbrV0Ck" href="https://colab.research.google.com/" rel="noopener" target="_blank"><!--pnid:l7wZeMYSh4hF1IzNT54XUI-->colab.research.google.com</a></td><td data-page-node-id="UPT2cMJ3KAU4Zf83VvutSa"><!--pnid:hcbdSmDJJD15p3wy4SfI4B-->国际主流、免费TPU/GPU</td></tr></tbody></table></div></div>
+<p data-page-node-id="epL1TMvm0pqxFd0iZeIbBs" class="reveal"><strong data-page-node-id="ZvUEX3a9ImxtIqMO2fXeKT"><!--pnid:oXKPWdcaYgtjySjXIoyYOG-->百度飞桨示例</strong><!--pnid:KeXkqwllMIJ3ITMLun0fAC-->：</p>
+<div data-page-node-id="jAOitB6MwWRfp5KDOLer3S" class="reveal"><ol data-page-node-id="zJsnokEFewUDYkAnKlhe0M" class="dl "><li data-page-node-id="klPs5BHAT5dccBIEsRWTwA"><!--pnid:ZiKhZz9aWiTvRxd5beN1uG-->打开 <a data-page-node-id="AIaBM2kOD3HjeEEGFsnPNN" href="https://aistudio.baidu.com/" rel="noopener" target="_blank"><!--pnid:o1lNDYgUQ6sbjpvUbizD2N-->aistudio.baidu.com</a><!--pnid:nvvFXcyZKs4pv9kjYthiHK-->，用百度账号登录。</li><li data-page-node-id="QtpuqynukVJn7SZFWn8IiN"><!--pnid:Wow1Vugw1kIKpyvqL90xCU-->完成实名认证（个人认证约1-3分钟）。</li><li data-page-node-id="N6uLITl2doDJA9lkRi3xjq"><!--pnid:taObhec9dNWrlugRMuvvbO-->新建Notebook项目，输入<code data-page-node-id="Lo15lahlOEbrtNnN90OcG9" data-pnid-children="aDOfLgzALReAQU0fA3dOHi">print("Hello AI!")</code><!--pnid:W2gQU3jIWPLgIS3Jo0giLX-->并运行，确认环境可用。</li></ol></div>
+<p data-page-node-id="Sf8Nnu7Jhf1JXcW9QwSbI2" class="reveal"><strong data-page-node-id="62HCFwlUvSEMSbNF1MGbWj"><!--pnid:lsnHn5PLXpUGg2tGFC47Sy-->魔搭社区示例</strong></p>
+<div data-page-node-id="ORnN5vPPUTjKPEhwF4s9ti" class="reveal"><ol data-page-node-id="7kVX9rq2m1Lppe2r400yHs" class="dl "><li data-page-node-id="wsb3JRSYFjyaqKHppVd240"><!--pnid:5B92XojKQY297uLBI30yYc-->打开链接 <a data-page-node-id="q9yLvEGelEX4BnAkRaMdYk" href="https://www.modelscope.cn/" rel="noopener" target="_blank"><!--pnid:EA2xVhNcia3ItlKNNFthRW-->https://www.modelscope.cn/</a><!--pnid:rqeUH99Rhi0dIP3R0nyLOA--> ，用支付宝账号登录</li><li data-page-node-id="Xo25Po6DRQHMG8jmaRQDRR"><!--pnid:rAr2S1GSawBbZ0WI6dInWR-->完成实名认证</li><li data-page-node-id="HGAl2D16prewNKB3SNgKdl"><!--pnid:rFO0hkvXijXmf7Doc08nZh-->打开我的NoteBook，选择免费CPU/GPU启动即可</li></ol></div>
+</section>
+<section data-page-node-id="RnMAHTNvAwT1GubKHz1Fat" class="sec reveal" id="5-实战-从零搭建聊天机器人"><div data-page-node-id="W3boCYOmuwLR0IcDyS2jxP" class="sec-rule"></div><h2 data-page-node-id="DLGKZHkblm8BfyfZMO9WhF" class="sec-title"><span data-page-node-id="k9kwTTTCiwbipthlt0pP7K" class="sec-num"><!--pnid:O4hFgnmKVl5u3ge80rCU7r-->5</span><!--pnid:wAl69Mb4FAQnA21kaoc3Wr-->实战：从零搭建聊天机器人</h2>
+<section data-page-node-id="LuuZk6AmKitpb6gXB9azJ0" class="subsec reveal" id="5-1-阶段一-单次对话机器人"><h2 data-page-node-id="OdAbnUi8TboIWrAD6CiuOC" class="ss-title"><span data-page-node-id="Id8iBNQWElAL12BqA7oIp8" class="sec-num"><!--pnid:kKJdue2YNJm0fFo9Vwpl3H-->5.1</span><!--pnid:ZGVofMERvnee0d3WbmXR5G-->阶段一：单次对话机器人</h2>
+<p data-page-node-id="dIIrsmHWrWSUuSgf4LaQxr" class="reveal"><strong data-page-node-id="hhtAEgsG7p1AErY9CJQYMY"><!--pnid:a00xBxrtqgQ5Lz3egxn3T0-->目标</strong><!--pnid:d9agxb9SnQLaAOtaE7sarJ-->：发送一条消息，获取大模型的一次回复，验证API调用链路通畅。</p>
+<div data-page-node-id="XLMKe5EqLchD8T8Wn6umbW" class="reveal"><figure data-page-node-id="7aKpODvHdHR1VJSRGp7GTw" class="code-panel"><figcaption data-page-node-id="8ZTWBpxNGTzHqu3OICFWh4"><span data-page-node-id="QtrLx2X1ZVUSlllaC5b0H1" class="dot"></span><span data-page-node-id="eIuHmKkAoF4YLdnV5u53rZ" class="lang"><!--pnid:RCMulYNnxmn6QiJjoTmYow-->Python</span></figcaption><pre data-page-node-id="LhnrIoN9Vtkn2Xyi3s7TfD"><code data-page-node-id="Gtis1ZXKD3cPpdHCgqjar2" data-pnid-children="KYNQLaVNQIO9fE7dmFqxro"># 1. 导入必要的库
+from openai import OpenAI
+
+# 2. 初始化大模型客户端
+# 以百度AI Studio兼容接口为例
+client = OpenAI(
+    api_key="你的API_Key",                          # 替换为你的真实Key
+    base_url="https://aistudio.baidu.com/llm/lmapi/v3"  # 百度AI Studio接口
+)
+
+# 3. 调用API获取回复
+response = client.chat.completions.create(
+    model="ernie-4.5-0.3b",                         # 模型名称（百度文心轻量版，免费额度充足）
+    messages=[
+        {"role": "system", "content": "你是一个友好的AI助手，回答简洁明了"},  # 系统指令
+        {"role": "user", "content": "请介绍一下自己，一句话即可"}              # 用户输入
+    ]
+)
+
+# 4. 解析并输出结果
+ai_reply = response.choices[0].message.content
+print(f"AI助手：{ai_reply}")</code></pre></figure></div>
+<p data-page-node-id="FkJSuhut0mdnpcWmE7jkx3" class="reveal"><strong data-page-node-id="eYCOnqbJB6GZ8Rat5Ui81F"><!--pnid:KwOjbjlKMFXsuF9FflIlhE-->代码要点解析</strong><!--pnid:izpThErse1rYh90NJFmPhs-->：</p>
+<div data-page-node-id="80fEtpsvM6E9gwJivsB4n4" class="reveal"><div data-page-node-id="XGJ4mCmIc4egUA7dK2vpd0" class="table-wrap"><table data-page-node-id="OH5AMdYINkEq6ArXMakGtK"><thead data-page-node-id="xSMuVVAT8iiMBLKDn9ADEL"><tr data-page-node-id="P4oXiGfVfokE06sqfOOpNd"><th data-page-node-id="Wz1Oou6cAuDElptXEtjpJ2"><strong data-page-node-id="QjlFIwY4zKsLOdycozSfZ1"><!--pnid:qOjMiBIOB25uIYwnHdMEkO-->组件</strong></th><th data-page-node-id="rIBKtozZc7Sg7qU9hc7cZR"><strong data-page-node-id="1lQx9VbLSmtboK3nRtkOK1"><!--pnid:PepiQKxOrgPhytVsyPZ0Fu-->作用</strong></th></tr></thead><tbody data-page-node-id="sKwujumZqRi4ELQ2ZkR5Ig"><tr data-page-node-id="yQBgRjOddtpNEAOig0WCrM"><td data-page-node-id="48OayOkYR0M4F4tvFlJH0I"><code data-page-node-id="d1tAALhaIDD4umEKo2i7R2" data-pnid-children="qhMcY9e6QilrIbp1X1mGMq">api_key</code></td><td data-page-node-id="jZOaJyIANrq010CRCa6jQG"><!--pnid:EzCb8TIwQFpTPDlaTsWM4F-->身份凭证，证明你有权调用模型</td></tr><tr data-page-node-id="GgsiX8sxDiFMLcLtEBrs7k"><td data-page-node-id="BMKDxzMyLY1hXuMbbuwSDL"><code data-page-node-id="8kbBlX48rWmXcvXEyr9vZy" data-pnid-children="XyJkT6V2OcvNzP9SZa418U">base_url</code></td><td data-page-node-id="BAa0uMkNLpdsOaDM4pD9mv"><!--pnid:WJbQIaljtxghyuPghuRfvj-->大模型服务的访问地址</td></tr><tr data-page-node-id="GFyPG7A7huqjylo5pazEtv"><td data-page-node-id="gKH0UppfpqyzKWvEosA7zL"><code data-page-node-id="ddDLnQeDRJBivxz9bWK9FI" data-pnid-children="0iWJqGewut2a62EQwEYrpS">model</code></td><td data-page-node-id="j66G4XNsRVNg5cz9Q7HJfT"><!--pnid:oZ1knm5BX9dNCpZoB48s2B-->指定使用哪个模型（不同模型能力不同）</td></tr><tr data-page-node-id="cWwh6zN3WZB9Rdyy0IjpYH"><td data-page-node-id="zQF0wmEYLlu4bXRT9AM0x9"><code data-page-node-id="WMcH5sEmrkgvhouJf17HdI" data-pnid-children="Fxi0Wn0h31A5y7mWJY5Z9x">messages</code></td><td data-page-node-id="Q780IZSQjoqnN44HoQMa7D"><!--pnid:YmrVvWzBnR9WdbVNaNMxAu-->对话上下文，<code data-page-node-id="Bp3I3FylUTKEr1ipwFHJrN" data-pnid-children="V6Q4D4LH5Q94jcu6tn0Ob3">system</code><!--pnid:MBAUWRD9lTSnyFT7V4ucN4--> 定义AI角色，<code data-page-node-id="XThXkib4hnJ9vcE2meMxps" data-pnid-children="1NihF28M8F6kMDL5ybvQWj">user</code><!--pnid:Qlhqfy4bWqWFaRLNOhg7Pn--> 是用户输入</td></tr></tbody></table></div></div>
+<p data-page-node-id="gLvwatD07YPJhXoUFHytYJ" class="reveal"><!--pnid:QLZfmoUbcsa5MJJGuUpnFW-->通常消息的角色有三种：</p>
+<div data-page-node-id="FT3KWcg3vm60Q9AcWIkyYz" class="reveal"><div data-page-node-id="ZTJponcQMODFF8GUZTd5wZ" class="table-wrap"><table data-page-node-id="pJmvN4UUHRR96jiFTOyI8j"><thead data-page-node-id="bBFPrFIoQNu60rFWOQxpbs"><tr data-page-node-id="rmj7kpLZwgERYy6zxOPB1i"><th data-page-node-id="OoPb2npcQwfPY6ZKH7EcG5"><strong data-page-node-id="rAjIRPPCWUKyFd2F5DPWAH"><!--pnid:BXhoZHPDEpYwjHfZrEDvK0-->角色</strong></th><th data-page-node-id="fB2vIavOu0R6h37pE44S9J"><strong data-page-node-id="azh1SM8bZwrXDDMrHsnjzu"><!--pnid:hmWKyl9H48TTAesOMmpRKl-->描述</strong></th><th data-page-node-id="BHa7Ybq3DG6AYZXUd0ywZc"><strong data-page-node-id="ahrltVKqd4I7N8G9LCASdv"><!--pnid:Lj94V497V0VkrMYwsCCAvY-->示例</strong></th></tr></thead><tbody data-page-node-id="ZbSu6LJatQJ4BjoRPctFqD"><tr data-page-node-id="zz3OW0lTKVkzyMvwXTeqt3"><td data-page-node-id="MRuZLwLZ3YKf61fFLvGled"><strong data-page-node-id="kDJ40JuvaHlSWrhfzof3pc"><!--pnid:8WndvYoDz8STzbd8fz9VY6-->system</strong></td><td data-page-node-id="6cbZSYOIEXJPOpkR5IKQDT"><!--pnid:zAudxZnDMjrCjSt8UrRdly-->优先于user指令之前的指令，也就是给大模型设定角色和任务背景的系统指令</td><td data-page-node-id="7AIm6RwqkUeyY3I33Lg6NE"><!--pnid:rD4kB807xHGiQH26BNW9ld-->你是一个乐于助人的编程助手，你以小团团的风格来回答用户的问题。</td></tr><tr data-page-node-id="bKYlUqOwDMQrAj4VusDmqZ"><td data-page-node-id="kPEo3w3qOAOQYdhsN9Pw6c"><strong data-page-node-id="0H5pu4W7TdPsFMzLiL8uNF"><!--pnid:qEKGa7PRstgJk6V2KYs9gM-->user</strong></td><td data-page-node-id="KKemHRyxPbT6UGCoFH04ma"><!--pnid:EiUpS5AsF0vvGzJd3K8j5r-->终端用户输入的指令（类似于你在ChatGPT聊天框输入的内容）</td><td data-page-node-id="WcO6uDJFFkxyGfivINWwMG"><!--pnid:9f4SIUwuRhWsEgFST41D3h-->写一首关于Java编程的诗</td></tr><tr data-page-node-id="T4oT9GpSPD5a0jQzFSMGFh"><td data-page-node-id="WKPeI95gtBKi70XELLvDyW"><strong data-page-node-id="C32nh3U8cR9AfVW2WxL2Sv"><!--pnid:YcatYQ8jqoqYu0k92Q5NhV-->assistant</strong></td><td data-page-node-id="0u254Bn1x8EVkL4e8cBYOi"><!--pnid:r7yI5gvmipigy8Go6li6aP-->由大模型生成的消息，可能是上一轮对话生成的结果</td><td data-page-node-id="n5xlAkidU0vPRLN4N6QgR9"><!--pnid:At4PVWNgL8iOCnOkP5b9wo-->注意，用户可能与模型产生多轮对话，每轮对话模型都会生成不同结果。</td></tr></tbody></table></div></div>
+<p data-page-node-id="M6iBpRukTLtj5AUwctzqeg" class="reveal"><!--pnid:9vOT2w3u5tMCZ6hINbLU2u-->其中System类型的消息非常重要！影响了后续AI会话的行为模式。</p>
+<p data-page-node-id="XXXKs8h8CPlEDLeObMkNar" class="reveal"><!--pnid:ZTuKVHOVMCM4VtfGsc0ps7-->比如，我们会发现，当我们询问这些AI对话产品“<strong data-page-node-id="DVPWFc4PmBzWJlellKBdoz"><!--pnid:oLHjWOBx1ufivMcaA11QN2-->你是谁</strong><!--pnid:0fXyCd65cO018Hayor85vc-->”这个问题的时候，每一个AI的回答都不一样，这是怎么回事呢？</p>
+<p data-page-node-id="884pGCfzRdaDvfAd92M1KO" class="reveal"><!--pnid:3n1RW7rAW1ypNSDnZelxxy-->这其实是因为AI对话产品并不是直接把用户的提问发送给LLM，通常都会在user提问的前面通过System消息给模型设定好背景：</p>
+</section>
+<section data-page-node-id="idqQwKr2kN0SKoCtAUzwy1" class="subsec reveal" id="5-2-阶段二-多轮对话机器人-带记忆功能"><h2 data-page-node-id="ID4lbc2ydTUTT3vuBP9O3H" class="ss-title"><span data-page-node-id="RHskckDeEbXm5JpeiCvS50" class="sec-num"><!--pnid:75tKZMAua8BUoLfUe9DGwV-->5.2</span><!--pnid:AosVDW7A1PBrP68f9v5RAU-->阶段二：多轮对话机器人（带记忆功能）</h2>
+<p data-page-node-id="OFHix31IvY92uxwcVPCbvL" class="reveal"><!--pnid:VuxDuZtTyGNcC09CeFVPc7-->这里还有一个问题：</p>
+<p data-page-node-id="T1xkvrLr64TtaAdM6NXoaE" class="reveal"><!--pnid:U8aLhJCW9xgqaDGkOQ5b50-->大模型的API接口是"<strong data-page-node-id="CwLWuynntGiBg28I3WrrMO"><!--pnid:dKe1lZyAtA5mstN07AX8Ln-->无状态</strong><!--pnid:u2x0d2qAy6B1jA4iTtmWIa-->"的，服务端不会记录用户请求的上下文。因此我们调用API接口与大模型对话时，每一次对话信息都不会保留，多次对话之间都是独立的，没有关联的。</p>
+<p data-page-node-id="9ubKMxuNiaTGTglRjcvIVQ" class="reveal"><!--pnid:4VMrh6eqeZC05pCbCvdjN2-->因此大模型并不知道之前的聊天历史，也就是说<strong data-page-node-id="GGKufExWXAHNan5g2nF8ue"><!--pnid:HsRRbNLiTnXA4Uf6d2UEUm-->大模型是没有记忆</strong><!--pnid:7d1RfMVcBPIcKpJ8QXNUMF-->的。</p>
+<p data-page-node-id="e4wMhNtR2nNmDrEspWA4gQ" class="reveal"><strong data-page-node-id="f3ygX3xr3hmj5lDEQRajmO"><!--pnid:sZDUq1yTOSD8uucMkwSj0I-->解决方法</strong><!--pnid:W8dsG2AeZFldU7Ed8tKRBI-->：把历史消息都放入Messages中，形成一个数组，实现连续交互，让AI能记住之前的对话内容。</p>
+<div data-page-node-id="5Td2XG69SQThMolUnyvips" class="reveal"><figure data-page-node-id="POjhvHrH0p7B3WNa6HvjSh" class="code-panel"><figcaption data-page-node-id="51xjOhiF3NV7zhaN1whWBk"><span data-page-node-id="DFmjfc0PF4gSfatkyRaKld" class="dot"></span><span data-page-node-id="3IJZdEv9dPLQAz8gzE16fH" class="lang"><!--pnid:E3jVdto0vSD2h9usGbUvLY-->Python</span></figcaption><pre data-page-node-id="cJYLk81ILvcdrjofv7dKzl"><code data-page-node-id="Ox2Fn6ZlGsDMrcv2MwcX52" data-pnid-children="chhLr3BIO15GzpyJOtc7e1">from openai import OpenAI
+
+# 1. 初始化客户端
+client = OpenAI(
+    api_key="你的API_Key",
+    base_url="https://aistudio.baidu.com/llm/lmapi/v3"
+)
+
+# 2. 对话历史（AI的“记忆”）
+messages = []
+
+print("=== AI聊天机器人已启动 ===")
+print("输入'退出'结束对话\n")
+
+# 3. 循环对话
+while True:
+    # 获取用户输入
+    user_input = input("你：")
+    
+    # 判断退出
+    if user_input == "退出":
+        print("AI：再见！")
+        break
+    
+    # 把用户消息加入记忆
+    messages.append({"role": "user", "content": user_input})
+    
+    # 调用大模型
+    response = client.chat.completions.create(
+        model="qwen-turbo",
+        messages=messages
+    )
+    
+    # 获取回复并输出
+    reply = response.choices[0].message.content
+    print(f"AI：{reply}\n")
+    
+    # 把AI回复也加入记忆
+    messages.append({"role": "assistant", "content": reply})</code></pre></figure></div>
+<p data-page-node-id="gMQV7QFfd2K1jzHqGTnjxz" class="reveal"><strong data-page-node-id="kTbvYVdEzmucKb9Yu9nlQx"><!--pnid:FBDl0x3PnxaHXFRMiXwpUe-->多轮对话原理</strong><!--pnid:H9awB88hUCWrj2M7E6ghli-->：</p>
+<div data-page-node-id="akz88FV2iEw6Eppj3fwMRi" class="reveal"><ul data-page-node-id="d3CMqL8PKe9fxGgBb3rJ43" class="dl dense"><li data-page-node-id="W2gtlJeL65oNUAkPbVIsI1"><code data-page-node-id="fnULiB8M8CACspzhqMdVAu" data-pnid-children="QplYgH88lWoGIKXQJ7MqXY">messages</code><!--pnid:IHecpKl9I5SKPDtGLZe2Ux-->列表存储了完整的对话历史</li><li data-page-node-id="FCxMo3SoIdU0KBy06NqkV5"><!--pnid:Xfz5r7mUfK1t6ExOdrwwkp-->每次调用API时，将整个历史发送给模型</li><li data-page-node-id="5Vc5NK4MqBQXJKZzScYuQL"><!--pnid:quwRtwrWSYYuVmW2wnPQOW-->模型基于全部历史生成回复，从而“记住”前面的内容</li></ul></div>
+</section>
+<section data-page-node-id="O0Ytz1HxY1TS0OJTEIDAHO" class="subsec reveal" id="5-3-扩展功能"><h2 data-page-node-id="Mi3C5K9sZHQgdlDVJPEznF" class="ss-title"><span data-page-node-id="ZF2I1wml1DzPnhntsZFiMW" class="sec-num"><!--pnid:NBRG8NvZIxXFQTRXqNYkfU-->5.3</span><!--pnid:xWfWtN8TtKkGQFBA2csAmZ-->扩展功能</h2>
+<div data-page-node-id="WdqJfU6wKknX9BBuuWyzcG" class="h4 reveal"><!--pnid:meArumvS61kWmB5G5Atriz-->① 保存对话到本地文件</div>
+<p data-page-node-id="entyq78BEnOeh2Ze5nQ3nh" class="reveal"><!--pnid:pHiRw0DnpH4nEhcHR6tSjU-->在获取AI回复后添加：</p>
+<div data-page-node-id="K1sRwvgb4TBvuqAtMJUuII" class="reveal"><figure data-page-node-id="578Rigs9h10fpSsnP0OHQg" class="code-panel"><figcaption data-page-node-id="hY9qDNtvJRmhHT5nDxFvnk"><span data-page-node-id="KXomJsyboYbywhEpyqsvYW" class="dot"></span><span data-page-node-id="4OCvMJmdyHtJrmeDAkcMWk" class="lang"><!--pnid:z6PFEgtRaILUTPgBAXIl46-->Python</span></figcaption><pre data-page-node-id="PYikGu6zVYeDOCPlKY16XA"><code data-page-node-id="3GKj0hT4YDdpPKfTM2N0Wp" data-pnid-children="nJFin4wAzEV221Eo6hLd9J"># 保存对话到本地
+with open("chat_history.txt", "a", encoding="utf-8") as f:
+    f.write(f"你：{user_input}\n")
+    f.write(f"AI助手：{reply}\n")
+    f.write("-" * 50 + "\n")</code></pre></figure></div>
+<div data-page-node-id="1t1M77JLRr1kttr7E7Rkou" class="h4 reveal"><!--pnid:W3VbtKoG9XTkkETpUXAVsW-->② 关键词触发特定功能</div>
+<p data-page-node-id="tlVHmnyM17OKUJiC6Nlxei" class="reveal"><!--pnid:Wrkfz2VcfIWlnFzZq0hhmX-->在获取用户输入后添加：</p>
+<div data-page-node-id="N1BBfCfRkW8eg2ToBlJ3qn" class="reveal"><figure data-page-node-id="CZqQ3BFJEWGZaEq5aWk9vH" class="code-panel"><figcaption data-page-node-id="SZSlKZFYsXaN675xIR8H3M"><span data-page-node-id="LdxAUQfjZGNm6u21qApj4f" class="dot"></span><span data-page-node-id="0oneKnPmZ5i78jSPeLCALp" class="lang"><!--pnid:5SFF4yXwdZlaudygYAb6xY-->Python</span></figcaption><pre data-page-node-id="Zs056rc7CRjuishxhgNtHo"><code data-page-node-id="zsV5kz0LOAYq3eg7o8bdth" data-pnid-children="aMxZrBewWRYs3goGTbqliH"># 指令触发：输入包含「生成文案」则自动生成对应内容
+if "生成文案" in user_input:
+    user_input += "\n要求：简洁有力，适合朋友圈发布，不超过50字"</code></pre></figure></div>
+</section>
+</section>
+<section data-page-node-id="0iEbRKAuIR5KiRE9XFmNZ2" class="sec reveal" id="6-一些常见的符号"><div data-page-node-id="IL2bTLLV6Yjo2ov958KgID" class="sec-rule"></div><h2 data-page-node-id="dkN6MpZCj1pGGkEDNi9LnL" class="sec-title"><span data-page-node-id="AMZrPyslXKnVXpiNB8y1mt" class="sec-num"><!--pnid:6ysaozd0OIrfqb3nqKt9R6-->6</span><!--pnid:0yOVCmLVjDdsXHBIKQENmA-->一些常见的符号</h2>
+<section data-page-node-id="2IABg7oiJKidIJx12O9npq" class="subsec reveal" id="模型参数大小"><h2 data-page-node-id="e5yYv4l7sq3DiOaLYX7v6i" class="ss-title"><!--pnid:TPNKuJ2pnMCCCsHxZTigZ5-->模型参数大小</h2>
+<div data-page-node-id="6UBMQT3uSAHvqZ4ZRrQtaz" class="sym-grid reveal"><div data-page-node-id="FbMUMp1mOsiMLVGgr5WJgi" class="sym"><span data-page-node-id="LoVV8nmSLi2TljbxSwPxrL" class="sym-k"><!--pnid:iWhv2Thjf9oFAxsGxRQg0m-->K</span><span data-page-node-id="zRyZtDQIsJorVTZ7DeFEne" class="sym-v"><!--pnid:U5aRVmDDz2e2FyHD92Kn52-->= 千</span></div><div data-page-node-id="NEDCQnJKOPBstJbpqUrIQ9" class="sym"><span data-page-node-id="ZX4Nx2a1b8nMMaijw8RvBb" class="sym-k"><!--pnid:nTDpD0XRL3LdFB5ZJjnmaz-->M</span><span data-page-node-id="Mcke0NbT6TU506EkH64yCd" class="sym-v"><!--pnid:YlDvbSZTbeHYoVOOAdunjm-->= 百万</span></div><div data-page-node-id="7xbSG6PnOTFzObex2GR1q2" class="sym"><span data-page-node-id="t1A5gFaXIWiFHKz1VH4m9J" class="sym-k"><!--pnid:vzJkDhVRyg5Vu77Bv0kcQK-->B</span><span data-page-node-id="Ygo4V2lZHUsL7zjp1jT27C" class="sym-v"><!--pnid:VWZp4hnr84xjYVohGCAES3-->= 十亿（最常用，如7B = 70亿参数）</span></div><div data-page-node-id="WJy4huJuUCFJe2MaXAL2uj" class="sym"><span data-page-node-id="pzf1z2Dido1OUoj5Zwt0Y0" class="sym-k"><!--pnid:b1WqGwWjlx3pPAazcoLcqr-->T</span><span data-page-node-id="TGAnoz00GVUAzCUiGWHsLW" class="sym-v"><!--pnid:zdHV0lR37HPCTGTgB58SJF-->= 万亿</span></div></div>
+</section>
+<section data-page-node-id="PKYJJZWfM3Yoq2Q7O2PpIL" class="subsec reveal" id="上下文窗口"><h2 data-page-node-id="bKYGhnuzrgTX0lpkWd5fYX" class="ss-title"><!--pnid:0922xA1w2zWWjvWAW1sErD-->上下文窗口</h2>
+<div data-page-node-id="aD9ZAHoNW0bviPZqrLXrQi" class="reveal"><ul data-page-node-id="2R4FFpZjWBGRYLsOpoWquP" class="dl "><li data-page-node-id="gLNNDSHJ7WWHolutbIssTq"><strong data-page-node-id="TY967ZgMiKh8KaBbvMtPOP"><!--pnid:INrfvpG8NYguwtglKpFUKM-->8K / 32K / 128K</strong><!--pnid:VEGTLbgXlAqdF5GwChevRw--> 中的 <strong data-page-node-id="9XFbNhdqLNyGyHfmuUKl4g"><!--pnid:DNTczLYCGPWJecdUFNH31T-->K</strong><!--pnid:qPP5yhq7i6dXUnhCal1KFv--> = 千字符</li><li data-page-node-id="ZNjp8bpyf5U8EnMq2vA0MP"><!--pnid:KDA2YoSyVOx2CDkKRnHfFv-->代表AI一次能“记住”多少文字</li><li data-page-node-id="VItulwFYHuxP1StBRwL4mo"><!--pnid:LemMmyYLUhQqo0fvey7zKU-->1个汉字 ≈ 2个Token</li></ul></div>
+</section>
+<section data-page-node-id="Ew6swpvRFqcmGaLnYhxIk7" class="subsec reveal" id="一句话分清"><h2 data-page-node-id="O69oOXyy0A3FivRkuvQBwu" class="ss-title"><!--pnid:gPR3tyWrEGQGe7C1UuAMNv-->一句话分清</h2>
+<div data-page-node-id="pc5ZQ3czHUve4d4ilw0L4N" class="sym-grid reveal"><div data-page-node-id="dpmO0X1bM0hjLhUCJwYBVa" class="sym"><span data-page-node-id="4rApYW1SHa9HG1XlRE5khI" class="sym-k"><!--pnid:JEVeV6TUxYOM3pP52ui3TF-->B</span><span data-page-node-id="kX1CSm3BhMj1Al5DTv64yD" class="sym-v"><!--pnid:6g01Hp0GcjQL3r9T1pLwkX-->：模型聪不聪明（参数量）</span></div><div data-page-node-id="2HT262jYvlGuYdhiQ7njcY" class="sym"><span data-page-node-id="6qIVuFiqz3zjmbu73fmAWF" class="sym-k"><!--pnid:RInEyAezyx0gY6XdNWMZHe-->K</span><span data-page-node-id="KI2Cb198EwBpmGBTWgqgOL" class="sym-v"><!--pnid:55HGbj1V3PY6FQ8Yb0oXD0-->：记性好不好（上下文窗口长度）</span></div></div>
+</section>
+<section data-page-node-id="bVU3TyXbCECnaqR1ActlHi" class="subsec reveal" id="模型命名规则"><h2 data-page-node-id="Jp1Y3gaNJ3NFarNGFXcMtU" class="ss-title"><!--pnid:Ynx3XSokJxRuSo0W9r0A6G-->模型命名规则</h2>
+<p data-page-node-id="3EairwPXGG5Y4jZiY6110t" class="reveal"><!--pnid:nVV5e55efzOIw3O2p9Oavw-->格式：<strong data-page-node-id="i02DN557uz1B3hG1L8rdRR"><!--pnid:EGOXI5FGMoZ1WlGyM6nKH1-->系列名 + 版本号 + 参数量 + 用途标签</strong></p>
+<p data-page-node-id="IEzpGg9OFGcYzfSHt0oI6m" class="reveal"><!--pnid:LeHgppizCQNs8LuEqEc3vs-->示例：</p>
+<div data-page-node-id="IqO86dMZgPJT20vma1ShBd" class="reveal"><ul data-page-node-id="bLQlm9KaRrOr4NstglS8ff" class="dl "><li data-page-node-id="3FJkaFT5VGnW1n6veOsB6E"><code data-page-node-id="QYsXzwpFc5mOB81ybIepIB" data-pnid-children="HYIaDT0HNjSjBnOBMojAlc">Qwen2.5-7B-Instruct</code><!--pnid:7qVxrSET1Gb9VXOVP9slLU-->：Qwen系列，2.5版本，70亿参数，对话指令专用</li><li data-page-node-id="XgXOvRWAxdKEGdIUI0byLG"><code data-page-node-id="KoVBJGy1ecCFCie4cJhNZv" data-pnid-children="CZbBVStSTUvGYBfVJzYcPS">Qwen-turbo</code><!--pnid:38dNLXZRCVOEx8e8gyyfu2-->：Qwen极速特供版（云端不标参数）</li><li data-page-node-id="mXmm2PylScqaDOVfh0YsxM"><code data-page-node-id="NrCcUvi2njvD8aev5tyYk2" data-pnid-children="YEQm2uy0vCKzFBG9msNmDf">ernie-4.5-0.3b</code><!--pnid:wnIQ2MJXFqL5tcOmizGv4G-->：文心系列，4.5版本，3亿参数</li></ul></div>
+</section>
+</section>
+<section data-page-node-id="lie2nwvZv6EVO1LeIyH6bN" class="sec reveal" id="7-小结"><div data-page-node-id="PK81aH7Sq3CRa7Pyoml8VE" class="sec-rule"></div><h2 data-page-node-id="NdWuyNNxkNEuIl4ofrgp4n" class="sec-title"><span data-page-node-id="Jsb8v09cuKN0VIlqb4inGu" class="sec-num"><!--pnid:Of1NIwT6rDBv1xFs9TX7Eu-->7</span><!--pnid:gSZ0j0HfG7ZdYGtgb0DFIA-->小结</h2>
+<div data-page-node-id="6yiAbKpr2XnItxe2a5IoWr" class="reveal"><div data-page-node-id="5R8QmonRN0XzWOHQjKFlSh" class="table-wrap"><table data-page-node-id="Jo546uIJgPA6ChQAgInOOP"><thead data-page-node-id="8Chnact7SIN6e7ny2iLJE2"><tr data-page-node-id="FeNcdymYBmUCBhpJfw2kzL"><th data-page-node-id="vj2VCquxNaNvuFbanDqZLq"><strong data-page-node-id="1AJSNY7QRJDQDJda5To8dU"><!--pnid:9dBg4ZURVzMDo8f18S66NZ-->知识点</strong></th><th data-page-node-id="V0DpZb38bpo3JwkYPXwJ5S"><strong data-page-node-id="eJQn4l5z0lpJYB9F4Yrp7U"><!--pnid:BYIoZYONyyjYK1B8p4YhFw-->核心要点</strong></th></tr></thead><tbody data-page-node-id="sp9HEp4yhAWJUIDlckg08n"><tr data-page-node-id="VX5tsao6MnIpJM7yytsWhW"><td data-page-node-id="i4JZmDp54wIo4ab0H8V3wn"><strong data-page-node-id="yFKGXhGwvPKZdYwdjZmn8B"><!--pnid:D3OjpIYFVgNz3MJTyNje1t-->AI四大阶段</strong></td><td data-page-node-id="xpZ7dgJdnIjpYfsbqekOsZ"><!--pnid:POidfqMwMI66DRA3rCDgAN-->规则→统计→深度学习→大模型革命</td></tr><tr data-page-node-id="jswMrbNrG4qzg5JbrZR5lE"><td data-page-node-id="BrAUVdI6DpswFv1eXczc4g"><strong data-page-node-id="HC9WpIKELsuZTdrJ2fWK5p"><!--pnid:ETkNEkyKXvPI6BElcj8IcP-->智能三要素</strong></td><td data-page-node-id="kCau6xbxdbTbQQaOeo2Oh9"><!--pnid:sExryIvPrrqpiWWX9QOeZO-->算法（大脑）+ 数据（知识）+ 算力（能量）</td></tr><tr data-page-node-id="MZGfw955bS0dFnoh5pYxDA"><td data-page-node-id="MlpCe4ZgvIZLG6xBDqU9yR"><strong data-page-node-id="GjbspqfkPRrqaMws75M42A"><!--pnid:Y3Fjxt9b0wHXmU5OlWFYvj-->大模型原理</strong></td><td data-page-node-id="vzi009qMRNSHmLcGi8OSoV"><!--pnid:4qrv7SrIlvfVgA4fht3Co9-->词向量化 → 语义运算 → 上下文预测 → 泛化涌现</td></tr><tr data-page-node-id="bSuzGrJAtpzqrIuM8jwxow"><td data-page-node-id="JzIhp05SZbl8xHPQcdV1ZH"><strong data-page-node-id="iliTWxTw3xmoWrlZ82Zwim"><!--pnid:OpcsGKQZ8MGEGMrG36PAef-->应用开发本质</strong></td><td data-page-node-id="yfsQFkdVm8upbFFqm9Bw2j"><!--pnid:xwoTi3kScdMDJZSoUkoRXN-->大模型负责“思考”，传统程序负责“行动”</td></tr><tr data-page-node-id="F2Xs7AJZjqByINkcLSPxLM"><td data-page-node-id="hbWZsEVmheOhUBcdhUMtdi"><strong data-page-node-id="1xobrWlZQtoHYp1zmu21AJ"><!--pnid:Y62mBmhlRaGZ1VkPkHdVUJ-->API调用流程</strong></td><td data-page-node-id="ewcws8uy5mmrxZC1733hjY"><!--pnid:gMuwQ5girGKcfiC6MWwPnM-->获取Key → 配置客户端 → 发送消息 → 解析回复</td></tr><tr data-page-node-id="RSXCsuzgV8NWwpOjgGxICN"><td data-page-node-id="1GYVqTcAy2p8hSUm9pYw9U"><strong data-page-node-id="lgBZwPbsZ3pxh09vdXl7CJ"><!--pnid:CHXRBzZImxBVoNQKD1ydSt-->多轮对话</strong></td><td data-page-node-id="intcnUuFf3Gwf092fb39J0"><!--pnid:JHDaMQCRPVl5R8V2PjY7cz-->维护<code data-page-node-id="jqvR00OBKLBn0SfS2MsOoL" data-pnid-children="VjkCnKIqbgxA2D6THM6pGP">messages</code><!--pnid:Z4G4HLVYoGFELzv6nSb53y--> 列表，存储完整对话历史</td></tr></tbody></table></div></div>
+</section>
+  </main>
+</div>
+
+<footer data-page-node-id="Mzin4WxxBXEKrqPdkEcPsB">
+  <div data-page-node-id="soleEZLVqBuuREOqod5F6o" class="wrap">
+    <span data-page-node-id="F7OaW4qeoSwZ7F2sf8ECZz"><!--pnid:ix5VhorOqVgm1ROTH5uEi4-->大模型应用开发全栈 · 课程大纲与实战手册</span>
+    <span data-page-node-id="Tp0v5LaCDuFywQ3hsLvXY6"><!--pnid:BkuQrWFZqPhu9NS1vqbU1G-->由资料库文档一键可视化生成</span>
+  </div>
+</footer>
+
+<script data-page-node-id="V5n1I2BxXyBKkT226xNuKw" data-pnid-children="eUl3WEtH7rA46sRvz5QDR3">
+
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var idx = Array.prototype.slice.call(e.target.parentNode.children).indexOf(e.target);
+        e.target.style.transitionDelay = Math.min(Math.max(idx,0), 4) * 70 + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.04, rootMargin: '0px 0px -6% 0px' });
+    Array.prototype.forEach.call(els, function(el){ io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(els, function(el){ el.classList.add('in'); });
+  }
+
+  var bar = document.querySelector('.progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var p = h.scrollTop / Math.max(1, (h.scrollHeight - h.clientHeight));
+    bar.style.width = (p * 100) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var nums = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && nums.length) {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var el = e.target, target = parseFloat(el.getAttribute('data-count')), dur = 1600, t0 = null;
+        function step(ts){
+          if (t0 === null) t0 = ts;
+          var p = Math.min(1, (ts - t0) / dur);
+          var k = 1 - Math.pow(2, -10 * p);
+          el.textContent = Math.round(target * k);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        io2.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(nums, function(el){ io2.observe(el); });
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-a'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function spy(){
+    var idx = 0;
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i] && targets[i].getBoundingClientRect().top <= 140) idx = i;
+    }
+    links.forEach(function(a, i){ a.classList.toggle('active', i === idx); });
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+
+  /* 顶部导航：滚动高亮 + 吸顶态 */
+  var bar = document.getElementById('topbar');
+  var navs = Array.prototype.slice.call(document.querySelectorAll('.topnav-a'));
+  if (bar && navs.length) {
+    var nTargets = navs.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+    function nspy(){
+      var idx = -1;
+      for (var i = 0; i < nTargets.length; i++) {
+        if (nTargets[i] && nTargets[i].getBoundingClientRect().top <= 100) idx = i;
+      }
+      navs.forEach(function(a, i){ a.classList.toggle('active', i === idx); });
+      bar.classList.toggle('is-stuck', (window.scrollY || window.pageYOffset) > 8);
+    }
+    window.addEventListener('scroll', nspy, { passive: true });
+    nspy();
+  }
+})();
+
+</script>
+</body>
+</html>
