@@ -1,12 +1,10 @@
 import os
-
 from openai import OpenAI
 
 client = OpenAI(
     # API密钥
-    api_key=os.environ["SILICONFLOW_API_KEY"],
-    # API暴露出来的HTTP网址（接口）
-    base_url="https://api.siliconflow.cn/v1"
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    base_url="https://ws-56evpri1yfyexnaz.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
 )
 
 # 1、初始化一个空列表 用于存储聊天记录
@@ -22,7 +20,7 @@ while True:
     messages.append({"role": "user", "content": user_input})
     # 5、发起请求，让LLM回复
     response = client.chat.completions.create(
-        model="Qwen/Qwen2.5-7B-Instruct",
+        model="qwen3.8-max",
         messages=messages
     )
 
