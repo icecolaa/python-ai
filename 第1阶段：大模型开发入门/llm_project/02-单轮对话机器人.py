@@ -2,17 +2,15 @@ import os
 from openai import OpenAI
 
 client = OpenAI(
-    # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx"
-    api_key=os.getenv("DASHSCOPE_API_KEY"),
-    base_url="https://ws-56evpri1yfyexnaz.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    api_key=os.getenv("STEP_API_KEY"),
+    base_url="https://api.stepfun.com/v1",
 )
 
 completion = client.chat.completions.create(
-    # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
-    model="qwen3.8-max",
+    model="step-5-preview",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "你是谁？"},
+        {"role": "system", "content": "你是由阶跃星辰提供的AI聊天助手，你擅长中文，英文，以及多种其他语言的对话。在保证用户数据安全的前提下，你能对用户的问题和请求，作出快速和精准的回答。同时，你的回答和建议应该拒绝黄赌毒，暴力恐怖主义的内容"},
+        {"role": "user", "content": "你好，请介绍一下阶跃星辰的人工智能!"},
     ]
 )
 print(completion.model_dump_json())

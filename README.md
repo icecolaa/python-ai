@@ -28,12 +28,16 @@ pip install openai
 
 **不要把密钥写死在代码里。** 所有示例都从环境变量读取，请先在系统里配置：
 
+当前示例（阶跃星辰）使用 `STEP_API_KEY`，按你实际接入的平台设置对应变量即可：
+
 ```bash
 # macOS / Linux
-export DASHSCOPE_API_KEY="你的密钥"
-export SILICONFLOW_API_KEY="你的密钥"
+export STEP_API_KEY="你的密钥"
+export DASHSCOPE_API_KEY="你的密钥"      # 阿里云百炼
+export SILICONFLOW_API_KEY="你的密钥"    # 硅基流动
 
 # Windows PowerShell
+$env:STEP_API_KEY="你的密钥"
 $env:DASHSCOPE_API_KEY="你的密钥"
 $env:SILICONFLOW_API_KEY="你的密钥"
 ```
@@ -41,17 +45,19 @@ $env:SILICONFLOW_API_KEY="你的密钥"
 也可以在仓库根目录新建 `.env` 文件（已被 `.gitignore` 忽略，不会提交）：
 
 ```
+STEP_API_KEY=你的密钥
 DASHSCOPE_API_KEY=你的密钥
 SILICONFLOW_API_KEY=你的密钥
 ```
 
 ### 密钥获取渠道
 
-| 平台 | 地址 | 说明 |
+| 平台 | 地址 | 环境变量 |
 | --- | --- | --- |
-| 阿里云百炼 | bailian.console.aliyun.com | 通义千问生态，需实名认证 |
-| 硅基流动 SiliconFlow | account.siliconflow.cn | 多模型兼容，新用户有免费额度 |
-| 百度千帆 | console.bce.baidu.com/qianfan | 文心一言生态 |
+| 阶跃星辰 | platform.stepfun.com | `STEP_API_KEY` |
+| 阿里云百炼 | bailian.console.aliyun.com | `DASHSCOPE_API_KEY` |
+| 硅基流动 SiliconFlow | account.siliconflow.cn | `SILICONFLOW_API_KEY` |
+| 百度千帆 | console.bce.baidu.com/qianfan | 自定义 |
 
 > ⚠️ API Key 等同于账号密码。一旦泄露请立即到平台禁用并重新创建。
 

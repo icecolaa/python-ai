@@ -3,8 +3,8 @@ from openai import OpenAI
 
 client = OpenAI(
     # API密钥
-    api_key=os.getenv("DASHSCOPE_API_KEY"),
-    base_url="https://ws-56evpri1yfyexnaz.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    api_key=os.getenv("STEP_API_KEY"),
+    base_url="https://api.stepfun.com/v1",
 )
 
 # 1、初始化一个空列表 用于存储聊天记录
@@ -20,7 +20,7 @@ while True:
     messages.append({"role": "user", "content": user_input})
     # 5、发起请求，让LLM回复
     response = client.chat.completions.create(
-        model="qwen3.8-max",
+        model="step-5-preview",
         messages=messages
     )
 
