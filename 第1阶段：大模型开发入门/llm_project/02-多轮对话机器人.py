@@ -4,7 +4,7 @@ from openai import OpenAI
 client = OpenAI(
     # API密钥
     api_key=os.getenv("STEP_API_KEY"),
-    base_url="https://api.stepfun.com/v1",
+    base_url="https://api.stepfun.com/step_plan/v1",
 )
 
 # 1、初始化一个空列表 用于存储聊天记录

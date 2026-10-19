@@ -3,7 +3,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.getenv("STEP_API_KEY"),
-    base_url="https://api.stepfun.com/v1",
+    base_url="https://api.stepfun.com/step_plan/v1",
 )
 
 completion = client.chat.completions.create(
