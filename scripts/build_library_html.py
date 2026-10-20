@@ -569,6 +569,8 @@ def build_document(doc: dict) -> dict:
     fragment = render_markdown(body_md)
     parser = lxml_html.HTMLParser(encoding="utf-8")
     root = lxml_html.fromstring('<div class="md-root">' + fragment + "</div>", parser=parser)
+    from study_plan import add_course_summary
+    add_course_summary(root)
 
     lead = etree.Element("div")
     lead.set("class", "doc-lead")
