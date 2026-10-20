@@ -1408,6 +1408,13 @@ h6:hover .heading-anchor,
   background: rgba(47, 107, 255, 0.025);
 }
 
+.table-wrap .stage-summary > *,
+.table-wrap table[data-course-hours] tfoot tr > * {
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .table-wrap tr:last-child td {
   border-bottom: 0;
 }

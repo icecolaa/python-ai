@@ -32,13 +32,13 @@ def add_course_summary(root):
             row = etree.Element('tr', {'class': 'stage-summary'})
             label = etree.SubElement(row, 'th', colspan='3', scope='row')
             label.text = name + '时长汇总'
-            etree.SubElement(row, 'td').text = f'{hours} 小时（{hours} 课时）'
+            etree.SubElement(row, 'td').text = f'{hours}小时'
             last_row.addnext(row)
         foot = etree.SubElement(table, 'tfoot')
         row = etree.SubElement(foot, 'tr')
         label = etree.SubElement(row, 'th', colspan='3', scope='row')
         label.text = '全部阶段总时长'
-        etree.SubElement(row, 'td').text = f'{total} 小时（{total} 课时）'
+        etree.SubElement(row, 'td').text = f'{total}小时'
         note = html.fragment_fromstring('<p class="course-summary">按原表每课时 60 分钟计算，包含第一阶段 1 小时；实际练习可按掌握情况延长。 <a href="PythonAI-学习计划.html">打开日历学习计划 →</a></p>')
         table.addprevious(note)
 
