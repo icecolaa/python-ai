@@ -23,15 +23,22 @@ def add_course_summary(root):
                 continue
             stage = ''.join(cells[0].itertext()).strip()
             if stage:
-                stages.append([stage, 0])
+                stages.append([stage, 0, row])
             stages[-1][1] += int(''.join(cells[3].itertext()).strip())
-        table.set('data-course-hours', str(sum(hours for _, hours in stages)))
-        foot = etree.SubElement(table, 'tfoot')
-        for name, hours in [*stages, ('全部阶段总时长', sum(h for _, h in stages))]:
-            row = etree.SubElement(foot, 'tr')
+            stages[-1][2] = row
+        total = sum(hours for _, hours, _ in stages)
+        table.set('data-course-hours', str(total))
+        for name, hours, last_row in stages:
+            row = etree.Element('tr', {'class': 'stage-summary'})
             label = etree.SubElement(row, 'th', colspan='3', scope='row')
-            label.text = name + ('时长汇总' if name != '全部阶段总时长' else '')
+            label.text = name + '时长汇总'
             etree.SubElement(row, 'td').text = f'{hours} 小时（{hours} 课时）'
+            last_row.addnext(row)
+        foot = etree.SubElement(table, 'tfoot')
+        row = etree.SubElement(foot, 'tr')
+        label = etree.SubElement(row, 'th', colspan='3', scope='row')
+        label.text = '全部阶段总时长'
+        etree.SubElement(row, 'td').text = f'{total} 小时（{total} 课时）'
         note = html.fragment_fromstring('<p class="course-summary">按原表每课时 60 分钟计算，包含第一阶段 1 小时；实际练习可按掌握情况延长。 <a href="PythonAI-学习计划.html">打开日历学习计划 →</a></p>')
         table.addprevious(note)
 
@@ -63,6 +70,8 @@ def build_plan():
     stage = ''
     for row in table.xpath('./tbody/tr'):
         cells = row.findall('td')
+        if len(cells) != 4:
+            continue
         stage = cells[0].text_content().strip() or stage
         module = cells[1].text_content().strip()
         hours = int(cells[3].text_content().strip())
