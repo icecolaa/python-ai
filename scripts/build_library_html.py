@@ -800,7 +800,7 @@ def build_page(docs: list[dict], out_path: Path) -> str:
     total_topics = sum(len(doc["topics"]) for doc in docs)
     total_minutes = sum(doc["minutes"] for doc in docs)
     read_hours = f"{total_minutes / 60:.1f}"
-    title = "PythonAI 学习资料库 · 可视化文档"
+    title = "PythonAI 学习资料库"
     desc = "PythonAI 学习资料库：11 篇课程文档的可视化阅读版，含章节导航、目录检索与阅读进度。"
 
     values = {

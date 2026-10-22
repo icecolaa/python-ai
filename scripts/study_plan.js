@@ -92,7 +92,6 @@
       ['计划结束', `${end.slice(5).replace('-','.')}<small>${end.slice(0,4)}</small>`],
       ['初始预计结束', `${baseline.slice(5).replace('-','.')}<small>${baseline.slice(0,4)}</small>`]
     ].map(([label,value])=>`<div class="stat"><span>${label}</span><strong>${value}</strong></div>`).join('');
-    $('planProgress').style.width = `${(completed/state.length*100).toFixed(1)}%`;
     $('month-title').textContent = `${month.getFullYear()} 年 ${month.getMonth()+1} 月`;
     const startMonth = parse(settings.start);
     $('prev').disabled = month.getFullYear()*12 + month.getMonth() <= startMonth.getFullYear()*12 + startMonth.getMonth();
