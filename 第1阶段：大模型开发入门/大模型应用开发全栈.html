@@ -4,7 +4,8 @@
 <script data-page-node-id="V937gLhFFbuyKWEBWmIeJi" src="/page/page_comm/inject.js"></script>
 <meta data-page-node-id="MFwKKMZkHhWlrQ9pj6MaVR" charset="utf-8">
 <meta data-page-node-id="UdQdIOkbGIRXxuMAAHtVAu" content="width=device-width, initial-scale=1" name="viewport">
-<title data-page-node-id="NKOHrdiE2mRCjcgP07iOEw" data-pnid-children="MCAmHm0nA6PC8U9BQTnl9B">大模型应用开发全栈</title>
+<title>PythonAI 大模型应用开发全栈</title>
+<link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%232f6bff%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2242%22%20text-anchor%3D%22middle%22%20font-family%3D%22Consolas%2Cmonospace%22%20font-size%3D%2225%22%20font-weight%3D%22700%22%20fill%3D%22%23f8fbff%22%3EPy%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link data-page-node-id="v4gZ3rgcqAv2KUxTzouHkc" crossorigin href="https://cdn.jsdelivr.net" rel="preconnect">
 <link data-page-node-id="GSNICkIPDSrRGxUXBq3Ghy" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.2.6/700.css" rel="stylesheet">
 <link data-page-node-id="8bpYnxP8cGmmHKUh1uCn0y" href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.2.6/800.css" rel="stylesheet">
@@ -14,17 +15,18 @@
 <style data-page-node-id="nWaVbKBgawl4oEp9jtZuie" data-pnid-children="4F3GgA7Ynh5tRD1UAIr5Uw">
 
 :root{
-  --primary:#2f6fdb;
-  --primary-hover:#1d4f9e;
-  --primary-glow:rgba(47,111,219,.14);
-  --bg:#ffffff;
-  --bg-elevated:#f5f8fc;
+  --primary:#326be9;
+  --primary-hover:#2457c9;
+  --primary-glow:rgba(50,107,233,.12);
+  --bg:#f3f7fc;
+  --bg-elevated:#eef4fb;
   --surface:#ffffff;
   --surface-hover:#f8fbff;
-  --border:rgba(15,25,45,.10);
-  --text:rgba(10,16,28,.95);
-  --text-secondary:rgba(10,16,28,.62);
-  --text-tertiary:rgba(10,16,28,.40);
+  --border:#dfe8f2;
+  --text:#182940;
+  --text-secondary:#52677f;
+  --text-tertiary:#8297ad;
+  --topbar-h:68px;
   --radius-sm:5px;
   --radius:10px;
   --radius-lg:16px;
@@ -38,7 +40,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);
+body{margin:0;padding-top:var(--topbar-h);background:var(--bg);color:var(--text);
   font-family:var(--sans);font-size:16px;line-height:1.78;
   -webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto}
@@ -51,50 +53,53 @@ code{font-family:var(--mono);font-size:.88em;letter-spacing:-.01em;
   border:1px solid rgba(47,111,219,.20);color:#12408f;
   padding:.13em .44em;border-radius:var(--radius-sm);white-space:nowrap}
 
-.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:70;
-  background:linear-gradient(90deg,#2f6fdb,#2f9fd4);transition:width .12s linear}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;width:0;z-index:2;
+  background:linear-gradient(90deg,#326be9,#5b95ff);transition:width .12s linear}
 
 /* ---------- 顶部导航 ---------- */
-.topbar{position:sticky;top:0;z-index:55;
-  background:rgba(255,255,255,.82);
-  -webkit-backdrop-filter:saturate(180%) blur(14px);
-  backdrop-filter:saturate(180%) blur(14px);
-  border-bottom:1px solid transparent;
-  transition:border-color .25s ease,box-shadow .25s ease,background .25s ease}
-.topbar.is-stuck{border-bottom-color:var(--border);
-  box-shadow:0 6px 24px rgba(15,25,45,.06);background:rgba(255,255,255,.93)}
-.topbar-inner{display:flex;align-items:center;gap:16px;height:60px}
-.brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex:none}
-.brand-mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#2f6fdb,#2f9fd4);color:#fff;
-  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.03em;
-  box-shadow:0 2px 8px rgba(47,111,219,.28)}
-.brand-text{font-family:var(--display);font-size:14.8px;font-weight:700;
-  color:#0d1626;letter-spacing:.01em;white-space:nowrap}
-.brand-text em{font-style:normal;color:var(--primary)}
-.topnav{display:flex;align-items:center;gap:2px;margin:0 auto;padding:0;list-style:none;
-  overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.topnav::-webkit-scrollbar{display:none}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--topbar-h);
+  background:rgba(249,252,255,.84);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow .25s ease,background .25s ease}
+.topbar.is-stuck{box-shadow:0 6px 24px rgba(15,25,45,.05);background:rgba(249,252,255,.93)}
+.topbar-inner{display:flex;align-items:center;gap:24px;max-width:1440px;height:100%;
+  margin:0 auto;padding:0 32px}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;flex:none;color:var(--text)}
+.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,#3b7bff,#1d4ed8);color:#f8fbff;
+  font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:-.04em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 6px 16px rgba(47,107,255,.24)}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}
+.brand-text strong{font-family:"Noto Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
+  font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+.brand-text small{margin-top:4px;color:var(--text-tertiary);font-family:var(--mono);
+  font-size:8px;letter-spacing:.18em}
+.topnav{display:flex;align-items:center;gap:2px;margin:0 0 0 16px;padding:0;list-style:none}
 .topnav-a{display:block;padding:7px 12px;border-radius:8px;text-decoration:none;
-  font-size:13.4px;font-weight:600;color:var(--text-secondary);white-space:nowrap;
+  font-size:13px;font-weight:600;color:var(--text-secondary);white-space:nowrap;
   transition:color .18s ease,background .18s ease}
-.topnav-a:hover{color:#0d1626;background:rgba(47,111,219,.09)}
+.topnav-a:hover{color:var(--text);background:rgba(50,107,233,.08)}
 .topnav-a.active{color:var(--primary);background:var(--primary-glow)}
-.topbar-cta{display:flex;align-items:baseline;gap:4px;flex:none;text-decoration:none;
-  padding:7px 13px;border-radius:999px;border:1px solid rgba(47,111,219,.28);
-  background:rgba(47,111,219,.07);transition:background .18s ease,border-color .18s ease}
-.topbar-cta .cta-num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--primary)}
-.topbar-cta .cta-unit{font-size:11.5px;font-weight:700;color:var(--text-secondary)}
-.topbar-cta:hover{background:rgba(47,111,219,.14);border-color:rgba(47,111,219,.46)}
-section[id]{scroll-margin-top:80px}
+.topbar-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+.topbar-link{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 12px;
+  border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.7);
+  color:var(--text-secondary);font-size:12px;text-decoration:none;white-space:nowrap;
+  transition:border-color .2s ease,color .2s ease,background .2s ease}
+.topbar-link:hover{border-color:var(--primary);color:var(--primary);background:#fff}
+.topbar-link svg{width:14px;height:14px;flex:none}
+.topbar-meta{color:var(--text-tertiary);font-family:var(--mono);font-size:11px;
+  letter-spacing:.04em;white-space:nowrap}
+section[id]{scroll-margin-top:calc(var(--topbar-h) + 24px)}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;overflow:hidden;
   padding:clamp(44px,6.4vw,88px) 0 clamp(40px,5.4vw,68px);
   background:
-    radial-gradient(ellipse 70% 62% at 88% -12%,rgba(47,111,219,.14),transparent 62%),
-    radial-gradient(ellipse 55% 50% at 2% 110%,rgba(47,159,212,.11),transparent 60%),
-    linear-gradient(176deg,#fbfdff,#f4f8fd 70%,#ffffff);
+    radial-gradient(ellipse 70% 62% at 88% -12%,rgba(50,107,233,.14),transparent 62%),
+    radial-gradient(ellipse 55% 50% at 2% 110%,rgba(50,107,233,.09),transparent 60%),
+    linear-gradient(176deg,#fbfdff,#f4f8fd 70%,#f3f7fc);
   border-bottom:1px solid var(--border)}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);
@@ -106,7 +111,7 @@ section[id]{scroll-margin-top:80px}
 h1.display{font-family:var(--display);font-weight:700;color:#0a1220;
   font-size:clamp(32px,5vw,56px);line-height:1.08;letter-spacing:-.034em;margin:18px 0 0}
 h1.display em{font-style:normal;
-  background:linear-gradient(118deg,#2f6fdb 10%,#22a3c9 92%);
+  background:linear-gradient(118deg,#326be9 10%,#5b95ff 92%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-sub{margin:18px 0 0;font-size:clamp(14.5px,1.5vw,17.5px);line-height:1.72;
   color:var(--text-secondary);max-width:58ch}
@@ -143,7 +148,8 @@ h1.display em{font-style:normal;
 /* ---------- 布局 ---------- */
 .shell{display:grid;grid-template-columns:232px minmax(0,1fr);
   gap:clamp(24px,4vw,56px);padding:clamp(36px,5vw,64px) 0 88px}
-.toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 108px);overflow:auto;padding-right:6px}
+.toc{position:sticky;top:calc(var(--topbar-h) + 20px);align-self:start;
+  max-height:calc(100vh - var(--topbar-h) - 44px);overflow:auto;padding-right:6px}
 .toc-title{font-size:11.5px;letter-spacing:.13em;color:var(--text-tertiary);font-weight:600;margin:0 0 12px}
 .toc-a{display:block;font-size:13.4px;line-height:1.5;color:var(--text-secondary);
   padding:6px 12px;border-left:2px solid var(--border);
@@ -344,8 +350,13 @@ footer{border-top:1px solid var(--border);background:var(--bg-elevated);
   padding:30px 0 36px;color:var(--text-tertiary);font-size:12.5px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 
+@media (max-width:1140px){
+  .topbar-meta{display:none}
+}
+@media (max-width:980px){
+  .topnav{display:none}
+}
 @media (max-width:1024px){
-  .topbar-cta{display:none}
   .shell{grid-template-columns:1fr;gap:0}
   .toc{position:static;max-height:none;margin-bottom:32px;padding:16px 18px;
     border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-elevated)}
@@ -353,12 +364,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 }
 @media (max-width:640px){
   /* ---------- 屏幕适配增强 ---------- */
+  :root{--topbar-h:60px}
   body{font-size:15.4px}
-  .topbar-inner{height:54px;gap:10px}
-  .brand-text{display:none}
-  .topnav{margin:0 0 0 auto}
-  .topnav-a{padding:6px 10px;font-size:12.8px}
-  section[id]{scroll-margin-top:70px}
+  .topbar-inner{gap:12px;padding:0 16px}
+  .brand-mark{width:34px;height:34px;font-size:12px}
+  .brand-text strong{font-size:16px}
+  .brand-text small{display:none}
+  .topbar-link{padding:0 10px}
+  .topbar-link span{display:none}
+  section[id]{scroll-margin-top:calc(var(--topbar-h) + 20px)}
   .hero-grid{grid-template-columns:1fr}
   .hero-side{padding:16px 18px}
   .metrics{grid-template-columns:1fr 1fr;gap:10px}
@@ -378,20 +392,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 }
 /* ---------- 屏幕适配增强：中间断点 / 极窄屏 / 超宽屏 ---------- */
 @media (max-width:768px){
-  .topbar-inner{height:58px;gap:12px}
-  .topnav-a{padding:7px 10px;font-size:13px}
-  .brand-text{font-size:14px}
   .hero{padding-top:clamp(34px,8vw,56px)}
   .h4{font-size:17.5px}
 }
 @media (max-width:420px){
-  .topbar-inner{height:52px;gap:8px}
-  .brand-mark{width:28px;height:28px;border-radius:8px}
-  .topnav-a{padding:6px 9px;font-size:12.4px}
   .metrics{grid-template-columns:1fr}
   .hero-facts{gap:6px}
   .hero-fact{padding:5px 11px;font-size:11.4px}
-  section[id]{scroll-margin-top:66px}
 }
 @media (min-width:1440px){
   .wrap{max-width:1240px}
@@ -407,25 +414,33 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 </style>
 </head>
 <body data-page-node-id="j8kYizq0RUaS4TAG5nEmUP">
-<div data-page-node-id="NnHbxATsHojzAC3LIkQOcN" class="progress"></div>
-<nav data-page-node-id="b6X6vnCAHxWKGOwAtogsQ3" aria-label="主导航" class="topbar" id="topbar">
-  <div data-page-node-id="KUjljbI1VNFG9ziyhPQPiy" class="wrap topbar-inner">
-    <a data-page-node-id="NTvluI52rLlYkMzFyE1rrF" aria-label="回到顶部" class="brand" href="#top">
-      <span data-page-node-id="uNRA1u0esdNks8G2CZKqo4" class="brand-mark"><!--pnid:gmALIbNJj4ZDwuQttwGLaL-->LLM</span>
-      <span data-page-node-id="5p74Zh5hcH4TepGq7TNbgX" class="brand-text"><!--pnid:1aY2bDYPbbzlBtaqlsaEGc-->大模型应用开发<em data-page-node-id="q2JgFamIPJuGCA2XUIF5TV"><!--pnid:1SdeF1nFMhKVf8faPtH1Pv-->全栈</em></span>
+<nav aria-label="主导航" class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="PythonAI 大模型应用开发全栈">
+      <span class="brand-mark" aria-hidden="true">Py</span>
+      <span class="brand-text"><strong>PythonAI</strong><small>LLM FULL STACK</small></span>
     </a>
-    <ul data-page-node-id="UQE2CEzlmTsCDNSQ5lMinU" class="topnav">
-      <li data-page-node-id="zsiWAnWNorN60Z6AH6Pwwl"><a data-page-node-id="bAvnmAXu4JEW9w6219eCIr" class="topnav-a" href="#一-ai-重构千行百业-黄金赛道已至"><!--pnid:iLLQInU5HK3Q96GeAsoQIk-->行业前景</a></li>
-      <li data-page-node-id="lEHAtoNjd3IZB8xwL5PRyU"><a data-page-node-id="8kNjdoP1jxHnKRRe2twDd2" class="topnav-a" href="#二-课程定位-从零基础到企业级大模型开发工程师"><!--pnid:63XSsWXbhg91rzDWX5IlYO-->课程定位</a></li>
-      <li data-page-node-id="K9zIAMy3g0Y629X1821uXS"><a data-page-node-id="OnqCUJv7FV6XaNwo6Vz9mX" class="topnav-a" href="#三-大模型全栈开发实战课程学习路线"><!--pnid:cKXss5sSE0jtyZ09hyNhjK-->学习路线</a></li>
-      <li data-page-node-id="pjeFgSVoyyUEtWheaXLDPB"><a data-page-node-id="RdLdXPMGaPwSNtXezuLNpT" class="topnav-a" href="#四-各阶段练手项目"><!--pnid:o2GzgIvkqyXbC47GFPMCtQ-->练手项目</a></li>
-      <li data-page-node-id="fJzClxyIhgEvnNftotovsd"><a data-page-node-id="npJLRU0XpeVu6Ql7Otnbto" class="topnav-a" href="#五-简历级项目"><!--pnid:Gu3ubCJOBrqUKGSK8Pyz6H-->简历级项目</a></li>
-      <li data-page-node-id="3Fp26udKGNIOPF0bauhhNZ"><a data-page-node-id="DwLZxrFcyTEjjb1ktcg6J7" class="topnav-a" href="#零基础入门-从零搭建你的第一个ai聊天机器人"><!--pnid:7EeilBOnQicpMyyE6NknJN-->实战手册</a></li>
+    <ul class="topnav">
+      <li><a class="topnav-a" href="#一-ai-重构千行百业-黄金赛道已至">行业前景</a></li>
+      <li><a class="topnav-a" href="#二-课程定位-从零基础到企业级大模型开发工程师">课程定位</a></li>
+      <li><a class="topnav-a" href="#三-大模型全栈开发实战课程学习路线">学习路线</a></li>
+      <li><a class="topnav-a" href="#四-各阶段练手项目">练手项目</a></li>
+      <li><a class="topnav-a" href="#五-简历级项目">简历级项目</a></li>
+      <li><a class="topnav-a" href="#零基础入门-从零搭建你的第一个ai聊天机器人">实战手册</a></li>
     </ul>
-    <a data-page-node-id="8r2SMGyfjmwO8c8OhpnbBu" class="topbar-cta" href="#三-大模型全栈开发实战课程学习路线" title="课程总时长">
-      <span data-page-node-id="2EOOhlL4MEucIuqe392wSG" class="cta-num"><!--pnid:VnB3ukIMgyyel8BysDAWVl-->145</span><span data-page-node-id="ZMHIiEvwghXzzpOhOl0wuA" class="cta-unit"><!--pnid:Yc3K9z3cC2rUVVBZOUty13-->课时</span>
-    </a>
+    <div class="topbar-actions">
+      <a class="topbar-link" href="../PythonAI-学习资料库.html" aria-label="打开学习资料库">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 3.5h4A1.5 1.5 0 0 1 8 5v8a1.5 1.5 0 0 0-1.5-1.5h-4z"></path><path d="M13.5 3.5h-4A1.5 1.5 0 0 0 8 5v8a1.5 1.5 0 0 1 1.5-1.5h4z"></path></svg>
+        <span>学习资料库</span>
+      </a>
+      <a class="topbar-link" href="../PythonAI-学习计划.html" aria-label="打开学习计划">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="2"></rect><path d="M5 2v3M11 2v3M2 6.5h12"></path></svg>
+        <span>学习计划</span>
+      </a>
+      <span class="topbar-meta">6 阶段 · 145 课时</span>
+    </div>
   </div>
+  <div class="progress" aria-hidden="true"></div>
 </nav>
 
 <header data-page-node-id="zKAxtWfXmfn85AUYi8WjSg" class="hero" id="top">
@@ -771,11 +786,11 @@ if "生成文案" in user_input:
     Array.prototype.forEach.call(els, function(el){ el.classList.add('in'); });
   }
 
-  var bar = document.querySelector('.progress');
+  var progressBar = document.querySelector('.progress');
   function onScroll(){
     var h = document.documentElement;
     var p = h.scrollTop / Math.max(1, (h.scrollHeight - h.clientHeight));
-    bar.style.width = (p * 100) + '%';
+    progressBar.style.width = (p * 100) + '%';
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
