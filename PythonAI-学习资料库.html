@@ -237,6 +237,33 @@ input {
   height: 14px;
 }
 
+.topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink-mute);
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.topbar-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--paper);
+}
+
+.topbar-link svg {
+  width: 14px;
+  height: 14px;
+}
+
 .topbar kbd,
 .search-box kbd {
   padding: 2px 5px;
@@ -1744,8 +1771,13 @@ h6:hover .heading-anchor,
   }
 
   .search-trigger span,
-  .search-trigger kbd {
+  .search-trigger kbd,
+  .topbar-link span {
     display: none;
+  }
+
+  .topbar-link {
+    padding: 0 10px;
   }
 
   .shell {
@@ -1985,6 +2017,7 @@ h6:hover .heading-anchor,
     color: #111111;
   }
 }
+
 </style>
 </head>
 <body id="top">
@@ -1997,10 +2030,13 @@ h6:hover .heading-anchor,
       <span class="brand-text"><strong>PythonAI</strong><small>STUDY LIBRARY</small></span>
     </a>
     <div class="topbar-actions">
+      <a class="topbar-link" href="PythonAI-学习计划.html" aria-label="打开学习计划">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="2"></rect><path d="M5 2v3M11 2v3M2 6.5h12"></path></svg><span>学习计划</span>
+      </a>
       <button class="search-trigger" id="searchTrigger" type="button" aria-label="搜索文档或章节">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5 14 14"></path></svg><span>搜索</span><kbd>Ctrl K</kbd>
       </button>
-      <span class="topbar-meta">11 篇 · 67 节</span>
+      <span class="topbar-meta">11 篇 · 68 节</span>
     </div>
   </div>
   <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
@@ -2011,7 +2047,7 @@ h6:hover .heading-anchor,
     <div class="sidebar-head">
       <p class="kicker">LIBRARY INDEX</p>
       <h2>资料目录</h2>
-      <p class="sidebar-note">11 篇文档 · 67 个章节</p>
+      <p class="sidebar-note">11 篇文档 · 68 个章节</p>
     </div>
     <label class="search-box" for="navSearch">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5 14 14"></path></svg>
@@ -2020,7 +2056,7 @@ h6:hover .heading-anchor,
     </label>
     <nav class="toc" aria-label="文档导航">
       <a class="nav-overview" href="#index"><span>文档索引</span><em>INDEX</em></a>
-      <div class="nav-group"><div class="nav-group-head"><span>开始 · 课程导览</span><em>02</em></div><div class="nav-item" data-doc="doc-repo" data-search="仓库说明：PythonAI 学习路线 仓库目录、环境准备、API Key 配置、示例运行方式与六阶段学习路线，先从这里了解全局。 目录结构 环境准备 配置 API Key（必读） 运行示例 学习路线 贡献与规范"><div class="nav-row"><a class="nav-link" href="#doc-repo"><span class="nav-no">01</span><span class="nav-title">仓库说明</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-repo" aria-label="展开 仓库说明 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-repo" hidden><a class="nav-sub" href="#doc-repo-s1">目录结构</a><a class="nav-sub" href="#doc-repo-s2">环境准备</a><a class="nav-sub" href="#doc-repo-s3">配置 API Key（必读）</a><a class="nav-sub" href="#doc-repo-s4">运行示例</a><a class="nav-sub" href="#doc-repo-s5">学习路线</a><a class="nav-sub" href="#doc-repo-s6">贡献与规范</a></div></div><div class="nav-item" data-doc="doc-start" data-search="大模型开发入门 从 AI 发展简史与大模型原理出发，完成 API 密钥配置、云端环境搭建，并写出第一个单轮 / 多轮聊天机器人。 项目源码： 🔥 大模型应用开发全栈 零基础入门：从零搭建你的第一个AI聊天机器人 1. AI发展简史与大模型原理 2. 大模型应用开发：是什么？怎么做？ 3. 获取大模型API密钥（Key） 4. 免安装云端开发环境 5. 实战：从零搭建聊天机器人 6. 一些常见的符号 7. 小结"><div class="nav-row"><a class="nav-link" href="#doc-start"><span class="nav-no">02</span><span class="nav-title">大模型开发入门</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-start" aria-label="展开 大模型开发入门 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-start" hidden><a class="nav-sub" href="#doc-start-s1">项目源码：</a><a class="nav-sub" href="#doc-start-s2">🔥 大模型应用开发全栈</a><a class="nav-sub" href="#doc-start-s3">零基础入门：从零搭建你的第一个AI聊天机器人</a><a class="nav-sub" href="#doc-start-s4">1. AI发展简史与大模型原理</a><a class="nav-sub" href="#doc-start-s5">2. 大模型应用开发：是什么？怎么做？</a><a class="nav-sub" href="#doc-start-s6">3. 获取大模型API密钥（Key）</a><a class="nav-sub" href="#doc-start-s7">4. 免安装云端开发环境</a><a class="nav-sub" href="#doc-start-s8">5. 实战：从零搭建聊天机器人</a><a class="nav-sub" href="#doc-start-s9">6. 一些常见的符号</a><a class="nav-sub" href="#doc-start-s10">7. 小结</a></div></div></div>
+      <div class="nav-group"><div class="nav-group-head"><span>开始 · 课程导览</span><em>02</em></div><div class="nav-item" data-doc="doc-repo" data-search="仓库说明：PythonAI 学习路线 仓库目录、环境准备、API Key 配置、示例运行方式与六阶段学习路线，先从这里了解全局。 学习日历 目录结构 环境准备 配置 API Key（必读） 运行示例 学习路线 贡献与规范"><div class="nav-row"><a class="nav-link" href="#doc-repo"><span class="nav-no">01</span><span class="nav-title">仓库说明</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-repo" aria-label="展开 仓库说明 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-repo" hidden><a class="nav-sub" href="#doc-repo-s1">学习日历</a><a class="nav-sub" href="#doc-repo-s2">目录结构</a><a class="nav-sub" href="#doc-repo-s3">环境准备</a><a class="nav-sub" href="#doc-repo-s4">配置 API Key（必读）</a><a class="nav-sub" href="#doc-repo-s5">运行示例</a><a class="nav-sub" href="#doc-repo-s6">学习路线</a><a class="nav-sub" href="#doc-repo-s7">贡献与规范</a></div></div><div class="nav-item" data-doc="doc-start" data-search="大模型开发入门 从 AI 发展简史与大模型原理出发，完成 API 密钥配置、云端环境搭建，并写出第一个单轮 / 多轮聊天机器人。 项目源码： 🔥 大模型应用开发全栈 零基础入门：从零搭建你的第一个AI聊天机器人 1. AI发展简史与大模型原理 2. 大模型应用开发：是什么？怎么做？ 3. 获取大模型API密钥（Key） 4. 免安装云端开发环境 5. 实战：从零搭建聊天机器人 6. 一些常见的符号 7. 小结"><div class="nav-row"><a class="nav-link" href="#doc-start"><span class="nav-no">02</span><span class="nav-title">大模型开发入门</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-start" aria-label="展开 大模型开发入门 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-start" hidden><a class="nav-sub" href="#doc-start-s1">项目源码：</a><a class="nav-sub" href="#doc-start-s2">🔥 大模型应用开发全栈</a><a class="nav-sub" href="#doc-start-s3">零基础入门：从零搭建你的第一个AI聊天机器人</a><a class="nav-sub" href="#doc-start-s4">1. AI发展简史与大模型原理</a><a class="nav-sub" href="#doc-start-s5">2. 大模型应用开发：是什么？怎么做？</a><a class="nav-sub" href="#doc-start-s6">3. 获取大模型API密钥（Key）</a><a class="nav-sub" href="#doc-start-s7">4. 免安装云端开发环境</a><a class="nav-sub" href="#doc-start-s8">5. 实战：从零搭建聊天机器人</a><a class="nav-sub" href="#doc-start-s9">6. 一些常见的符号</a><a class="nav-sub" href="#doc-start-s10">7. 小结</a></div></div></div>
 <div class="nav-group"><div class="nav-group-head"><span>Python 编程基础与进阶</span><em>09</em></div><div class="nav-item" data-doc="doc-ch01" data-search="Python 基础与环境搭建 Python 解释器安装、VS Code / PyCharm 配置、pip 镜像加速与 venv / Conda 虚拟环境，一次把开发环境搭稳。 1. Python 语言简介与发展历程 2. Python 解释器安装（Windows 实操） 3. 集成开发环境（IDE）选择与配置 4. 包管理利器：pip 与镜像加速 5. 虚拟环境管理——解决环境冲突的银弹"><div class="nav-row"><a class="nav-link" href="#doc-ch01"><span class="nav-no">01</span><span class="nav-title">环境搭建</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch01" aria-label="展开 环境搭建 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch01" hidden><a class="nav-sub" href="#doc-ch01-s1">1. Python 语言简介与发展历程</a><a class="nav-sub" href="#doc-ch01-s2">2. Python 解释器安装（Windows 实操）</a><a class="nav-sub" href="#doc-ch01-s3">3. 集成开发环境（IDE）选择与配置</a><a class="nav-sub" href="#doc-ch01-s4">4. 包管理利器：pip 与镜像加速</a><a class="nav-sub" href="#doc-ch01-s5">5. 虚拟环境管理——解决环境冲突的银弹</a></div></div><div class="nav-item" data-doc="doc-ch02" data-search="Python 基础语法——让程序与你对话并完成计算 代码规范、变量、输入输出、运算符与类型转换，用一个简易计算器串起 Python 的第一段交互式程序。 1. 代码规范与注释——写出“好看”的代码 2. 变量与标识符——给数据贴标签 3. 输入与输出——让程序与你对话 4. 运算符——赋予程序计算能力 5. 数据类型转换——打通字符串与数字的壁垒 6. 学以致用：简易计算器（串联全部知识点） 7. 练习"><div class="nav-row"><a class="nav-link" href="#doc-ch02"><span class="nav-no">02</span><span class="nav-title">基本语法与输入输出</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch02" aria-label="展开 基本语法与输入输出 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch02" hidden><a class="nav-sub" href="#doc-ch02-s1">1. 代码规范与注释——写出“好看”的代码</a><a class="nav-sub" href="#doc-ch02-s2">2. 变量与标识符——给数据贴标签</a><a class="nav-sub" href="#doc-ch02-s3">3. 输入与输出——让程序与你对话</a><a class="nav-sub" href="#doc-ch02-s4">4. 运算符——赋予程序计算能力</a><a class="nav-sub" href="#doc-ch02-s5">5. 数据类型转换——打通字符串与数字的壁垒</a><a class="nav-sub" href="#doc-ch02-s6">6. 学以致用：简易计算器（串联全部知识点）</a><a class="nav-sub" href="#doc-ch02-s7">7. 练习</a></div></div><div class="nav-item" data-doc="doc-ch03" data-search="Python 核心数据结构——让数据管理井井有条 数字、字符串、列表、元组、集合、字典六大数据结构，围绕班级成绩管理系统讲清增删改查与选型。 1. 数字类型 (Number) —— 计算的基石 2. 字符串 (String) —— 文本处理专家 3. 列表 (List) —— 灵活的有序容器 4. 元组 (Tuple) —— 不可变的记录 5. 集合 (Set) —— 去重与集合运算 6. 字典 (Dict) —— 键值对映射"><div class="nav-row"><a class="nav-link" href="#doc-ch03"><span class="nav-no">03</span><span class="nav-title">核心数据类型</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch03" aria-label="展开 核心数据类型 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch03" hidden><a class="nav-sub" href="#doc-ch03-s1">1. 数字类型 (Number) —— 计算的基石</a><a class="nav-sub" href="#doc-ch03-s2">2. 字符串 (String) —— 文本处理专家</a><a class="nav-sub" href="#doc-ch03-s3">3. 列表 (List) —— 灵活的有序容器</a><a class="nav-sub" href="#doc-ch03-s4">4. 元组 (Tuple) —— 不可变的记录</a><a class="nav-sub" href="#doc-ch03-s5">5. 集合 (Set) —— 去重与集合运算</a><a class="nav-sub" href="#doc-ch03-s6">6. 字典 (Dict) —— 键值对映射</a></div></div><div class="nav-item" data-doc="doc-ch04" data-search="流程控制——赋予程序“决策”与“循环”能力 条件判断、循环、推导式与流程控制，让程序具备决策与重复执行的能力。 1. 分支结构 —— 让程序学会做判断 2. 循环结构 —— 让重复变得优雅 3. 循环控制 —— 精准操控执行流程 4. 推导式 —— 列表/集合/字典的快速生成"><div class="nav-row"><a class="nav-link" href="#doc-ch04"><span class="nav-no">04</span><span class="nav-title">控制流与循环</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch04" aria-label="展开 控制流与循环 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch04" hidden><a class="nav-sub" href="#doc-ch04-s1">1. 分支结构 —— 让程序学会做判断</a><a class="nav-sub" href="#doc-ch04-s2">2. 循环结构 —— 让重复变得优雅</a><a class="nav-sub" href="#doc-ch04-s3">3. 循环控制 —— 精准操控执行流程</a><a class="nav-sub" href="#doc-ch04-s4">4. 推导式 —— 列表/集合/字典的快速生成</a></div></div><div class="nav-item" data-doc="doc-ch05" data-search="函数——构建可复用的代码块 函数定义、参数传递、作用域、闭包与高阶函数，把代码组织成可复用的积木。 1. 函数基础与参数 2. 变量的作用域 3. 闭包 —— 带着“记忆”的函数 4. 装饰器 —— 增强函数功能的“语法糖”"><div class="nav-row"><a class="nav-link" href="#doc-ch05"><span class="nav-no">05</span><span class="nav-title">函数</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch05" aria-label="展开 函数 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch05" hidden><a class="nav-sub" href="#doc-ch05-s1">1. 函数基础与参数</a><a class="nav-sub" href="#doc-ch05-s2">2. 变量的作用域</a><a class="nav-sub" href="#doc-ch05-s3">3. 闭包 —— 带着“记忆”的函数</a><a class="nav-sub" href="#doc-ch05-s4">4. 装饰器 —— 增强函数功能的“语法糖”</a></div></div><div class="nav-item" data-doc="doc-ch06" data-search="面向对象编程——用“对象思维”组织代码 类与对象、继承与多态、魔术方法与封装，用对象思维组织复杂程序。 1. 为什么需要面向对象？ 2. 类与对象——从模板到实例 3. 封装——保护数据，提供安全接口 4. 继承——复用与扩展 5. 多态——同一接口，不同表现 6. 综合实战：学生管理系统 7. 优质练习"><div class="nav-row"><a class="nav-link" href="#doc-ch06"><span class="nav-no">06</span><span class="nav-title">面向对象编程</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch06" aria-label="展开 面向对象编程 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch06" hidden><a class="nav-sub" href="#doc-ch06-s1">1. 为什么需要面向对象？</a><a class="nav-sub" href="#doc-ch06-s2">2. 类与对象——从模板到实例</a><a class="nav-sub" href="#doc-ch06-s3">3. 封装——保护数据，提供安全接口</a><a class="nav-sub" href="#doc-ch06-s4">4. 继承——复用与扩展</a><a class="nav-sub" href="#doc-ch06-s5">5. 多态——同一接口，不同表现</a><a class="nav-sub" href="#doc-ch06-s6">6. 综合实战：学生管理系统</a><a class="nav-sub" href="#doc-ch06-s7">7. 优质练习</a></div></div><div class="nav-item" data-doc="doc-ch07" data-search="文件操作——让数据持久化 文件读写、路径处理与上下文管理，让程序的数据能够持久保存。 1. 为什么需要文件操作？ 2. 文件操作核心：打开 → 读写 → 关闭 3. 大文件处理：“化整为零” 4. 路径操作基础（os.path） 5. 实战：一个简易的日志分析器 6. 避坑指南"><div class="nav-row"><a class="nav-link" href="#doc-ch07"><span class="nav-no">07</span><span class="nav-title">文件操作</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch07" aria-label="展开 文件操作 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch07" hidden><a class="nav-sub" href="#doc-ch07-s1">1. 为什么需要文件操作？</a><a class="nav-sub" href="#doc-ch07-s2">2. 文件操作核心：打开 → 读写 → 关闭</a><a class="nav-sub" href="#doc-ch07-s3">3. 大文件处理：“化整为零”</a><a class="nav-sub" href="#doc-ch07-s4">4. 路径操作基础（os.path）</a><a class="nav-sub" href="#doc-ch07-s5">5. 实战：一个简易的日志分析器</a><a class="nav-sub" href="#doc-ch07-s6">6. 避坑指南</a></div></div><div class="nav-item" data-doc="doc-ch08" data-search="模块化、异常处理与正则表达式 模块与包的组织方式、异常处理机制与正则表达式，让代码更健壮、更有序。 1. 模块与包 —— 组织你的代码 2. 常见标准库的使用 3. 异常处理 —— 让程序“优雅降级” 4. 正则表达式 —— 文本处理利器（了解） 5. 综合实战：一个健壮的大模型API调用工具 6. 优质练习与答案"><div class="nav-row"><a class="nav-link" href="#doc-ch08"><span class="nav-no">08</span><span class="nav-title">模块、包与异常处理</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch08" aria-label="展开 模块、包与异常处理 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch08" hidden><a class="nav-sub" href="#doc-ch08-s1">1. 模块与包 —— 组织你的代码</a><a class="nav-sub" href="#doc-ch08-s2">2. 常见标准库的使用</a><a class="nav-sub" href="#doc-ch08-s3">3. 异常处理 —— 让程序“优雅降级”</a><a class="nav-sub" href="#doc-ch08-s4">4. 正则表达式 —— 文本处理利器（了解）</a><a class="nav-sub" href="#doc-ch08-s5">5. 综合实战：一个健壮的大模型API调用工具</a><a class="nav-sub" href="#doc-ch08-s6">6. 优质练习与答案</a></div></div><div class="nav-item" data-doc="doc-ch09" data-search="协程与异步编程——单线程的高效并发 协程、async/await 与异步并发，理解单线程处理海量 I/O 任务的现代方案。 1. 为什么需要协程？ 2. 核心语法：async/await 3. 并发执行：创建任务（Task） 4. 协程同步机制：信号量（Semaphore） 5. 实战：高性能异步API客户端 (aiohttp) 6. 优质练习与答案"><div class="nav-row"><a class="nav-link" href="#doc-ch09"><span class="nav-no">09</span><span class="nav-title">协程与异步并发</span></a><button class="nav-expand" type="button" aria-expanded="false" aria-controls="subs-doc-ch09" aria-label="展开 协程与异步并发 的章节"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg></button></div><div class="nav-subs" id="subs-doc-ch09" hidden><a class="nav-sub" href="#doc-ch09-s1">1. 为什么需要协程？</a><a class="nav-sub" href="#doc-ch09-s2">2. 核心语法：async/await</a><a class="nav-sub" href="#doc-ch09-s3">3. 并发执行：创建任务（Task）</a><a class="nav-sub" href="#doc-ch09-s4">4. 协程同步机制：信号量（Semaphore）</a><a class="nav-sub" href="#doc-ch09-s5">5. 实战：高性能异步API客户端 (aiohttp)</a><a class="nav-sub" href="#doc-ch09-s6">6. 优质练习与答案</a></div></div></div>
     </nav>
     <p class="nav-empty" id="navEmpty" hidden>没有匹配的文档或章节</p>
@@ -2042,7 +2078,7 @@ h6:hover .heading-anchor,
         </div>
         <dl class="hero-stats">
           <div><dt>文档</dt><dd>11<small>篇</small></dd></div>
-          <div><dt>字符</dt><dd>8.1<small>万</small></dd></div>
+          <div><dt>字符</dt><dd>8.2<small>万</small></dd></div>
           <div><dt>阅读</dt><dd>2.8<small>小时</small></dd></div>
         </dl>
       </div>
@@ -2063,13 +2099,22 @@ h6:hover .heading-anchor,
         <p>共 11 篇，按学习顺序排列。点击任意条目，直接跳到对应正文。</p>
       </div>
       <div class="index-grid">
-        <article class="index-panel index-panel--start"><p class="kicker">PART 01 · START</p><h3>开始 · 课程导览</h3><p>仓库说明与零基础入门，先建立大模型应用开发的全景认知。</p><ol class="index-list"><li><a href="#doc-repo"><span class="index-no">01</span><span class="index-title">仓库说明</span><span class="index-meta">4 分钟</span></a></li><li><a href="#doc-start"><span class="index-no">02</span><span class="index-title">大模型开发入门</span><span class="index-meta">42 分钟</span></a></li></ol></article>
+        <article class="index-panel index-panel--start"><p class="kicker">PART 01 · START</p><h3>开始 · 课程导览</h3><p>仓库说明与零基础入门，先建立大模型应用开发的全景认知。</p><ol class="index-list"><li><a href="#doc-repo"><span class="index-no">01</span><span class="index-title">仓库说明</span><span class="index-meta">5 分钟</span></a></li><li><a href="#doc-start"><span class="index-no">02</span><span class="index-title">大模型开发入门</span><span class="index-meta">42 分钟</span></a></li></ol></article>
 <article class="index-panel index-panel--python"><p class="kicker">PART 02 · PYTHON</p><h3>Python 编程基础与进阶</h3><p>第 2 阶段技术核心的 9 章教程，从环境搭建、语法与数据结构，一路走到协程并发。</p><ol class="index-list"><li><a href="#doc-ch01"><span class="index-no">01</span><span class="index-title">环境搭建</span><span class="index-meta">10 分钟</span></a></li><li><a href="#doc-ch02"><span class="index-no">02</span><span class="index-title">基本语法与输入输出</span><span class="index-meta">15 分钟</span></a></li><li><a href="#doc-ch03"><span class="index-no">03</span><span class="index-title">核心数据类型</span><span class="index-meta">22 分钟</span></a></li><li><a href="#doc-ch04"><span class="index-no">04</span><span class="index-title">控制流与循环</span><span class="index-meta">15 分钟</span></a></li><li><a href="#doc-ch05"><span class="index-no">05</span><span class="index-title">函数</span><span class="index-meta">11 分钟</span></a></li><li><a href="#doc-ch06"><span class="index-no">06</span><span class="index-title">面向对象编程</span><span class="index-meta">13 分钟</span></a></li><li><a href="#doc-ch07"><span class="index-no">07</span><span class="index-title">文件操作</span><span class="index-meta">7 分钟</span></a></li><li><a href="#doc-ch08"><span class="index-no">08</span><span class="index-title">模块、包与异常处理</span><span class="index-meta">15 分钟</span></a></li><li><a href="#doc-ch09"><span class="index-no">09</span><span class="index-title">协程与异步并发</span><span class="index-meta">12 分钟</span></a></li></ol></article>
       </div>
     </section>
 
-    <section class="doc-group" aria-labelledby="group-start-title"><div class="group-head reveal" id="group-start"><div><p class="kicker">PART 01 · START</p><h2 id="group-start-title">开始 · 课程导览</h2><p>仓库说明与零基础入门，先建立大模型应用开发的全景认知。</p></div><span class="group-stamp" aria-hidden="true">02<small>篇</small></span></div><article class="doc reveal" id="doc-repo" data-doc="doc-repo"><header class="doc-head"><div class="doc-meta"><span class="doc-badge">导览 01</span><span class="meta-dot" aria-hidden="true"></span><span>约 4 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>1,837 字符</span><span class="meta-dot" aria-hidden="true"></span><span>6 节</span></div><h2 class="doc-title">仓库说明：PythonAI 学习路线</h2><p class="doc-desc">仓库目录、环境准备、API Key 配置、示例运行方式与六阶段学习路线，先从这里了解全局。</p></header><details class="doc-toc"><summary><span>本文章节</span><em>6</em><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></summary><ol><li><a href="#doc-repo-s1">目录结构</a></li><li><a href="#doc-repo-s2">环境准备</a></li><li><a href="#doc-repo-s3">配置 API Key（必读）</a></li><li><a href="#doc-repo-s4">运行示例</a></li><li><a href="#doc-repo-s5">学习路线</a></li><li><a href="#doc-repo-s6">贡献与规范</a></li></ol></details><div class="paper"><div class="doc-lead"><p>从零基础到企业级大模型开发工程师的实战代码仓库，按课程阶段组织，每个阶段配套可运行的练手项目。</p>
-</div><section class="topic"><h3 id="doc-repo-s1">目录结构<a class="heading-anchor" href="#doc-repo-s1" aria-hidden="true">#</a></h3>
+    <section class="doc-group" aria-labelledby="group-start-title"><div class="group-head reveal" id="group-start"><div><p class="kicker">PART 01 · START</p><h2 id="group-start-title">开始 · 课程导览</h2><p>仓库说明与零基础入门，先建立大模型应用开发的全景认知。</p></div><span class="group-stamp" aria-hidden="true">02<small>篇</small></span></div><article class="doc reveal" id="doc-repo" data-doc="doc-repo"><header class="doc-head"><div class="doc-meta"><span class="doc-badge">导览 01</span><span class="meta-dot" aria-hidden="true"></span><span>约 5 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>2,505 字符</span><span class="meta-dot" aria-hidden="true"></span><span>7 节</span></div><h2 class="doc-title">仓库说明：PythonAI 学习路线</h2><p class="doc-desc">仓库目录、环境准备、API Key 配置、示例运行方式与六阶段学习路线，先从这里了解全局。</p></header><details class="doc-toc"><summary><span>本文章节</span><em>7</em><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></summary><ol><li><a href="#doc-repo-s1">学习日历</a></li><li><a href="#doc-repo-s2">目录结构</a></li><li><a href="#doc-repo-s3">环境准备</a></li><li><a href="#doc-repo-s4">配置 API Key（必读）</a></li><li><a href="#doc-repo-s5">运行示例</a></li><li><a href="#doc-repo-s6">学习路线</a></li><li><a href="#doc-repo-s7">贡献与规范</a></li></ol></details><div class="paper"><div class="doc-lead"><p>从零基础到企业级大模型开发工程师的实战代码仓库，按课程阶段组织，每个阶段配套可运行的练手项目。</p>
+</div><section class="topic"><h3 id="doc-repo-s1">学习日历<a class="heading-anchor" href="#doc-repo-s1" aria-hidden="true">#</a></h3>
+<p>双击打开 <a href="./PythonAI-%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">PythonAI-学习计划.html</a>。从 2026-10-20 的 2.1 Python 编程基础与进阶开始，工作日每天 2 小时，周六、周日各 4 小时；剩余 144 小时初始预计在 2026-12-14 完成，其中 2.1 的 16 小时安排至 2026-10-25。</p>
+<p>点击日历日期查看每日任务及文档链接。完成后勾选 √，未完成任务可指定新日期或顺延至空闲日；超出当天预算会显示提示。进度保存在当前浏览器，支持 JSON 备份导入导出。资料尚未收录的任务会标注并链接至课程大纲。</p>
+<p>重新生成页面（资料库生成脚本需要 Markdown、lxml，可选 Pillow）：</p>
+<pre><code class="language-powershell">python scripts/build_library_html.py
+python scripts/study_plan.py
+</code></pre>
+<p>每个阶段和全部课程的时长汇总由原课程表自动计算，完整课程共 145 小时。</p>
+<p>手机离线静态版：运行 <code>python scripts/export_mobile_html.py</code>，生成 <code>outputs/PythonAI-手机静态版.zip</code>。传到手机并完整解压，保留三份 HTML 在同一目录，使用支持 JavaScript 的浏览器打开 <code>index.html</code>，即可阅读资料和使用日历。无需安装或联网加载页面；进度保存在当前浏览器，可导出备份。在线资料链接需要联网。输出目录不纳入 Git，可随时重新生成。</p>
+</section><section class="topic"><h3 id="doc-repo-s2">目录结构<a class="heading-anchor" href="#doc-repo-s2" aria-hidden="true">#</a></h3>
 <pre><code>PythonAI/
 └── 第1阶段：大模型开发入门/
     ├── 入门.md                     # 课程讲义：大模型原理 + API 调用入门
@@ -2079,14 +2124,14 @@ h6:hover .heading-anchor,
         ├── 02-多轮对话机器人.py     # 多轮对话：维护 messages 列表实现上下文记忆
         └── demo_vs.py              # 接口调用演示
 </code></pre>
-</section><section class="topic"><h3 id="doc-repo-s2">环境准备<a class="heading-anchor" href="#doc-repo-s2" aria-hidden="true">#</a></h3>
+</section><section class="topic"><h3 id="doc-repo-s3">环境准备<a class="heading-anchor" href="#doc-repo-s3" aria-hidden="true">#</a></h3>
 <ul>
 <li>Python 3.9+（推荐 3.10 / 3.11）</li>
 <li>依赖安装：</li>
 </ul>
 <pre><code class="language-bash">pip install openai
 </code></pre>
-</section><section class="topic"><h3 id="doc-repo-s3">配置 API Key（必读）<a class="heading-anchor" href="#doc-repo-s3" aria-hidden="true">#</a></h3>
+</section><section class="topic"><h3 id="doc-repo-s4">配置 API Key（必读）<a class="heading-anchor" href="#doc-repo-s4" aria-hidden="true">#</a></h3>
 <p><strong>不要把密钥写死在代码里。</strong> 所有示例都从环境变量读取，请先在系统里配置：</p>
 <p>当前示例（阶跃星辰）使用 <code>STEP_API_KEY</code>，按你实际接入的平台设置对应变量即可：</p>
 <pre><code class="language-bash"># macOS / Linux
@@ -2104,7 +2149,7 @@ $env:SILICONFLOW_API_KEY="你的密钥"
 DASHSCOPE_API_KEY=你的密钥
 SILICONFLOW_API_KEY=你的密钥
 </code></pre>
-<h4 id="doc-repo-s3-1">密钥获取渠道<a class="heading-anchor" href="#doc-repo-s3-1" aria-hidden="true">#</a></h4>
+<h4 id="doc-repo-s4-1">密钥获取渠道<a class="heading-anchor" href="#doc-repo-s4-1" aria-hidden="true">#</a></h4>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -2139,13 +2184,13 @@ SILICONFLOW_API_KEY=你的密钥
 </div><blockquote>
 <p>⚠️ API Key 等同于账号密码。一旦泄露请立即到平台禁用并重新创建。</p>
 </blockquote>
-</section><section class="topic"><h3 id="doc-repo-s4">运行示例<a class="heading-anchor" href="#doc-repo-s4" aria-hidden="true">#</a></h3>
+</section><section class="topic"><h3 id="doc-repo-s5">运行示例<a class="heading-anchor" href="#doc-repo-s5" aria-hidden="true">#</a></h3>
 <pre><code class="language-bash">cd "第1阶段：大模型开发入门/llm_project"
 
 python 02-单轮对话机器人.py
 python 02-多轮对话机器人.py    # 输入「退出」结束对话
 </code></pre>
-</section><section class="topic"><h3 id="doc-repo-s5">学习路线<a class="heading-anchor" href="#doc-repo-s5" aria-hidden="true">#</a></h3>
+</section><section class="topic"><h3 id="doc-repo-s6">学习路线<a class="heading-anchor" href="#doc-repo-s6" aria-hidden="true">#</a></h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -2188,7 +2233,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 </tbody>
 </table>
 </div><p>详细的知识点课时安排与项目清单见 <a href="./%E7%AC%AC1%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%85%A8%E6%A0%88.html"><code>第1阶段：大模型开发入门/大模型应用开发全栈.html</code></a>。</p>
-</section><section class="topic"><h3 id="doc-repo-s6">贡献与规范<a class="heading-anchor" href="#doc-repo-s6" aria-hidden="true">#</a></h3>
+</section><section class="topic"><h3 id="doc-repo-s7">贡献与规范<a class="heading-anchor" href="#doc-repo-s7" aria-hidden="true">#</a></h3>
 <ul>
 <li>提交前请确认代码中<strong>不含任何明文 API Key</strong>，一律使用环境变量。</li>
 <li>示例脚本保持简洁可读，优先服务于教学理解。</li>
@@ -2209,8 +2254,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <p>✅ <strong>前沿技术同步</strong>：融入最新政策导向与行业热点，覆盖 Qwen/DeepSeek 等国产大模型、Coze/Dify 低代码平台、MCP 等前沿技术</p>
 <p>✅ <strong>零基础友好</strong>：从搭建第一个聊天机器人起步，循序渐进，无需编程基础也能快速上手</p>
 <h4 id="doc-start-s2-4">三、大模型全栈开发实战课程学习路线<a class="heading-anchor" href="#doc-start-s2-4" aria-hidden="true">#</a></h4>
-<div class="table-wrap"><p class="course-summary">按原表每课时 60 分钟计算，包含第一阶段 1 小时；实际练习可按掌握情况延长。 <a href="PythonAI-%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">打开日历学习计划 →</a></p>
-<table data-course-hours="145">
+<p class="course-summary">按原表每课时 60 分钟计算，包含第一阶段 1 小时；实际练习可按掌握情况延长。 <a href="PythonAI-%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">打开日历学习计划 →</a></p><div class="table-wrap"><table data-course-hours="145">
 <thead>
 <tr>
 <th><strong>课程阶段</strong></th>
@@ -2226,8 +2270,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <td>1. 大模型应用场景与开发流程介绍（通用场景：客服 / 创作 / 数据分析；垂直场景：医疗 / 金融 / 教育）2. Python 核心基础入门（变量定义、print 输出、函数定义与调用、注释规范、代码调试技巧）3. 大模型 API 调用原理（密钥配置、请求构造（Headers/Body 封装）、请求频率限制处理、错误码解析）4. 聊天机器人核心逻辑实现（单轮 / 多轮对话（上下文存储）、指令接收与回复展示、指令校验与异常兜底）5. 应用调试与运行优化（日志打印、性能监控、资源占用优化）</td>
 <td>1</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第一阶段：大模型开发入门时长汇总</th><td>1小时</td></tr>
-<tr>
+<tr class="stage-summary"><th colspan="3" scope="row">第一阶段：大模型开发入门时长汇总</th><td>1小时</td></tr><tr>
 <td><strong>第二阶段：大模型技术核心</strong></td>
 <td>2.1 Python 编程基础与进阶</td>
 <td>1. Python 介绍与发展史、行业应用场景（AI / 大数据 / 后端开发）2. 开发环境配置（Python/PyCharm/VSCode 安装与配置；pip 包管理（镜像源配置、版本锁定）；Jupyter Notebook/Conda 环境搭建（虚拟环境隔离、环境导出 / 导入））3. 输入输出（print/input 函数、格式化输出（f-string/format）、文件流输出）4. 分支与循环（if-elif-else、for/while 循环、break/continue、循环效率优化）5. 数据类型（数值 / 字符串 / 列表 / 元组 / 集合 / 字典的定义与常用操作、数据类型转换、深拷贝 / 浅拷贝）6. 函数（参数传递（位置 / 关键字 / 默认 / 可变参数）、返回值、匿名函数、装饰器基础（日志 / 缓存 / 权限装饰器））7. 面向对象（类与对象、继承（单 / 多继承）、多态、封装、魔术方法）8. 迭代器与生成器、异常处理机制（try-except-finally、自定义异常、异常链）9. 文件操作（文本 / 二进制文件读写、路径处理（os.path/pathlib）、大文件分块读写）10. 模块与包（导入机制；os/sys/json/requests/datetime 高频库实战、自定义包开发）11. 进程 / 线程 / 协程（并发编程基础、GIL 原理、实战应用（多线程爬虫 / 协程接口调用））12. 网络编程与 MQTT（TCP/UDP 通信、网络请求原理、MQTT 协议应用（设备消息收发））13. Git 安装与使用（版本控制、代码提交 / 拉取 / 分支管理、冲突解决、GitFlow 工作流）</td>
@@ -2245,8 +2288,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <td>1. 机器学习概述（定义、分类（监督 / 无监督 / 半监督 / 强化学习）、核心流程（数据采集→预处理→模型训练→评估→部署）、应用场景）2. 经典算法详解（K 近邻（距离度量 / 参数 k 选择）、线性回归（损失函数 / 正则化）、逻辑回归（分类原理 / 阈值调整）、决策树（特征选择 / 剪枝）、集成学习（随机森林 / XGBoost/LightGBM）、聚类（K-Means/DBSCAN）、支持向量机（核函数选择）、朴素贝叶斯（平滑处理））3. 算法原理、超参数调优（网格搜索 / 随机搜索 / 贝叶斯优化）、实战案例（分类 / 回归 / 聚类任务）4. 模型评估指标（准确率 / 精确率 / 召回率 / F1/ROC-AUC/MAE/MSE/R²）</td>
 <td>12</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第二阶段：大模型技术核心时长汇总</th><td>41小时</td></tr>
-<tr>
+<tr class="stage-summary"><th colspan="3" scope="row">第二阶段：大模型技术核心时长汇总</th><td>41小时</td></tr><tr>
 <td><strong>第三阶段：自然语言处理（NLP）核心</strong></td>
 <td>3.1 深度学习基础</td>
 <td>1. 深度学习概述（与机器学习的区别、应用场景（CV/NLP/ 语音）、算力需求（GPU/TPU 介绍））2. PyTorch 框架讲解（环境搭建（CUDA 配置）、张量操作（创建 / 运算 / 索引）、自动求导（梯度计算 / 梯度清零）、模型定义（Sequential/Module 方式））3. 线性回归 / 逻辑回归实现（前向传播、反向传播、数据集划分（train/test/val）、训练流程（早停机制））4. 优化器与学习率调度器（SGD/Adam/RMSprop 原理、学习率调整策略（余弦退火 / 阶梯下降）、梯度裁剪）5. 模型保存与加载（state_dict / 整模型保存、断点续训）6. 数据加载（Dataset/Dataloader 自定义、数据增强）</td>
@@ -2258,8 +2300,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <td>1. 文本预处理（词元化、词表构建（频率过滤 / 未知词处理）、分词库（jieba/tiktoken/huggingface tokenizers）、文本向量化（One-Hot/Word2Vec/Embedding/TF-IDF）、文本清洗（停用词 / 特殊字符处理））2. 循环神经网络（RNN/LSTM/GRU 模型原理、结构、长距离依赖解决（梯度消失 / 爆炸）、双向 RNN 实现）3. 编码器 - 解码器架构、注意力机制（QKV 模型、自注意力 / 多头注意力计算过程、注意力可视化）、位置编码（正弦余弦编码 / RoPE/ALiBi）4. Transformer 模型详解（整体架构、编码器 / 解码器层（多头注意力 / 前馈网络 / Add&amp;Norm）、残差连接、层归一化）5. 手搓 Transformer 核心结构代码（多头注意力、编码器 / 解码器层、完整模型拼接）6. HuggingFace Transformers 库使用（模型加载 / 微调 / 推理）</td>
 <td>18</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第三阶段：自然语言处理（NLP）核心时长汇总</th><td>28小时</td></tr>
-<tr>
+<tr class="stage-summary"><th colspan="3" scope="row">第三阶段：自然语言处理（NLP）核心时长汇总</th><td>28小时</td></tr><tr>
 <td><strong>第四阶段：大模型技术进阶</strong></td>
 <td>4.1 大模型微调与部署</td>
 <td>1. LLM 发展与用途、主流架构分类（GPT/LLaMA/BERT/Qwen/DeepSeek 系列）、模型选型依据（参数量 / 推理速度 / 开源协议）2. GPT 系列模型原理与区别（GPT-1/2/3/4 进化、LLaMA 1/2/3 改进）、主流开源大模型介绍（Qwen/DeepSeek/ZhipuAI）3. LLM 部署（本地部署（Ollama/Transformers 本地推理）、云端 API 调用（OpenAI / 阿里云 / 百度智能云）、推理优化（批量推理 / 缓存））4. RESTful 设计与 FastAPI 入门（接口开发（GET/POST/PUT/DELETE）、请求参数校验、接口文档（Swagger）、异常处理、跨域配置）5. Python 前端开发（Streamlit/Gradio 环境搭建、页面开发（组件封装 / 样式定制）、模型联动（前后端交互）、部署上线）6. Docker 部署模型（镜像构建（Dockerfile 编写）、容器化实战（多容器编排 /docker-compose）、镜像仓库使用）7. 大模型微调与量化（微调原理（全量微调 / LoRA/QLoRA/PTuning）、数据集准备（格式规范 / 数据清洗）、INT8/FP16/FP8 量化优化、微调框架（PEFT/Transformers Trainer）、微调后评估）8. 模型推理加速（VLLM/TensorRT 部署、量化感知训练）</td>
@@ -2277,8 +2318,7 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <td>1. Langchain 环境搭建（API 调用 LLM、Ollama 本地部署 LLM、环境变量管理）2. Langchain 核心组件（提示词模板（PromptTemplate）、输出解析器（StructuredOutputParser）、链（Chain/SequentialChain/RouterChain））3. Langchain 流式输出实现（SSE 协议、前端实时接收）4. Langchain 记忆系统（短期 / 长期记忆、多轮对话记忆（ConversationBufferMemory/ConversationSummaryMemory））5. Langchain 工具封装与调用（自定义工具开发、注册、调度、工具优先级设置）6. RAG 技术详解（文本加载（PDF/Word/Markdown 加载）、文本分割（RecursiveCharacterTextSplitter）、向量数据库与向量化（Milvus/Chroma/Pinecone、Embedding 模型选择）、RAG 评估与优化（检索召回率 / 答案准确率、重排序 / 提示词优化））7. 本地知识库私有化部署（离线 Embedding 模型、向量数据库本地部署）</td>
 <td>12</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第四阶段：大模型技术进阶时长汇总</th><td>42小时</td></tr>
-<tr>
+<tr class="stage-summary"><th colspan="3" scope="row">第四阶段：大模型技术进阶时长汇总</th><td>42小时</td></tr><tr>
 <td><strong>第五阶段：多模态大模型</strong></td>
 <td>5.1 图像认知与 OpenCV</td>
 <td>1. 计算机图像基础（像素、通道（RGB / 灰度 / HSV）、分辨率、图像格式（JPG/PNG/WEBP）、图像压缩原理）2. 图像基础操作（灰度化、二值化、缩放、旋转、矫正、图像拼接）3. 图像算法（模糊 / 滤波（均值 / 高斯 / 中值滤波）、梯度 / 边缘检测（Sobel/Canny/Laplacian）、轮廓检测（轮廓提取 / 拟合））4. 高级图像处理（形态学操作（膨胀 / 腐蚀 / 开运算 / 闭运算）、直方图（均衡化 / 匹配）、霍夫变换（直线 / 圆检测）、模板匹配、图像分割）5. OpenCV 实战（图像标注、视频帧处理、实时摄像头采集）</td>
@@ -2296,17 +2336,14 @@ python 02-多轮对话机器人.py    # 输入「退出」结束对话
 <td>1. 语音技术概述（语音信号特征（时域 / 频域、梅尔频谱）、ASR（语音转文字）/TTS（文字转语音）原理、语音唤醒）2. 基于 ASR+LLM+TTS 的端到端对话系统实现（语音采集→ASR 转写→LLM 生成回复→TTS 合成语音→播放）3. 主流语音 API 使用（百度语音 / 阿里语音 / 讯飞语音）、本地语音模型部署（Whisper/FastSpeech）</td>
 <td>4</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第五阶段：多模态大模型时长汇总</th><td>28小时</td></tr>
-<tr>
+<tr class="stage-summary"><th colspan="3" scope="row">第五阶段：多模态大模型时长汇总</th><td>28小时</td></tr><tr>
 <td><strong>第六阶段：前沿技术初探 —— 具身智能</strong></td>
 <td>具身智能基础与实践</td>
 <td>1. 具身智能核心理论（定义、技术架构（感知 / 决策 / 执行）、应用场景（机器人 / 自动驾驶））2. PyBullet 仿真环境搭建与实践（物理引擎配置、机器人模型加载、关节控制、碰撞检测、代码运行、实验现象分析）3. 简单具身智能项目（仿真机器人导航、基于视觉的物体抓取、LLM 驱动的机器人决策）</td>
 <td>5</td>
 </tr>
-<tr class="stage-summary"><th colspan="3" scope="row">第六阶段：前沿技术初探 —— 具身智能时长汇总</th><td>5小时</td></tr>
-</tbody>
-<tfoot><tr><th colspan="3" scope="row">全部阶段总时长</th><td>145小时</td></tr></tfoot>
-</table>
+<tr class="stage-summary"><th colspan="3" scope="row">第六阶段：前沿技术初探 —— 具身智能时长汇总</th><td>5小时</td></tr></tbody>
+<tfoot><tr><th colspan="3" scope="row">全部阶段总时长</th><td>145小时</td></tr></tfoot></table>
 </div><h4 id="doc-start-s2-5">四、各阶段练手项目<a class="heading-anchor" href="#doc-start-s2-5" aria-hidden="true">#</a></h4>
 <h5 id="doc-start-s2-6">第一阶段：大模型开发入门<a class="heading-anchor" href="#doc-start-s2-6" aria-hidden="true">#</a></h5>
 <div class="table-wrap"><table>
@@ -5660,8 +5697,8 @@ asyncio.run(batch_download(urls, max_concurrent=2))
 
     <footer class="site-foot">
       <strong>PythonAI 学习资料库</strong>
-      <p>共 11 篇文档 · 67 个章节 · 全部正文已收录</p>
-      <p>由本地 Markdown 一键生成 · 2026-10-20</p>
+      <p>共 11 篇文档 · 68 个章节 · 全部正文已收录</p>
+      <p>由本地 Markdown 一键生成 · 2026-10-22</p>
     </footer>
   </main>
 </div>

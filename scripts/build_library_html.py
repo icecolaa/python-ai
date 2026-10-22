@@ -233,6 +233,9 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <span class="brand-text"><strong>PythonAI</strong><small>STUDY LIBRARY</small></span>
     </a>
     <div class="topbar-actions">
+      <a class="topbar-link" href="PythonAI-学习计划.html" aria-label="打开学习计划">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="2"></rect><path d="M5 2v3M11 2v3M2 6.5h12"></path></svg><span>学习计划</span>
+      </a>
       <button class="search-trigger" id="searchTrigger" type="button" aria-label="搜索文档或章节">
         @@ICON_SEARCH@@<span>搜索</span><kbd>Ctrl K</kbd>
       </button>
