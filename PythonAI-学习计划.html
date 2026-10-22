@@ -29,6 +29,78 @@ button:active,.button:active{transform:translateY(1px);box-shadow:none}
 .reschedule button[data-free]:hover{border-color:#b9cdf0;background:#f4f8ff;color:var(--blue)}
 .settings-form button{font-size:13px}
 .settings-form input:focus-visible,.settings-form select:focus-visible,.reschedule input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* Custom popovers: style the expanded select list and date calendar. */
+.settings-form .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.settings-form .field>label{color:var(--muted);font-size:11px;line-height:1.3}
+.date-field{position:relative;display:flex;align-items:center;min-width:0}
+.settings-form .date-field{width:158px}
+.date-field input[type="date"]{width:100%;min-width:0}
+.settings-form .date-field input[type="date"]{padding-right:38px}
+.date-field input[type="date"]::-webkit-calendar-picker-indicator{display:none}
+.settings-form .select-field{position:relative;display:flex;width:112px;min-width:0}
+.settings-form .select-field select{position:absolute;width:1px;height:1px;min-height:0;padding:0;border:0;opacity:0;pointer-events:none}
+.settings-form .date-trigger,.reschedule .date-trigger{position:absolute;top:50%;display:grid;place-items:center;min-height:0;padding:0;border:0;border-radius:7px;background:transparent;color:#7d8fa5;box-shadow:none;transform:translateY(-50%);cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.settings-form .date-trigger{right:4px;width:30px;height:30px}
+.reschedule .date-trigger{right:2px;width:28px;height:28px;border-radius:6px}
+.settings-form .date-trigger:hover,.reschedule .date-trigger:hover{border:0;background:#eef4ff;color:var(--blue);box-shadow:none;transform:translateY(-50%)}
+.settings-form .date-trigger:active,.reschedule .date-trigger:active{transform:translateY(-50%);box-shadow:none}
+.settings-form .date-trigger[aria-expanded="true"],.reschedule .date-trigger[aria-expanded="true"]{background:#e7efff;color:#2457c9}
+.settings-form .date-trigger svg{width:15px;height:15px}
+.reschedule .date-field{width:150px;flex:0 0 auto}
+.reschedule .date-field input{width:100%;padding-right:32px}
+.reschedule .date-trigger svg{width:13px;height:13px}
+.settings-form .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:42px;min-height:42px;padding:0 12px;border:1px solid #d7e2ef;border-radius:10px;background:#fbfdff;color:var(--ink);font-size:13px;font-weight:400;letter-spacing:0;box-shadow:inset 0 1px 2px rgba(24,41,64,.03);cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+.settings-form .select-trigger:hover{border-color:#bfd1e8;background:#fff;color:var(--ink);box-shadow:inset 0 1px 2px rgba(24,41,64,.03);transform:none}
+.settings-form .select-trigger:active{transform:none;box-shadow:inset 0 1px 2px rgba(24,41,64,.03)}
+.settings-form .select-trigger[aria-expanded="true"],.settings-form .select-trigger:focus-visible{border-color:var(--blue);background:#fff;color:var(--ink);box-shadow:0 0 0 3px rgba(50,107,233,.12);outline:none}
+.select-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.select-chevron{width:12px;height:8px;flex:none;color:#61758d;transition:transform .18s ease,color .18s ease}
+.settings-form .select-trigger[aria-expanded="true"] .select-chevron{transform:rotate(180deg);color:var(--blue)}
+.sp-select-menu,.sp-calendar{position:fixed;z-index:1200;border:1px solid #dbe6f3;background:#fff;box-shadow:0 18px 44px rgba(24,41,64,.16),0 2px 8px rgba(24,41,64,.06);animation:sp-fade .14s ease-out}
+.sp-select-menu[hidden],.sp-calendar[hidden]{display:none}
+.sp-select-menu{padding:6px;border-radius:12px;max-height:min(300px,60vh);overflow:auto;overscroll-behavior:contain}
+.sp-select-option{display:flex;align-items:center;justify-content:space-between;gap:12px;height:36px;padding:0 10px;border-radius:8px;color:var(--ink);font-size:13px;cursor:pointer;user-select:none}
+.sp-select-option:hover,.sp-select-option.active{background:#f1f6ff;color:#2457c9}
+.sp-select-option[aria-selected="true"]{background:#e8f0ff;color:#1d4ed8;font-weight:600}
+.sp-check{font-size:12px;color:var(--blue);opacity:0;transition:opacity .15s ease}
+.sp-select-option[aria-selected="true"] .sp-check{opacity:1}
+.sp-calendar{width:308px;max-width:calc(100vw - 16px);padding:14px;border-radius:16px}
+.sp-cal-head{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.sp-cal-title{flex:1;text-align:center;color:var(--ink);font-size:14px;font-weight:650;letter-spacing:.01em}
+.sp-cal-nav{display:grid;place-items:center;width:30px;height:30px;min-height:0;padding:0;border:1px solid transparent;border-radius:8px;background:#f5f9ff;color:#4a6585;font-size:16px;line-height:1;box-shadow:none;cursor:pointer}
+.sp-cal-nav:hover{border-color:#d8e5fb;background:#e9f1ff;color:var(--blue);box-shadow:none;transform:none}
+.sp-cal-nav:active{transform:none;box-shadow:none}
+.sp-cal-nav:disabled{opacity:.35;cursor:default}
+.sp-cal-week{display:grid;grid-template-columns:repeat(7,1fr);margin:2px 0 4px}
+.sp-cal-week span{text-align:center;color:var(--muted);font-size:11px;font-weight:500}
+.sp-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.sp-cal-day{display:grid;place-items:center;height:36px;min-height:0;padding:0;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--ink);font-size:12.5px;font-weight:500;font-variant-numeric:tabular-nums;box-shadow:none;cursor:pointer}
+.sp-cal-day:hover{border-color:transparent;background:#edf4ff;color:#2457c9;box-shadow:none;transform:none}
+.sp-cal-day:active{transform:none;box-shadow:none}
+.sp-cal-day.out{color:#b9c6d6}
+.sp-cal-day.today{color:var(--blue);font-weight:700;box-shadow:inset 0 0 0 1px #b9cdf0}
+.sp-cal-day.selected,.sp-cal-day.selected:hover{border-color:transparent;background:linear-gradient(135deg,#3b7bff,#2457c9);color:#fff;font-weight:650;box-shadow:0 6px 14px rgba(50,107,233,.28)}
+.sp-cal-day:disabled{color:#ccd7e3;background:transparent;box-shadow:none;opacity:.55;cursor:not-allowed}
+.sp-cal-day:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+.sp-cal-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #eef3f9}
+.sp-cal-today,.sp-cal-close{height:30px;min-height:0;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--blue);font-size:12px;box-shadow:none;cursor:pointer}
+.sp-cal-today:hover,.sp-cal-close:hover{background:#edf4ff;color:#1d4ed8;box-shadow:none;transform:none}
+.sp-cal-today:active,.sp-cal-close:active{transform:none;box-shadow:none}
+.sp-cal-today:disabled{opacity:.4;cursor:default;background:transparent;color:var(--muted)}
+.sp-cal-close{color:var(--muted)}
+@keyframes sp-fade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.sp-select-menu,.sp-calendar{animation:none}}
+@media(max-width:640px){.settings-form .field{width:100%}.settings-form .date-field,.settings-form .select-field{width:100%}.settings-form .select-trigger{width:100%}.settings-form>button{grid-column:1/-1;width:100%}}
+
+/* Popover sizing, scrollbars and compact task rows on narrow screens. */
+.sp-cal-nav svg{width:14px;height:14px}
+.sp-calendar{max-height:calc(100vh - 16px);overflow:auto;overscroll-behavior:contain}
+.sp-select-menu::-webkit-scrollbar{width:8px}
+.sp-select-menu::-webkit-scrollbar-thumb{background:#d7e2ef;border:2px solid #fff;border-radius:8px}
+.sp-select-menu::-webkit-scrollbar-thumb:hover{background:#b9cdf0}
+@media(max-width:640px){.settings-form .field:first-child{grid-column:1/-1}}
+@media(max-width:540px){.reschedule{gap:6px}.reschedule .date-field{width:126px}}
 </style></head>
 <body id="top">
 <header class="topbar" id="topbar">
@@ -51,9 +123,9 @@ button:active,.button:active{transform:translateY(1px);box-shadow:none}
 <section class="panel settings" aria-labelledby="settings-title">
 <div class="settings-copy"><p class="eyebrow">PLAN SETTINGS</p><h2 id="settings-title">按你的节奏排期</h2><p>设置起点与每日学习时长，点击“重新生成计划”即可按新节奏重排全部任务，完成勾选会保留。</p></div>
 <form class="settings-form" id="settings-form">
-<label for="set-start">起点<input type="date" id="set-start" min="2020-01-01" max="2099-12-31" required></label>
-<label for="set-weekday">工作日<select id="set-weekday"></select></label>
-<label for="set-weekend">周末<select id="set-weekend"></select></label>
+<div class="field"><label for="set-start">起点</label><div class="date-field"><input type="date" id="set-start" min="2020-01-01" max="2099-12-31" required><button type="button" class="date-trigger" data-calendar-for="set-start" aria-label="打开起点日历" aria-haspopup="dialog" aria-controls="sp-calendar" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="2.2" y="3.2" width="11.6" height="10.6" rx="2"></rect><path d="M2.2 6.4h11.6M5.4 1.8v2.8M10.6 1.8v2.8"></path></svg></button></div></div>
+<div class="field"><label id="set-weekday-label" for="set-weekday-trigger">工作日</label><div class="select-field"><select id="set-weekday" tabindex="-1" aria-hidden="true"></select><button type="button" id="set-weekday-trigger" class="select-trigger" data-select-for="set-weekday" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sp-select-menu" aria-labelledby="set-weekday-label set-weekday-value"><span class="select-value" id="set-weekday-value"></span><svg class="select-chevron" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5"></path></svg></button></div></div>
+<div class="field"><label id="set-weekend-label" for="set-weekend-trigger">周末</label><div class="select-field"><select id="set-weekend" tabindex="-1" aria-hidden="true"></select><button type="button" id="set-weekend-trigger" class="select-trigger" data-select-for="set-weekend" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sp-select-menu" aria-labelledby="set-weekend-label set-weekend-value"><span class="select-value" id="set-weekend-value"></span><svg class="select-chevron" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5"></path></svg></button></div></div>
 <button type="submit">重新生成计划</button>
 </form>
 </section>
@@ -149,6 +221,7 @@ button:active,.button:active{transform:translateY(1px);box-shadow:none}
       `周末 ${settings.weekend}h / 天`,
       `每周约 ${weekly}h`
     ].map(label => `<span>${label}</span>`).join('');
+    syncAllSelects();
   }
   function selectDay(day, focus = false) {
     selected = day; month = parse(day); month.setDate(1);
@@ -186,7 +259,7 @@ button:active,.button:active{transform:translateY(1px);box-shadow:none}
     if (!rows.length) content += '<p>这一天还没有任务。可以休息、复盘，或把未完成任务调整到这里。</p>';
     for (const row of rows) {
       const task = detail(row.id);
-      content += `<article class="task ${row.done?'done':''}"><p class="module">${escape(task.module)} · ${task.hour}/${task.moduleHours}h</p><div class="task-head"><input type="checkbox" id="done-${row.id}" data-done="${row.id}" ${row.done?'checked':''}><label for="done-${row.id}">${escape(task.title)} · 1h</label></div><p>${escape(task.outcome)}</p><p>建议：阅读 / 梳理 20 分钟 + 编码 30 分钟 + 复盘 10 分钟。</p><a href="PythonAI-学习资料库.html#${task.anchor}" target="_blank" rel="noopener">${task.outline?'课程大纲 ↗ · 待补充资料':'打开学习文档 ↗'}</a>${row.done?'':`<div class="reschedule"><label for="date-${row.id}">调整至</label><input type="date" id="date-${row.id}" min="${settings.start}" max="2099-12-31" value="${row.date}"><button data-move="${row.id}">改期</button><button data-free="${row.id}">顺延至空闲日</button></div>`}</article>`;
+      content += `<article class="task ${row.done?'done':''}"><p class="module">${escape(task.module)} · ${task.hour}/${task.moduleHours}h</p><div class="task-head"><input type="checkbox" id="done-${row.id}" data-done="${row.id}" ${row.done?'checked':''}><label for="done-${row.id}">${escape(task.title)} · 1h</label></div><p>${escape(task.outcome)}</p><p>建议：阅读 / 梳理 20 分钟 + 编码 30 分钟 + 复盘 10 分钟。</p><a href="PythonAI-学习资料库.html#${task.anchor}" target="_blank" rel="noopener">${task.outline?'课程大纲 ↗ · 待补充资料':'打开学习文档 ↗'}</a>${row.done?'':`<div class="reschedule"><label for="date-${row.id}">调整至</label><div class="date-field"><input type="date" id="date-${row.id}" min="${settings.start}" max="2099-12-31" value="${row.date}"><button type="button" class="date-trigger" data-calendar-for="date-${row.id}" aria-label="打开日历选择新日期" aria-haspopup="dialog" aria-controls="sp-calendar" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="2.2" y="3.2" width="11.6" height="10.6" rx="2"></rect><path d="M2.2 6.4h11.6M5.4 1.8v2.8M10.6 1.8v2.8"></path></svg></button></div><button data-move="${row.id}">改期</button><button data-free="${row.id}">顺延至空闲日</button></div>`}</article>`;
     }
     $('tasks').innerHTML = content;
   }
@@ -197,6 +270,306 @@ button:active,.button:active{transform:translateY(1px);box-shadow:none}
     task.date = date; persist(); selectDay(date);
     $('notice').textContent += ` 任务已调整至 ${date}。`;
   }
+  const within = (target, selector) => target instanceof Element ? target.closest(selector) : null;
+  const boundsOf = input => ({ min: input.min || '0000-01-01', max: input.max || '9999-12-31' });
+  const monthKey = date => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}`;
+  const shiftMonthDay = (day, delta) => {
+    const source = parse(day);
+    const target = new Date(source.getFullYear(), source.getMonth() + delta, 1, 12);
+    const last = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+    target.setDate(Math.min(source.getDate(), last));
+    return iso(target);
+  };
+
+  const selectMenu = document.createElement('div');
+  selectMenu.className = 'sp-select-menu';
+  selectMenu.id = 'sp-select-menu';
+  selectMenu.setAttribute('role', 'listbox');
+  selectMenu.setAttribute('aria-label', '选择每日学习时长');
+  selectMenu.hidden = true;
+  document.body.appendChild(selectMenu);
+
+  const calendar = document.createElement('div');
+  calendar.className = 'sp-calendar';
+  calendar.id = 'sp-calendar';
+  calendar.setAttribute('role', 'dialog');
+  calendar.setAttribute('aria-label', '选择日期');
+  calendar.hidden = true;
+  calendar.innerHTML = `<div class="sp-cal-head"><button type="button" class="sp-cal-nav" data-cal-nav="-1" aria-label="上个月"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.8 3.4 5.2 8l4.6 4.6"></path></svg></button><strong class="sp-cal-title"></strong><button type="button" class="sp-cal-nav" data-cal-nav="1" aria-label="下个月"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.2 3.4 10.8 8l-4.6 4.6"></path></svg></button></div><div class="sp-cal-week" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="sp-cal-grid" role="grid"></div><div class="sp-cal-foot"><button type="button" class="sp-cal-today">今天</button><button type="button" class="sp-cal-close">关闭</button></div>`;
+  document.body.appendChild(calendar);
+
+  let activeSelect = null;
+  let activeCalendar = null;
+  let placementFrame = 0;
+
+  function syncSelectTrigger(select) {
+    const trigger = document.querySelector(`.select-trigger[data-select-for="${select.id}"]`);
+    if (!trigger) return;
+    const option = select.options[select.selectedIndex];
+    trigger.querySelector('.select-value').textContent = option ? option.textContent : '';
+  }
+  function syncAllSelects() {
+    for (const id of ['set-weekday','set-weekend']) syncSelectTrigger($(id));
+  }
+  function renderSelectMenu() {
+    if (!activeSelect) return;
+    const { select, index } = activeSelect;
+    selectMenu.innerHTML = [...select.options].map((option, i) => `<div class="sp-select-option${i === index ? ' active' : ''}" id="sp-select-option-${i}" role="option" data-index="${i}" aria-selected="${i === select.selectedIndex}">${escape(option.textContent)}<span class="sp-check" aria-hidden="true">✓</span></div>`).join('');
+  }
+  function setActiveOption(index, scroll = true) {
+    if (!activeSelect) return;
+    const options = [...selectMenu.querySelectorAll('.sp-select-option')];
+    if (!options.length) return;
+    activeSelect.index = Math.min(Math.max(index, 0), options.length - 1);
+    options.forEach((option, i) => option.classList.toggle('active', i === activeSelect.index));
+    const active = options[activeSelect.index];
+    activeSelect.trigger.setAttribute('aria-activedescendant', active.id);
+    if (scroll) active.scrollIntoView({ block: 'nearest' });
+  }
+  function openSelect(trigger) {
+    const select = $(trigger.dataset.selectFor);
+    if (!select) return;
+    closeCalendar();
+    closeSelect();
+    const selectedIndex = Math.max(0, select.selectedIndex);
+    activeSelect = { trigger, select, index: selectedIndex };
+    trigger.setAttribute('aria-expanded', 'true');
+    const width = Math.min(Math.max(132, Math.round(trigger.getBoundingClientRect().width)), window.innerWidth - 16);
+    selectMenu.style.width = `${width}px`;
+    renderSelectMenu();
+    placePopover(selectMenu, trigger);
+    setActiveOption(selectedIndex);
+  }
+  function chooseSelectOption(index) {
+    if (!activeSelect) return;
+    const { select, trigger } = activeSelect;
+    if (select.selectedIndex !== index) {
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    syncSelectTrigger(select);
+    closeSelect();
+    trigger.focus({ preventScroll: true });
+  }
+  function closeSelect(returnFocus = false) {
+    if (!activeSelect) return;
+    const { trigger } = activeSelect;
+    activeSelect = null;
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.removeAttribute('aria-activedescendant');
+    selectMenu.hidden = true;
+    selectMenu.innerHTML = '';
+    if (returnFocus) trigger.focus({ preventScroll: true });
+  }
+
+  function renderCalendar(focus = false) {
+    if (!activeCalendar) return;
+    const { input, year, month } = activeCalendar;
+    const { min, max } = boundsOf(input);
+    const selected = isISODate(input.value) ? input.value : '';
+    const currentToday = today();
+    const first = new Date(year, month, 1, 12);
+    const offset = (first.getDay() + 6) % 7;
+    const gridStart = new Date(year, month, 1 - offset, 12);
+    calendar.querySelector('.sp-cal-title').textContent = `${year} 年 ${month + 1} 月`;
+    calendar.querySelector('[data-cal-nav="-1"]').disabled = monthKey(new Date(year, month - 1, 1, 12)) < min.slice(0, 7);
+    calendar.querySelector('[data-cal-nav="1"]').disabled = monthKey(new Date(year, month + 1, 1, 12)) > max.slice(0, 7);
+    let html = '';
+    for (let i = 0; i < 42; i++) {
+      const date = new Date(gridStart);
+      date.setDate(gridStart.getDate() + i);
+      const day = iso(date);
+      const disabled = day < min || day > max;
+      const classes = ['sp-cal-day', date.getMonth() !== month ? 'out' : '', day === selected ? 'selected' : '', day === currentToday ? 'today' : ''].filter(Boolean).join(' ');
+      html += `<button type="button" class="${classes}" data-cal-day="${day}" tabindex="-1" ${disabled ? 'disabled' : ''} ${day === selected ? 'aria-selected="true"' : ''} ${day === currentToday ? 'aria-current="date"' : ''} aria-label="${day}${disabled ? '，不可选' : ''}">${date.getDate()}</button>`;
+    }
+    calendar.querySelector('.sp-cal-grid').innerHTML = html;
+    calendar.querySelector('.sp-cal-today').disabled = currentToday < min || currentToday > max;
+    if (focus) {
+      const state = activeCalendar;
+      requestAnimationFrame(() => {
+        if (activeCalendar !== state) return;
+        const target = calendar.querySelector(`[data-cal-day="${state.focus}"]:not(:disabled)`) || calendar.querySelector('.sp-cal-day:not(:disabled)');
+        target?.focus({ preventScroll: true });
+      });
+    }
+  }
+  function openCalendar(input, anchor) {
+    closeSelect();
+    closeCalendar();
+    const { min, max } = boundsOf(input);
+    let base = isISODate(input.value) ? input.value : today();
+    if (base < min) base = min;
+    if (base > max) base = max;
+    const date = parse(base);
+    activeCalendar = { input, anchor, position: input.closest('.date-field') || anchor, year: date.getFullYear(), month: date.getMonth(), focus: base };
+    anchor.setAttribute('aria-expanded', 'true');
+    renderCalendar(true);
+    placePopover(calendar, activeCalendar.position);
+    calendar.scrollTop = 0;
+  }
+  function chooseCalendarDay(day) {
+    if (!activeCalendar) return;
+    const input = activeCalendar.input;
+    input.value = day;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    closeCalendar();
+    input.focus({ preventScroll: true });
+  }
+  function focusCalendarDay(day) {
+    if (!activeCalendar) return;
+    const { min, max } = boundsOf(activeCalendar.input);
+    let next = day;
+    if (next < min) next = min;
+    if (next > max) next = max;
+    const date = parse(next);
+    activeCalendar.year = date.getFullYear();
+    activeCalendar.month = date.getMonth();
+    activeCalendar.focus = next;
+    renderCalendar(true);
+  }
+  function closeCalendar(returnFocus = false) {
+    if (!activeCalendar) return;
+    const { anchor } = activeCalendar;
+    activeCalendar = null;
+    calendar.hidden = true;
+    anchor.setAttribute('aria-expanded', 'false');
+    if (returnFocus) anchor.focus({ preventScroll: true });
+  }
+  function placePopover(popover, anchor) {
+    popover.hidden = false;
+    const gap = 6, margin = 8;
+    const rect = anchor.getBoundingClientRect();
+    const box = popover.getBoundingClientRect();
+    let left = Math.min(Math.max(margin, rect.left), Math.max(margin, window.innerWidth - box.width - margin));
+    let top = rect.bottom + gap;
+    if (top + box.height > window.innerHeight - margin) {
+      const above = rect.top - gap - box.height;
+      top = above >= margin ? above : Math.max(margin, window.innerHeight - box.height - margin);
+    }
+    popover.style.left = `${Math.round(left)}px`;
+    popover.style.top = `${Math.round(top)}px`;
+  }
+  function repositionPopovers() {
+    placementFrame = 0;
+    if (activeSelect) {
+      const width = Math.min(Math.max(132, Math.round(activeSelect.trigger.getBoundingClientRect().width)), window.innerWidth - 16);
+      selectMenu.style.width = `${width}px`;
+      placePopover(selectMenu, activeSelect.trigger);
+    }
+    if (activeCalendar) placePopover(calendar, activeCalendar.position);
+  }
+  const queuePlacement = () => {
+    if ((activeSelect || activeCalendar) && !placementFrame) placementFrame = requestAnimationFrame(repositionPopovers);
+  };
+  window.addEventListener('scroll', queuePlacement, true);
+  window.addEventListener('resize', queuePlacement);
+
+  selectMenu.addEventListener('pointerover', event => {
+    const option = within(event.target, '.sp-select-option');
+    if (option && activeSelect) setActiveOption(Number(option.dataset.index), false);
+  });
+  calendar.addEventListener('click', event => {
+    if (!activeCalendar) return;
+    const nav = within(event.target, '[data-cal-nav]');
+    if (nav) {
+      focusCalendarDay(shiftMonthDay(activeCalendar.focus, Number(nav.dataset.calNav)));
+      return;
+    }
+    if (within(event.target, '.sp-cal-today')) {
+      const current = today();
+      const { min, max } = boundsOf(activeCalendar.input);
+      if (current >= min && current <= max) chooseCalendarDay(current);
+      return;
+    }
+    if (within(event.target, '.sp-cal-close')) { closeCalendar(true); return; }
+    const day = within(event.target, '[data-cal-day]');
+    if (day && !day.disabled) chooseCalendarDay(day.dataset.calDay);
+  });
+  calendar.addEventListener('keydown', event => {
+    if (!activeCalendar) return;
+    const button = within(event.target, '[data-cal-day]');
+    if (!button) return;
+    const current = button.dataset.calDay;
+    let next = null;
+    switch (event.key) {
+      case 'ArrowLeft': next = advance(current, -1); break;
+      case 'ArrowRight': next = advance(current, 1); break;
+      case 'ArrowUp': next = advance(current, -7); break;
+      case 'ArrowDown': next = advance(current, 7); break;
+      case 'Home': next = advance(current, -((parse(current).getDay() + 6) % 7)); break;
+      case 'End': next = advance(current, 6 - ((parse(current).getDay() + 6) % 7)); break;
+      case 'PageUp': next = shiftMonthDay(current, -1); break;
+      case 'PageDown': next = shiftMonthDay(current, 1); break;
+      default: return;
+    }
+    event.preventDefault();
+    focusCalendarDay(next);
+  });
+
+  document.addEventListener('click', event => {
+    const selectTrigger = within(event.target, '.select-trigger');
+    if (selectTrigger) {
+      if (activeSelect && activeSelect.trigger === selectTrigger) closeSelect(true);
+      else openSelect(selectTrigger);
+      return;
+    }
+    const dateTrigger = within(event.target, '[data-calendar-for]');
+    if (dateTrigger) {
+      const input = $(dateTrigger.dataset.calendarFor);
+      if (!input) return;
+      if (activeCalendar && activeCalendar.input === input) closeCalendar(true);
+      else openCalendar(input, dateTrigger);
+      return;
+    }
+    const option = within(event.target, '.sp-select-option');
+    if (option && activeSelect) chooseSelectOption(Number(option.dataset.index));
+  });
+  document.addEventListener('pointerdown', event => {
+    if (activeSelect && !within(event.target, '.sp-select-menu') && !within(event.target, '.select-trigger')) closeSelect();
+    if (activeCalendar && !within(event.target, '.sp-calendar') && !within(event.target, '[data-calendar-for]')) closeCalendar();
+  }, true);
+  document.addEventListener('focusin', event => {
+    if (activeSelect && !within(event.target, '.sp-select-menu') && event.target !== activeSelect.trigger) closeSelect();
+    if (activeCalendar && !within(event.target, '.sp-calendar') && event.target !== activeCalendar.input && event.target !== activeCalendar.anchor) closeCalendar();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (activeSelect) { event.preventDefault(); closeSelect(true); return; }
+      if (activeCalendar) { event.preventDefault(); closeCalendar(true); return; }
+    }
+    if ((event.altKey && event.key === 'ArrowDown') || event.key === 'F4') {
+      const input = within(event.target, 'input[type="date"]');
+      if (input) {
+        event.preventDefault();
+        const trigger = document.querySelector(`[data-calendar-for="${input.id}"]`);
+        if (trigger) openCalendar(input, trigger);
+        return;
+      }
+    }
+    const trigger = within(event.target, '.select-trigger');
+    if (!trigger) return;
+    const select = $(trigger.dataset.selectFor);
+    if (!select) return;
+    if (!activeSelect || activeSelect.trigger !== trigger) {
+      if (['ArrowDown','ArrowUp','Enter',' '].includes(event.key)) {
+        event.preventDefault();
+        openSelect(trigger);
+        if (event.key === 'ArrowUp') setActiveOption(select.options.length - 1);
+      }
+      return;
+    }
+    switch (event.key) {
+      case 'ArrowDown': event.preventDefault(); setActiveOption(activeSelect.index + 1); break;
+      case 'ArrowUp': event.preventDefault(); setActiveOption(activeSelect.index - 1); break;
+      case 'Home': event.preventDefault(); setActiveOption(0); break;
+      case 'End': event.preventDefault(); setActiveOption(select.options.length - 1); break;
+      case 'Enter':
+      case ' ': event.preventDefault(); chooseSelectOption(activeSelect.index); break;
+      case 'Tab': closeSelect(); break;
+    }
+  });
   for (const id of ['set-weekday','set-weekend']) {
     const select = $(id);
     for (let hours = 0; hours <= 10; hours++) {
