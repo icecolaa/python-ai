@@ -19,6 +19,8 @@ python scripts/study_plan.py
 
 手机离线静态版：运行 `python scripts/export_mobile_html.py`，生成 `outputs/PythonAI-手机静态版.zip`。传到手机并完整解压，保留三份 HTML 在同一目录，使用支持 JavaScript 的浏览器打开 `index.html`，即可阅读资料和使用日历。无需安装或联网加载页面；进度保存在当前浏览器，可导出备份。在线资料链接需要联网。输出目录不纳入 Git，可随时重新生成。
 
+新增 Markdown、修正图片路径或批量替换品牌词，请按 [内容维护手册](./docs/内容维护手册.md) 操作；改完源文件后必须重新构建，不要直接编辑生成的 HTML。
+
 ## 目录结构
 
 ```

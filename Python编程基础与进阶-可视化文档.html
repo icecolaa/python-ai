@@ -243,8 +243,8 @@ fruits = [<span class="t-string">&quot;苹果&quot;</span>, <span class="t-strin
     <span class="t-kw">return</span> a + b
 
 content = <span class="t-string">&#x27;&#x27;&#x27;
-零基础 学AI 找白泽 不踩坑
-白泽是专业的IT团队
+零基础 学AI 找冰可乐 不踩坑
+冰可乐是专业的IT团队
 欢迎大家的到来
 &#x27;&#x27;&#x27;</span>
 <span class="t-kw">print</span>(content)</code></pre></div><hr><h3 id="sec-9" class="hd"><a class="anchor" href="#sec-9">#</a>2. 变量与标识符——给数据贴标签</h3><h4 id="sec-10" class="hd"><a class="anchor" href="#sec-10">#</a>2.1 变量：动态、三要素、无需声明</h4><p>Python 变量是动态类型的：<strong>赋值时就决定了类型，且之后可以改变类型</strong>。\ 每个变量包含三个要素：</p><ul><li><p><strong>id</strong>：内存地址（唯一标识）</p></li></ul><ul><li><p><strong>type</strong>：数据类型</p></li></ul><ul><li><p><strong>value</strong>：具体值</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-11">复制</button></div><pre><code id="code-11">x = <span class="t-num">10</span>
@@ -295,7 +295,7 @@ b = int(input(<span class="t-string">&quot;请输入第二个整数: &quot;</spa
 c = a + b
 <span class="t-kw">print</span>(f<span class="t-string">&quot;{a} + {b} = {c}&quot;</span>)         <span class="t-comment"># 10 + 20 = 30</span></code></pre></div><h4 id="sec-23" class="hd"><a class="anchor" href="#sec-23">#</a>3.4 转义字符速查</h4><ul><li><p><code class="ic">\n</code> 换行</p></li></ul><ul><li><p><code class="ic">\t</code> 制表符（Tab）</p></li></ul><ul><li><p><code class="ic">\\</code> 反斜杠本身</p></li></ul><ul><li><p><code class="ic">\&quot;</code> 双引号</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-24">复制</button></div><pre><code id="code-24"><span class="t-kw">print</span>(<span class="t-string">&quot;第一行\n第二行&quot;</span>)            <span class="t-comment"># 两行输出</span>
 <span class="t-kw">print</span>(<span class="t-string">&quot;姓名\t年龄\t城市&quot;</span>)          <span class="t-comment"># 各列对齐</span>
-<span class="t-kw">print</span>(<span class="t-string">&quot;0基础 学AI 找\&quot;白泽\&quot; 不踩坑&quot;</span>)   <span class="t-comment"># 转义双引号</span></code></pre></div><hr><h3 id="sec-25" class="hd"><a class="anchor" href="#sec-25">#</a>4. 运算符——赋予程序计算能力</h3><h4 id="sec-26" class="hd"><a class="anchor" href="#sec-26">#</a>4.1 算术运算符</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-27">复制</button></div><pre><code id="code-27"><span class="t-kw">print</span>(<span class="t-num">10</span> + <span class="t-num">3</span>)    <span class="t-comment"># 13</span>
+<span class="t-kw">print</span>(<span class="t-string">&quot;0基础 学AI 找\&quot;冰可乐\&quot; 不踩坑&quot;</span>)   <span class="t-comment"># 转义双引号</span></code></pre></div><hr><h3 id="sec-25" class="hd"><a class="anchor" href="#sec-25">#</a>4. 运算符——赋予程序计算能力</h3><h4 id="sec-26" class="hd"><a class="anchor" href="#sec-26">#</a>4.1 算术运算符</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-27">复制</button></div><pre><code id="code-27"><span class="t-kw">print</span>(<span class="t-num">10</span> + <span class="t-num">3</span>)    <span class="t-comment"># 13</span>
 <span class="t-kw">print</span>(<span class="t-num">10</span> - <span class="t-num">3</span>)    <span class="t-comment"># 7</span>
 <span class="t-kw">print</span>(<span class="t-num">10</span> * <span class="t-num">3</span>)    <span class="t-comment"># 30</span>
 <span class="t-kw">print</span>(<span class="t-num">10</span> / <span class="t-num">3</span>)    <span class="t-comment"># 3.333...  真除，结果为浮点数</span>
@@ -374,7 +374,7 @@ d = <span class="t-num">1000</span>
 <span class="t-kw">import</span> math
 <span class="t-kw">print</span>(math.isclose(<span class="t-num">0.1</span> + <span class="t-num">0.2</span>, <span class="t-num">0.3</span>))  <span class="t-comment"># True</span></code></pre></div><p><strong>特殊值</strong>：<code class="ic">float(&#x27;inf&#x27;)</code> 正无穷，<code class="ic">float(&#x27;-inf&#x27;)</code> 负无穷，<code class="ic">float(&#x27;nan&#x27;)</code> 非数。</p><h4 id="sec-7" class="hd"><a class="anchor" href="#sec-7">#</a>1.3 布尔值 bool：整数子类，短路运算</h4><ul><li><p><code class="ic">True</code> 等价于 <code class="ic">1</code>，<code class="ic">False</code> 等价于 <code class="ic">0</code>，可参与算术运算。</p></li></ul><ul><li><p>逻辑运算符 <code class="ic">and</code> / <code class="ic">or</code> 采用<strong>短路求值</strong>：</p></li><ul><li><p><code class="ic">x and y</code>：若 <code class="ic">x</code> 为假直接返回 <code class="ic">x</code>，否则返回 <code class="ic">y</code>。</p></li></ul><ul><li><p><code class="ic">x or y</code>：若 <code class="ic">x</code> 为真直接返回 <code class="ic">x</code>，否则返回 <code class="ic">y</code>。</p></li></ul></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-8">复制</button></div><pre><code id="code-8"><span class="t-kw">print</span>(<span class="t-kw">True</span> + <span class="t-num">1</span>)          <span class="t-comment"># 2</span>
 <span class="t-kw">print</span>(<span class="t-num">3</span> <span class="t-kw">and</span> <span class="t-num">0</span>)           <span class="t-comment"># 0（遇假则停）</span>
-<span class="t-kw">print</span>(<span class="t-num">0</span> <span class="t-kw">or</span> <span class="t-string">&#x27;hello&#x27;</span>)      <span class="t-comment"># &#x27;hello&#x27;（遇真则停）</span></code></pre></div><h4 id="sec-9" class="hd"><a class="anchor" href="#sec-9">#</a>1.4 类型转换与数学函数</h4><ul><li><p>显式转换：<code class="ic">int(x)</code>、<code class="ic">float(x)</code>、<code class="ic">complex(x)</code>。</p></li></ul><ul><li><p>隐式转换：混合运算时 <code class="ic">int -&gt; float -&gt; complex</code> 自动提升。</p></li></ul><p>常用数学函数（需 <code class="ic">import math</code>）：</p><div class="table-wrap"><table><thead><tr><th><p>函数</p></th><th><p>说明</p></th><th><p>示例</p></th></tr></thead><tbody><tr><td><p><code class="ic">abs(x)</code></p></td><td><p>绝对值</p></td><td><p><code class="ic">abs(-3)</code> → <code class="ic">3</code></p></td></tr><tr><td><p><code class="ic">math.ceil(x)</code></p></td><td><p>向上取整</p></td><td><p><code class="ic">ceil(4.1)</code> → <code class="ic">5</code></p></td></tr><tr><td><p><code class="ic">math.floor(x)</code></p></td><td><p>向下取整</p></td><td><p><code class="ic">floor(4.9)</code> → <code class="ic">4</code></p></td></tr><tr><td><p><code class="ic">round(x, n)</code></p></td><td><p>四舍五入到n位小数</p></td><td><p><code class="ic">round(3.1415, 2)</code> → <code class="ic">3.14</code></p></td></tr><tr><td><p><code class="ic">pow(x, y)</code></p></td><td><p>x 的 y 次方</p></td><td><p><code class="ic">pow(2, 3)</code> → <code class="ic">8</code></p></td></tr><tr><td><p><code class="ic">math.sqrt(x)</code></p></td><td><p>平方根</p></td><td><p><code class="ic">sqrt(16)</code> → <code class="ic">4.0</code></p></td></tr><tr><td><p><code class="ic">bin(x)</code> / <code class="ic">hex(x)</code> / <code class="ic">oct(x)</code></p></td><td><p>进制转换</p></td><td><p><code class="ic">bin(10)</code> → <code class="ic">&#x27;0b1010&#x27;</code></p></td></tr></tbody></table></div><hr><h3 id="sec-10" class="hd"><a class="anchor" href="#sec-10">#</a>2. 字符串 (String) —— 文本处理专家</h3><p>字符串是<strong>不可变</strong>的 Unicode 字符序列，支持索引、切片、丰富的内置方法。</p><h4 id="sec-11" class="hd"><a class="anchor" href="#sec-11">#</a>2.1 定义与基本操作</h4><ul><li><p>单引号 <code class="ic">&#x27;...&#x27;</code>、双引号 <code class="ic">&quot;...&quot;</code>、三引号 <code class="ic">&#x27;&#x27;&#x27;...&#x27;&#x27;&#x27;</code>（多行）。</p></li></ul><ul><li><p>索引从 0 开始，负数从末尾开始；<code class="ic">s[0]</code>，<code class="ic">s[-1]</code>。</p></li></ul><ul><li><p>切片 <code class="ic">[start:end:step]</code>，左闭右开，步长可正可负。</p></li></ul><figure class="fig"><img class="md-img" src="./images/31.jpg" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-12">复制</button></div><pre><code id="code-12">text = <span class="t-string">&quot;Python编程&quot;</span>
+<span class="t-kw">print</span>(<span class="t-num">0</span> <span class="t-kw">or</span> <span class="t-string">&#x27;hello&#x27;</span>)      <span class="t-comment"># &#x27;hello&#x27;（遇真则停）</span></code></pre></div><h4 id="sec-9" class="hd"><a class="anchor" href="#sec-9">#</a>1.4 类型转换与数学函数</h4><ul><li><p>显式转换：<code class="ic">int(x)</code>、<code class="ic">float(x)</code>、<code class="ic">complex(x)</code>。</p></li></ul><ul><li><p>隐式转换：混合运算时 <code class="ic">int -&gt; float -&gt; complex</code> 自动提升。</p></li></ul><p>常用数学函数（需 <code class="ic">import math</code>）：</p><div class="table-wrap"><table><thead><tr><th><p>函数</p></th><th><p>说明</p></th><th><p>示例</p></th></tr></thead><tbody><tr><td><p><code class="ic">abs(x)</code></p></td><td><p>绝对值</p></td><td><p><code class="ic">abs(-3)</code> → <code class="ic">3</code></p></td></tr><tr><td><p><code class="ic">math.ceil(x)</code></p></td><td><p>向上取整</p></td><td><p><code class="ic">ceil(4.1)</code> → <code class="ic">5</code></p></td></tr><tr><td><p><code class="ic">math.floor(x)</code></p></td><td><p>向下取整</p></td><td><p><code class="ic">floor(4.9)</code> → <code class="ic">4</code></p></td></tr><tr><td><p><code class="ic">round(x, n)</code></p></td><td><p>四舍五入到n位小数</p></td><td><p><code class="ic">round(3.1415, 2)</code> → <code class="ic">3.14</code></p></td></tr><tr><td><p><code class="ic">pow(x, y)</code></p></td><td><p>x 的 y 次方</p></td><td><p><code class="ic">pow(2, 3)</code> → <code class="ic">8</code></p></td></tr><tr><td><p><code class="ic">math.sqrt(x)</code></p></td><td><p>平方根</p></td><td><p><code class="ic">sqrt(16)</code> → <code class="ic">4.0</code></p></td></tr><tr><td><p><code class="ic">bin(x)</code> / <code class="ic">hex(x)</code> / <code class="ic">oct(x)</code></p></td><td><p>进制转换</p></td><td><p><code class="ic">bin(10)</code> → <code class="ic">&#x27;0b1010&#x27;</code></p></td></tr></tbody></table></div><hr><h3 id="sec-10" class="hd"><a class="anchor" href="#sec-10">#</a>2. 字符串 (String) —— 文本处理专家</h3><p>字符串是<strong>不可变</strong>的 Unicode 字符序列，支持索引、切片、丰富的内置方法。</p><h4 id="sec-11" class="hd"><a class="anchor" href="#sec-11">#</a>2.1 定义与基本操作</h4><ul><li><p>单引号 <code class="ic">&#x27;...&#x27;</code>、双引号 <code class="ic">&quot;...&quot;</code>、三引号 <code class="ic">&#x27;&#x27;&#x27;...&#x27;&#x27;&#x27;</code>（多行）。</p></li></ul><ul><li><p>索引从 0 开始，负数从末尾开始；<code class="ic">s[0]</code>，<code class="ic">s[-1]</code>。</p></li></ul><ul><li><p>切片 <code class="ic">[start:end:step]</code>，左闭右开，步长可正可负。</p></li></ul><figure class="fig"><img class="md-img" src="./第2阶段：大模型技术核心/1_python编程基础与进阶/code/images/31.jpg" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-12">复制</button></div><pre><code id="code-12">text = <span class="t-string">&quot;Python编程&quot;</span>
 <span class="t-kw">print</span>(text[<span class="t-num">0</span>])          <span class="t-comment"># P</span>
 <span class="t-kw">print</span>(text[-<span class="t-num">1</span>])         <span class="t-comment"># 程</span>
 <span class="t-kw">print</span>(text[::])         <span class="t-comment"># 省略所有参数，取整个字符串</span>
@@ -387,25 +387,25 @@ d = <span class="t-num">1000</span>
 <span class="t-comment"># 什么是回文字符串？正着读和倒着读一样的字符串。比如：aabaa  abcba就是</span>
 input_str = input(<span class="t-string">&quot;请输入一个字符串：&quot;</span>)
 <span class="t-kw">print</span>(f<span class="t-string">&quot;{input_str}是回文字符串吗？{input_str[::] == input_str[::-1]}&quot;</span>)</code></pre></div><h4 id="sec-13" class="hd"><a class="anchor" href="#sec-13">#</a>2.2 常用方法速查（务必掌握）</h4><div class="table-wrap"><table><thead><tr><th><p>方法</p></th><th><p>说明</p></th><th><p>示例</p></th></tr></thead><tbody><tr><td><p><code class="ic">len(s)</code></p></td><td><p>返回长度</p></td><td><p><code class="ic">len(&quot;ab&quot;)</code> → <code class="ic">2</code></p></td></tr><tr><td><p><code class="ic">s.find(sub)</code></p></td><td><p>查找子串索引，找不到返回 -1</p></td><td><p><code class="ic">&quot;hello&quot;.find(&quot;l&quot;)</code> → <code class="ic">2</code></p></td></tr><tr><td><p><code class="ic">s.index(sub)</code></p></td><td><p>查找子串索引，找不到报错</p></td><td><p><code class="ic">&quot;hello&quot;.index(&quot;e&quot;)</code> → <code class="ic">1</code></p></td></tr><tr><td><p><code class="ic">s.count(sub)</code></p></td><td><p>子串出现次数</p></td><td><p><code class="ic">&quot;ababa&quot;.count(&quot;a&quot;)</code> → <code class="ic">3</code></p></td></tr><tr><td><p><code class="ic">s.lower()</code> / <code class="ic">s.upper()</code></p></td><td><p>大小写转换</p></td><td></td></tr><tr><td><p><code class="ic">s.strip()</code></p></td><td><p>去除首尾空白</p></td><td><p><code class="ic">&quot; hi &quot;.strip()</code> → <code class="ic">&quot;hi&quot;</code></p></td></tr><tr><td><p><code class="ic">s.replace(old,new)</code></p></td><td><p>替换</p></td><td><p><code class="ic">&quot;ab&quot;.replace(&quot;a&quot;,&quot;b&quot;)</code> → <code class="ic">&quot;bb&quot;</code></p></td></tr><tr><td><p><code class="ic">s.split(sep)</code></p></td><td><p>按分隔符切分，返回列表</p></td><td><p><code class="ic">&quot;a,b&quot;.split(&quot;,&quot;)</code> → <code class="ic">[&#x27;a&#x27;,&#x27;b&#x27;]</code></p></td></tr><tr><td><p><code class="ic">sep.join(iterable)</code></p></td><td><p>用分隔符合并序列</p></td><td><p><code class="ic">&quot;,&quot;.join([&#x27;a&#x27;,&#x27;b&#x27;])</code> → <code class="ic">&quot;a,b&quot;</code></p></td></tr><tr><td><p><code class="ic">s.startswith(prefix)</code></p></td><td><p>是否以某前缀开头</p></td><td><p><code class="ic">&quot;hello&quot;.startswith(&quot;he&quot;)</code> → <code class="ic">True</code></p></td></tr><tr><td><p><code class="ic">s.isdigit()</code> / <code class="ic">s.isalpha()</code></p></td><td><p>是否全为数字/字母</p></td><td></td></tr><tr><td><p><code class="ic">f&quot;{变量:格式}&quot;</code></p></td><td><p><strong>f-string 格式化</strong> (推荐)</p></td><td><p><code class="ic">f&quot;{3.14:.1f}&quot;</code> → <code class="ic">&quot;3.1&quot;</code></p></td></tr></tbody></table></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">plain</span><button class="copy-btn" data-target="code-14">复制</button></div><pre><code id="code-14"></code></pre></div><p><strong>演示说明</strong></p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-15">复制</button></div><pre><code id="code-15"><span class="t-kw">print</span>(len(<span class="t-string">&quot;abcd&quot;</span>))
-<span class="t-kw">print</span>(<span class="t-string">&quot;学AI找baize&quot;</span>.find(<span class="t-string">&quot;baize&quot;</span>))
-<span class="t-comment"># print(&quot;学AI找baize&quot;.index(&quot;paize&quot;)) # ValueError: substring not found</span>
-<span class="t-kw">print</span>(<span class="t-string">&quot;学AI找baize&quot;</span>.replace(<span class="t-string">&quot;baize&quot;</span>, <span class="t-string">&quot;白泽&quot;</span>))
+<span class="t-kw">print</span>(<span class="t-string">&quot;学AI找icecola&quot;</span>.find(<span class="t-string">&quot;icecola&quot;</span>))
+<span class="t-comment"># print(&quot;学AI找icecola&quot;.index(&quot;icecolaa&quot;)) # ValueError: substring not found</span>
+<span class="t-kw">print</span>(<span class="t-string">&quot;学AI找icecola&quot;</span>.replace(<span class="t-string">&quot;icecola&quot;</span>, <span class="t-string">&quot;冰可乐&quot;</span>))
 <span class="t-kw">print</span>(<span class="t-string">&quot;aaaaaaaaabbbbb&quot;</span>.count(<span class="t-string">&quot;a&quot;</span>, <span class="t-num">2</span>, <span class="t-num">5</span>))
-<span class="t-kw">print</span>(<span class="t-string">&quot;学AI，找白泽，不踩坑&quot;</span>.split(<span class="t-string">&quot;，&quot;</span>, maxsplit=<span class="t-num">1</span>))
+<span class="t-kw">print</span>(<span class="t-string">&quot;学AI，找冰可乐，不踩坑&quot;</span>.split(<span class="t-string">&quot;，&quot;</span>, maxsplit=<span class="t-num">1</span>))
 <span class="t-kw">print</span>(<span class="t-string">&quot;_&quot;</span>.join(<span class="t-string">&quot;abcdef&quot;</span>))</code></pre></div><p><strong>应用</strong>：提取 URL 中的用户名和密码</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-16">复制</button></div><pre><code id="code-16">url = <span class="t-string">&quot;http://www.example.com?userName=admin&amp;pwd=123456&quot;</span>
 query = url.split(<span class="t-string">&quot;?&quot;</span>)[<span class="t-num">1</span>]          <span class="t-comment"># &quot;userName=admin&amp;pwd=123456&quot;</span>
 params = query.split(<span class="t-string">&quot;&amp;&quot;</span>)
 user = params[<span class="t-num">0</span>].split(<span class="t-string">&quot;=&quot;</span>)[<span class="t-num">1</span>]     <span class="t-comment"># &quot;admin&quot;</span>
 pwd  = params[<span class="t-num">1</span>].split(<span class="t-string">&quot;=&quot;</span>)[<span class="t-num">1</span>]     <span class="t-comment"># &quot;123456&quot;</span>
 <span class="t-kw">print</span>(f<span class="t-string">&quot;用户名: {user}, 密码: {pwd}&quot;</span>)
-<span class="t-comment"># 这里主要使用了分割方法，并且要注意以分隔符分割多个元素之后，可以使用索引进行对应取值</span></code></pre></div><h4 id="sec-17" class="hd"><a class="anchor" href="#sec-17">#</a>2.3 额外补充：字符串不可变与高效拼接</h4><ul><li><p>每次修改字符串实际上会创建新对象，循环中大量拼接请用 <code class="ic">str.join()</code> 或 <code class="ic">io.StringIO</code>，避免 <code class="ic">+</code> 操作带来的性能浪费。</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-18">复制</button></div><pre><code id="code-18">text = <span class="t-string">&quot;paizeAI&quot;</span>    <span class="t-comment"># 想将p修改为b</span>
-<span class="t-comment"># text[0] = &#x27;b&#x27;       # TypeError: &#x27;str&#x27; object does not support item assignment</span>
+<span class="t-comment"># 这里主要使用了分割方法，并且要注意以分隔符分割多个元素之后，可以使用索引进行对应取值</span></code></pre></div><h4 id="sec-17" class="hd"><a class="anchor" href="#sec-17">#</a>2.3 额外补充：字符串不可变与高效拼接</h4><ul><li><p>每次修改字符串实际上会创建新对象，循环中大量拼接请用 <code class="ic">str.join()</code> 或 <code class="ic">io.StringIO</code>，避免 <code class="ic">+</code> 操作带来的性能浪费。</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-18">复制</button></div><pre><code id="code-18">text = <span class="t-string">&quot;iceColaAI&quot;</span>    <span class="t-comment"># 想将 C 修改为 c</span>
+<span class="t-comment"># text[3] = &#x27;c&#x27;       # TypeError: &#x27;str&#x27; object does not support item assignment</span>
 <span class="t-comment"># print(text)</span>
 
-text.replace(<span class="t-string">&#x27;p&#x27;</span>, <span class="t-string">&#x27;b&#x27;</span>)
-<span class="t-kw">print</span>(text)     <span class="t-comment"># paizeAI</span>
-replaced_text = text.replace(<span class="t-string">&#x27;p&#x27;</span>, <span class="t-string">&#x27;b&#x27;</span>)
-<span class="t-kw">print</span>(replaced_text)    <span class="t-comment"># baizeAI</span>
+text.replace(<span class="t-string">&#x27;C&#x27;</span>, <span class="t-string">&#x27;c&#x27;</span>)
+<span class="t-kw">print</span>(text)     <span class="t-comment"># iceColaAI</span>
+replaced_text = text.replace(<span class="t-string">&#x27;C&#x27;</span>, <span class="t-string">&#x27;c&#x27;</span>)
+<span class="t-kw">print</span>(replaced_text)    <span class="t-comment"># icecolaAI</span>
 
 <span class="t-kw">print</span>(<span class="t-string">&#x27;a&#x27;</span> + <span class="t-string">&#x27;-&#x27;</span> + <span class="t-string">&#x27;b&#x27;</span> + <span class="t-string">&#x27;-&#x27;</span> + <span class="t-string">&#x27;c&#x27;</span>)
 <span class="t-kw">print</span>(<span class="t-string">&#x27;-&#x27;</span>.join(<span class="t-string">&quot;abc&quot;</span>))</code></pre></div><hr><h3 id="sec-19" class="hd"><a class="anchor" href="#sec-19">#</a>3. 列表 (List) —— 灵活的有序容器</h3><p>列表是<strong>可变</strong>、<strong>有序</strong>、可重复的集合，用方括号 <code class="ic">[]</code> 定义。它是日常开发中使用频率最高的数据结构。\ 注意：这里的有序核心指：元素的插入顺序会永久保留，且每个元素都有固定的位置（索引）。简单的说：你按什么顺序放进去，取出来就是什么顺序，不会乱序，不会自动排序。\ 列表名称 = \[元素1, 元素2, 元素3.....\]</p><p>和C语言数组不一样的是：列表可以异构，也就是存储不同数据类型的元素。</p><h4 id="sec-20" class="hd"><a class="anchor" href="#sec-20">#</a>3.1 增删改查基本功</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-21">复制</button></div><pre><code id="code-21">fruits = [<span class="t-string">&#x27;apple&#x27;</span>, <span class="t-string">&#x27;banana&#x27;</span>]
@@ -450,12 +450,12 @@ nums = [<span class="t-num">3</span>, <span class="t-num">1</span>, <span class=
 new_nums = sorted(nums, reverse=<span class="t-kw">True</span>)
 <span class="t-kw">print</span>(nums) <span class="t-comment"># [3, 1, 4, 1, 5]</span>
 <span class="t-kw">print</span>(new_nums)</code></pre></div><p><strong>按自定义规则排序</strong>（如按字符串长度）：</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-24">复制</button></div><pre><code id="code-24">words = [<span class="t-string">&quot;apple&quot;</span>, <span class="t-string">&quot;banana&quot;</span>, <span class="t-string">&quot;kiwi&quot;</span>]
-words.sort(key=len)           <span class="t-comment"># [&#x27;kiwi&#x27;, &#x27;apple&#x27;, &#x27;banana&#x27;]</span></code></pre></div><h4 id="sec-25" class="hd"><a class="anchor" href="#sec-25">#</a>3.3 切片与复制</h4><ul><li><p>切片生成新列表：<code class="ic">new_list = old_list[:]</code> 实现<strong>浅拷贝</strong>。</p></li></ul><ul><li><p>直接赋值只是引用传递（理解引用就是原文件的快捷方式），两个变量指向同一对象。</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-26">复制</button></div><pre><code id="code-26">ls1 = [<span class="t-string">&quot;baize&quot;</span>, [<span class="t-string">&quot;AI&quot;</span>, <span class="t-string">&quot;python&quot;</span>], <span class="t-string">&quot;LLM&quot;</span>]
+words.sort(key=len)           <span class="t-comment"># [&#x27;kiwi&#x27;, &#x27;apple&#x27;, &#x27;banana&#x27;]</span></code></pre></div><h4 id="sec-25" class="hd"><a class="anchor" href="#sec-25">#</a>3.3 切片与复制</h4><ul><li><p>切片生成新列表：<code class="ic">new_list = old_list[:]</code> 实现<strong>浅拷贝</strong>。</p></li></ul><ul><li><p>直接赋值只是引用传递（理解引用就是原文件的快捷方式），两个变量指向同一对象。</p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-26">复制</button></div><pre><code id="code-26">ls1 = [<span class="t-string">&quot;icecola&quot;</span>, [<span class="t-string">&quot;AI&quot;</span>, <span class="t-string">&quot;python&quot;</span>], <span class="t-string">&quot;LLM&quot;</span>]
 <span class="t-comment"># 直接赋值</span>
 ls2 = ls1
 <span class="t-kw">print</span>(ls1, <span class="t-string">&quot;VS&quot;</span>, ls2)
 <span class="t-comment"># 分别修改两个的值，再对比</span>
-ls1[<span class="t-num">0</span>] = <span class="t-string">&quot;BAIZE&quot;</span>
+ls1[<span class="t-num">0</span>] = <span class="t-string">&quot;ICECOLA&quot;</span>
 ls2[-<span class="t-num">1</span>] = <span class="t-string">&quot;Qwen&quot;</span>
 <span class="t-kw">print</span>(ls1, <span class="t-string">&quot;VS&quot;</span>, ls2)
 <span class="t-kw">print</span>(ls1 <span class="t-kw">is</span> ls2)
@@ -474,7 +474,7 @@ deep = copy.deepcopy(original)    <span class="t-comment"># 深拷贝</span>
 original[<span class="t-num">2</span>][<span class="t-num">0</span>] = <span class="t-string">&#x27;X&#x27;</span>
 <span class="t-kw">print</span>(shallow)   <span class="t-comment"># [1, 2, [&#x27;X&#x27;, 4]]  内部列表被影响</span>
 <span class="t-kw">print</span>(deep)      <span class="t-comment"># [1, 2, [3, 4]]    完全独立</span>
-original[<span class="t-num">0</span>] = <span class="t-string">&#x27;baize&#x27;</span>
+original[<span class="t-num">0</span>] = <span class="t-string">&#x27;icecola&#x27;</span>
 <span class="t-kw">print</span>(shallow) 
 <span class="t-kw">print</span>(deep)</code></pre></div><h4 id="sec-29" class="hd"><a class="anchor" href="#sec-29">#</a>3.5 嵌套列表与多维数据处理</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-30">复制</button></div><pre><code id="code-30">menu = [[<span class="t-string">&#x27;红烧牛肉面&#x27;</span>, <span class="t-num">18</span>], [<span class="t-string">&#x27;香辣牛肉面&#x27;</span>, <span class="t-num">20</span>], [<span class="t-string">&#x27;重庆小面&#x27;</span>, <span class="t-num">15</span>]]
 <span class="t-kw">print</span>(menu[<span class="t-num">0</span>])
@@ -527,7 +527,7 @@ techs = {<span class="t-string">&#x27;曹操&#x27;</span>, <span class="t-string
 <span class="t-kw">print</span>(<span class="t-string">&quot;1. 既是经理也是技术员:&quot;</span>, managers &amp; techs)
 <span class="t-kw">print</span>(<span class="t-string">&quot;2. 是技术员但不是经理:&quot;</span>, techs - managers)
 <span class="t-kw">print</span>(<span class="t-string">&quot;3. 张飞是经理吗?&quot;</span>, <span class="t-string">&#x27;张飞&#x27;</span> <span class="t-kw">in</span> managers)
-<span class="t-kw">print</span>(<span class="t-string">&quot;4. 身兼一职的人:&quot;</span>, managers ^ techs)   <span class="t-comment"># 异或集</span></code></pre></div><hr><h3 id="sec-45" class="hd"><a class="anchor" href="#sec-45">#</a>6. 字典 (Dict) —— 键值对映射</h3><p>字典是 Python 中最强大的数据结构之一，用于存储键值对（<code class="ic">key: value</code>）。键必须<strong>不可变</strong>且唯一，值可以是任意对象。</p><figure class="fig"><img class="md-img" src="./images/32.png" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><h4 id="sec-46" class="hd"><a class="anchor" href="#sec-46">#</a>6.1 创建与基本操作</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-47">复制</button></div><pre><code id="code-47">s, l, t, d = <span class="t-string">&quot;&quot;</span>, [], (), {}
+<span class="t-kw">print</span>(<span class="t-string">&quot;4. 身兼一职的人:&quot;</span>, managers ^ techs)   <span class="t-comment"># 异或集</span></code></pre></div><hr><h3 id="sec-45" class="hd"><a class="anchor" href="#sec-45">#</a>6. 字典 (Dict) —— 键值对映射</h3><p>字典是 Python 中最强大的数据结构之一，用于存储键值对（<code class="ic">key: value</code>）。键必须<strong>不可变</strong>且唯一，值可以是任意对象。</p><figure class="fig"><img class="md-img" src="./第2阶段：大模型技术核心/1_python编程基础与进阶/code/images/32.png" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><h4 id="sec-46" class="hd"><a class="anchor" href="#sec-46">#</a>6.1 创建与基本操作</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-47">复制</button></div><pre><code id="code-47">s, l, t, d = <span class="t-string">&quot;&quot;</span>, [], (), {}
 <span class="t-kw">print</span>(type(s), type(l), type(t), type(d))
 
 student = {
@@ -547,12 +547,12 @@ student[<span class="t-string">&#x27;age&#x27;</span>] = <span class="t-num">21<
 <span class="t-comment"># 删除</span>
 age = student.pop(<span class="t-string">&#x27;age&#x27;</span>)       <span class="t-comment"># 删除并返回值</span>
 <span class="t-kw">print</span>(student)
-<span class="t-comment"># student.pop(&quot;baize&quot;)    # KeyError: &#x27;baize&#x27;</span>
-del_content = student.pop(<span class="t-string">&quot;baize&quot;</span>, <span class="t-string">&quot;没找到你想删除的key&quot;</span>)
+<span class="t-comment"># student.pop(&quot;icecola&quot;)    # KeyError: &#x27;icecola&#x27;</span>
+del_content = student.pop(<span class="t-string">&quot;icecola&quot;</span>, <span class="t-string">&quot;没找到你想删除的key&quot;</span>)
 <span class="t-kw">print</span>(del_content)
 student.clear()                <span class="t-comment"># 清空</span>
 <span class="t-kw">print</span>(student)</code></pre></div><h4 id="sec-48" class="hd"><a class="anchor" href="#sec-48">#</a>6.2 安全访问</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-49">复制</button></div><pre><code id="code-49">student = {
-    <span class="t-string">&quot;name&quot;</span>: <span class="t-string">&quot;白泽&quot;</span>,
+    <span class="t-string">&quot;name&quot;</span>: <span class="t-string">&quot;冰可乐&quot;</span>,
     <span class="t-string">&quot;age&quot;</span>: <span class="t-num">20</span>
 }
 <span class="t-comment"># 直接访问可能引发 KeyError</span>
@@ -580,7 +580,7 @@ input_str = input(<span class="t-string">&quot;请输入一个字符串：&quot;
 
 student = collections.defaultdict(<span class="t-kw">lambda</span>: <span class="t-kw">None</span>)
 student[<span class="t-string">&quot;age&quot;</span>] = <span class="t-num">20</span>
-student[<span class="t-string">&quot;name&quot;</span>] = <span class="t-string">&quot;白泽&quot;</span>
+student[<span class="t-string">&quot;name&quot;</span>] = <span class="t-string">&quot;冰可乐&quot;</span>
 <span class="t-kw">print</span>(student)
 <span class="t-kw">print</span>(student[<span class="t-string">&quot;sex&quot;</span>])</code></pre></div></section><section class="doc" id="ch4"><div class="doc-head"><span class="doc-badge">Chapter 04</span><h1 class="doc-title">第4章：控制流与循环结构</h1><a class="doc-src" href="https://www.workbuddy.cn/space/d/ABgdlQNKQSJUfAkOsQj3A5" target="_blank" rel="noopener">在资料库中打开原文 ↗</a></div><h2 id="sec-1" class="hd"><a class="anchor" href="#sec-1">#</a>流程控制——赋予程序“决策”与“循环”能力</h2><p><strong>驱动问题</strong>：在前面的先导课中我们在实现与LLM的单论对话之后，还想进行多轮对话，怎么处理的？在前面我们判断水仙花数的时候，如果输入的不是三位数怎么办？我们要开发一个“交互式猜数字游戏”和“用户认证系统”。游戏需要根据玩家输入做出不同判断（大了、小了、猜对了），并限制猜测次数；认证系统需要反复验证身份，直到成功或锁定。要实现这些逻辑，必须掌握 Python 的三大流程控制利器：<strong>分支结构</strong>（决策）、<strong>循环结构</strong>（重复）和<strong>推导式</strong>（高效数据处理）。本节将它们串联，让你写出真正“会思考”的程序。</p><hr><h3 id="sec-2" class="hd"><a class="anchor" href="#sec-2">#</a>1. 分支结构 —— 让程序学会做判断</h3><h4 id="sec-3" class="hd"><a class="anchor" href="#sec-3">#</a>1.1 if-elif-else 语句</h4><p><strong>语法规范</strong>：</p><ul><li><p>每个 <code class="ic">if</code>、<code class="ic">elif</code>、<code class="ic">else</code> 后必须跟冒号 <code class="ic">:</code></p></li></ul><ul><li><p>执行体需缩进（建议 4 个空格）</p></li></ul><ul><li><p>自上而下匹配，一旦满足条件就执行对应代码块，然后<strong>跳出整个分支结构</strong></p></li></ul><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-4">复制</button></div><pre><code id="code-4"><span class="t-comment"># 基础语法演示</span>
 age = int(input(<span class="t-string">&quot;请输入年龄: &quot;</span>))
@@ -802,7 +802,7 @@ messages = [{<span class="t-string">&quot;role&quot;</span>:<span class="t-strin
     <span class="t-kw">print</span>(f<span class="t-string">&quot;AI助手：{ai_reply}&quot;</span>)
  
     <span class="t-comment"># 7、将 AI 的 答 存起来</span>
-    messages.append({<span class="t-string">&quot;role&quot;</span>: <span class="t-string">&quot;assistant&quot;</span>, <span class="t-string">&quot;content&quot;</span>: ai_reply})</code></pre></div></section><section class="doc" id="ch5"><div class="doc-head"><span class="doc-badge">Chapter 05</span><h1 class="doc-title">第5章：函数</h1><a class="doc-src" href="https://www.workbuddy.cn/space/d/t4czHkdrsP3UFerL0zyCfD" target="_blank" rel="noopener">在资料库中打开原文 ↗</a></div><h2 id="sec-1" class="hd"><a class="anchor" href="#sec-1">#</a>模块：函数 —— 构建可复用的代码块</h2><p><strong>驱动问题</strong>：在开发大模型应用时，很多功能会被反复使用，比如调用模型、处理文本、验证权限。我们不能每次都把代码重写一遍。函数就是用来封装这些可复用逻辑的核心工具。本节从基础语法出发，重点掌握能让代码更简洁、更强大的进阶特性：闭包和装饰器。</p><hr><h3 id="sec-2" class="hd"><a class="anchor" href="#sec-2">#</a>1. 函数基础与参数</h3><h4 id="sec-3" class="hd"><a class="anchor" href="#sec-3">#</a>1.1 定义与调用</h4><p>函数用 <code class="ic">def</code> 关键字定义，用 <code class="ic">return</code> 返回结果。</p><figure class="fig"><img class="md-img" src="./images/51.jpg" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-4">复制</button></div><pre><code id="code-4"><span class="t-comment"># 定义函数</span>
+    messages.append({<span class="t-string">&quot;role&quot;</span>: <span class="t-string">&quot;assistant&quot;</span>, <span class="t-string">&quot;content&quot;</span>: ai_reply})</code></pre></div></section><section class="doc" id="ch5"><div class="doc-head"><span class="doc-badge">Chapter 05</span><h1 class="doc-title">第5章：函数</h1><a class="doc-src" href="https://www.workbuddy.cn/space/d/t4czHkdrsP3UFerL0zyCfD" target="_blank" rel="noopener">在资料库中打开原文 ↗</a></div><h2 id="sec-1" class="hd"><a class="anchor" href="#sec-1">#</a>模块：函数 —— 构建可复用的代码块</h2><p><strong>驱动问题</strong>：在开发大模型应用时，很多功能会被反复使用，比如调用模型、处理文本、验证权限。我们不能每次都把代码重写一遍。函数就是用来封装这些可复用逻辑的核心工具。本节从基础语法出发，重点掌握能让代码更简洁、更强大的进阶特性：闭包和装饰器。</p><hr><h3 id="sec-2" class="hd"><a class="anchor" href="#sec-2">#</a>1. 函数基础与参数</h3><h4 id="sec-3" class="hd"><a class="anchor" href="#sec-3">#</a>1.1 定义与调用</h4><p>函数用 <code class="ic">def</code> 关键字定义，用 <code class="ic">return</code> 返回结果。</p><figure class="fig"><img class="md-img" src="./第2阶段：大模型技术核心/1_python编程基础与进阶/code/images/51.jpg" alt="插图" loading="lazy" onerror="imgFail(this)"></figure><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-4">复制</button></div><pre><code id="code-4"><span class="t-comment"># 定义函数</span>
 <span class="t-kw">def</span> call_llm(prompt, model=<span class="t-string">&quot;gpt-3.5&quot;</span>):
     <span class="t-string">&quot;&quot;&quot;模拟调用大模型&quot;&quot;&quot;</span>
     <span class="t-kw">return</span> f<span class="t-string">&quot;模型 {model} 收到了: {prompt}&quot;</span>
@@ -822,7 +822,7 @@ reply = call_llm(<span class="t-string">&quot;你是谁？&quot;</span>, model=<
 
 <span class="t-comment"># 各种调用方式</span>
 user_profile(<span class="t-string">&quot;Alice&quot;</span>, <span class="t-num">25</span>, <span class="t-string">&quot;阅读&quot;</span>, <span class="t-string">&quot;编程&quot;</span>, city=<span class="t-string">&quot;北京&quot;</span>, job=<span class="t-string">&quot;工程师&quot;</span>)
-user_profile(<span class="t-string">&quot;白泽&quot;</span>)</code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-7">复制</button></div><pre><code id="code-7"><span class="t-kw">def</span> build_payload(model, *messages, **options):
+user_profile(<span class="t-string">&quot;冰可乐&quot;</span>)</code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-7">复制</button></div><pre><code id="code-7"><span class="t-kw">def</span> build_payload(model, *messages, **options):
     <span class="t-string">&quot;&quot;&quot;构建一个API请求的负载数据&quot;&quot;&quot;</span>
     payload = {<span class="t-string">&quot;model&quot;</span>: model, <span class="t-string">&quot;messages&quot;</span>: list(messages)}
     <span class="t-comment"># 把所有额外选项（如 temperature, top_p）合并进去</span>
@@ -879,9 +879,9 @@ my_counter = create_counter()
 <span class="t-comment"># 每一次调用，都修改并“记住”了 count 的最新值</span>
 
 <span class="t-comment"># 与上面的使用global创建的单例计数器不一样，这里可以再创建实例</span>
-baize_counter = create_counter()
-<span class="t-kw">print</span>(baize_counter())
-<span class="t-kw">print</span>(baize_counter())</code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-14">复制</button></div><pre><code id="code-14"><span class="t-kw">def</span> make_multiplier(factor):
+icecola_counter = create_counter()
+<span class="t-kw">print</span>(icecola_counter())
+<span class="t-kw">print</span>(icecola_counter())</code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-14">复制</button></div><pre><code id="code-14"><span class="t-kw">def</span> make_multiplier(factor):
     <span class="t-kw">def</span> multiply(number):
         <span class="t-comment"># 闭包：内函数 必须使用 外函数的变量</span>
         <span class="t-kw">return</span> number * factor
@@ -891,8 +891,8 @@ baize_counter = create_counter()
 my = make_multiplier(<span class="t-num">2</span>)
 <span class="t-kw">print</span>(my(<span class="t-num">5</span>))
 
-baize = make_multiplier(<span class="t-num">3</span>)
-<span class="t-kw">print</span>(baize(<span class="t-num">7</span>))</code></pre></div><hr><h3 id="sec-15" class="hd"><a class="anchor" href="#sec-15">#</a>4. 装饰器 —— 增强函数功能的“语法糖”</h3><p>装饰器是 Python 中非常强大的特性，它可以让你在<strong>不修改原函数代码</strong>的情况下，给它增加额外的功能（如计时、日志、权限校验）。在大模型应用中，它常用于记录API调用耗时、缓存结果、重试等场景。</p><h4 id="sec-16" class="hd"><a class="anchor" href="#sec-16">#</a>4.1 通用装饰器模板</h4><p>这是一个标准的装饰器写法，你可以在任何需要增强函数的地方套用。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-17">复制</button></div><pre><code id="code-17"><span class="t-kw">import</span> time
+icecola = make_multiplier(<span class="t-num">3</span>)
+<span class="t-kw">print</span>(icecola(<span class="t-num">7</span>))</code></pre></div><hr><h3 id="sec-15" class="hd"><a class="anchor" href="#sec-15">#</a>4. 装饰器 —— 增强函数功能的“语法糖”</h3><p>装饰器是 Python 中非常强大的特性，它可以让你在<strong>不修改原函数代码</strong>的情况下，给它增加额外的功能（如计时、日志、权限校验）。在大模型应用中，它常用于记录API调用耗时、缓存结果、重试等场景。</p><h4 id="sec-16" class="hd"><a class="anchor" href="#sec-16">#</a>4.1 通用装饰器模板</h4><p>这是一个标准的装饰器写法，你可以在任何需要增强函数的地方套用。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-17">复制</button></div><pre><code id="code-17"><span class="t-kw">import</span> time
 <span class="t-kw">import</span> functools
 
 <span class="t-kw">def</span> timer(func):
@@ -917,11 +917,11 @@ process_data()
 
 <span class="t-comment"># 使用装饰器</span>
 <span class="t-dec">@timer</span>
-<span class="t-kw">def</span> baize():
-    <span class="t-kw">print</span>(<span class="t-string">&quot;我是白泽，正在测试装饰器&quot;</span>)
+<span class="t-kw">def</span> icecola():
+    <span class="t-kw">print</span>(<span class="t-string">&quot;我是冰可乐，正在测试装饰器&quot;</span>)
     <span class="t-kw">print</span>(<span class="t-string">&quot;看一下 计时器装饰器 的使用&quot;</span>)
 
-baize()</code></pre></div><h4 id="sec-18" class="hd"><a class="anchor" href="#sec-18">#</a>4.2 带参数的装饰器</h4><p>如果装饰器本身需要参数（比如重试次数），就需要再多套一层函数。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-19">复制</button></div><pre><code id="code-19"><span class="t-kw">def</span> retry(max_attempts=<span class="t-num">3</span>):
+icecola()</code></pre></div><h4 id="sec-18" class="hd"><a class="anchor" href="#sec-18">#</a>4.2 带参数的装饰器</h4><p>如果装饰器本身需要参数（比如重试次数），就需要再多套一层函数。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-19">复制</button></div><pre><code id="code-19"><span class="t-kw">def</span> retry(max_attempts=<span class="t-num">3</span>):
     <span class="t-string">&quot;&quot;&quot;一个带参数的重试装饰器&quot;&quot;&quot;</span>
     <span class="t-kw">def</span> decorator(func):
         <span class="t-dec">@functools</span>.wraps(func)
@@ -993,7 +993,7 @@ client2.call(<span class="t-string">&quot;你好&quot;</span>)       <span class
         <span class="t-kw">print</span>(f<span class="t-string">&quot;{self.name}喜欢的运动是{label}&quot;</span>)
 
 <span class="t-comment"># 实例化对象</span>
-p1 = People(<span class="t-string">&quot;白泽&quot;</span>, <span class="t-num">20</span>)
+p1 = People(<span class="t-string">&quot;冰可乐&quot;</span>, <span class="t-num">20</span>)
 <span class="t-kw">print</span>(p1.name)
 p1.run(<span class="t-string">&quot;swimming&quot;</span>)
 
@@ -1053,13 +1053,13 @@ t1 = Teacher(<span class="t-string">&quot;李老师&quot;</span>, <span class="t
 t1.introduce()  <span class="t-comment"># 我是李老师，教数学。</span>
 
 <span class="t-comment"># 子类集成父类</span>
-<span class="t-kw">class</span> Baize(Teacher):
+<span class="t-kw">class</span> IceCola(Teacher):
     <span class="t-kw">def</span> speak(<span class="t-kw">self</span>):
         <span class="t-kw">print</span>(<span class="t-string">&quot;喜欢演讲&quot;</span>)
 
-b1 = Baize(<span class="t-string">&quot;白泽&quot;</span>, <span class="t-num">20</span>, <span class="t-string">&quot;LLM应用开发&quot;</span>)
-b1.introduce()
-b1.speak()
+ic1 = IceCola(<span class="t-string">&quot;冰可乐&quot;</span>, <span class="t-num">20</span>, <span class="t-string">&quot;LLM应用开发&quot;</span>)
+ic1.introduce()
+ic1.speak()
 <span class="t-comment"># t1.speak()  AttributeError: &#x27;Teacher&#x27; object has no attribute &#x27;speak&#x27;</span></code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-13">复制</button></div><pre><code id="code-13"><span class="t-kw">class</span> A:
     <span class="t-kw">pass</span>
 
@@ -1078,9 +1078,9 @@ b1.speak()
     <span class="t-kw">def</span> speak(<span class="t-kw">self</span>):
         <span class="t-kw">return</span> <span class="t-string">&quot;汪汪汪&quot;</span>
     
-<span class="t-kw">class</span> Baize:
+<span class="t-kw">class</span> IceCola:
     <span class="t-kw">def</span> speak(<span class="t-kw">self</span>):
-        <span class="t-kw">return</span> <span class="t-string">&quot;零基础 学AI 找白泽 不踩坑&quot;</span>
+        <span class="t-kw">return</span> <span class="t-string">&quot;零基础 学AI 找冰可乐 不踩坑&quot;</span>
 
 <span class="t-comment"># 一个能统一处理不同动物的函数</span>
 <span class="t-kw">def</span> animal_sound(animal):
@@ -1089,7 +1089,7 @@ b1.speak()
 
 animal_sound(Cat())   <span class="t-comment"># 喵喵喵</span>
 animal_sound(Dog())   <span class="t-comment"># 汪汪汪</span>
-animal_sound(Baize())</code></pre></div><p>在 Python 中，这被称为<strong>鸭子类型</strong>：一个对象只要“走路像鸭子，叫起来像鸭子”，那它就可以被当作鸭子对待，而不强制要求它继承自某个特定的“鸭子”类。</p><p><strong>与继承的关系</strong>：\ 继承是实现多态的常见方式，但不是唯一方式。上面的例子中 <code class="ic">Cat</code> 和 <code class="ic">Dog</code> 没有继承关系，但因为都有 <code class="ic">speak</code> 方法，它们就是多态的。</p><hr><h3 id="sec-16" class="hd"><a class="anchor" href="#sec-16">#</a>6. 综合实战：学生管理系统</h3><p>将上述概念整合，实现一个简单的图书借阅功能。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-17">复制</button></div><pre><code id="code-17"><span class="t-kw">class</span> Book:
+animal_sound(IceCola())</code></pre></div><p>在 Python 中，这被称为<strong>鸭子类型</strong>：一个对象只要“走路像鸭子，叫起来像鸭子”，那它就可以被当作鸭子对待，而不强制要求它继承自某个特定的“鸭子”类。</p><p><strong>与继承的关系</strong>：\ 继承是实现多态的常见方式，但不是唯一方式。上面的例子中 <code class="ic">Cat</code> 和 <code class="ic">Dog</code> 没有继承关系，但因为都有 <code class="ic">speak</code> 方法，它们就是多态的。</p><hr><h3 id="sec-16" class="hd"><a class="anchor" href="#sec-16">#</a>6. 综合实战：学生管理系统</h3><p>将上述概念整合，实现一个简单的图书借阅功能。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-17">复制</button></div><pre><code id="code-17"><span class="t-kw">class</span> Book:
     <span class="t-kw">def</span> __init__(<span class="t-kw">self</span>, title, author):
         <span class="t-kw">self</span>.title = title
         <span class="t-kw">self</span>.author = author
@@ -1191,7 +1191,7 @@ v2 = Vector(<span class="t-num">3</span>, <span class="t-num">4</span>)
 <span class="t-kw">with</span> <span class="t-kw">open</span>(<span class="t-string">&#x27;output.txt&#x27;</span>, <span class="t-string">&#x27;w&#x27;</span>, encoding=<span class="t-string">&#x27;utf-8&#x27;</span>) <span class="t-kw">as</span> f:
     f.write(<span class="t-string">&#x27;第一行内容\n&#x27;</span>)
     f.write(<span class="t-string">&#x27;第二行内容\n&#x27;</span>)
-    f.write(<span class="t-string">&quot;白泽书写\n&quot;</span>)</code></pre></div><h4 id="sec-7" class="hd"><a class="anchor" href="#sec-7">#</a>2.3 使用 <code class="ic">with</code> 语句（最佳实践）</h4><p><strong>永远使用 <code class="ic">with open(...) as f:</code> 来处理文件。</strong> 它保证了即使程序出错，文件也会被自动关闭，避免资源泄露。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-8">复制</button></div><pre><code id="code-8"><span class="t-comment"># ✅ 推荐：自动管理资源</span>
+    f.write(<span class="t-string">&quot;冰可乐书写\n&quot;</span>)</code></pre></div><h4 id="sec-7" class="hd"><a class="anchor" href="#sec-7">#</a>2.3 使用 <code class="ic">with</code> 语句（最佳实践）</h4><p><strong>永远使用 <code class="ic">with open(...) as f:</code> 来处理文件。</strong> 它保证了即使程序出错，文件也会被自动关闭，避免资源泄露。</p><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-8">复制</button></div><pre><code id="code-8"><span class="t-comment"># ✅ 推荐：自动管理资源</span>
 <span class="t-kw">with</span> <span class="t-kw">open</span>(<span class="t-string">&#x27;data.txt&#x27;</span>, <span class="t-string">&#x27;r&#x27;</span>, encoding=<span class="t-string">&#x27;utf-8&#x27;</span>) <span class="t-kw">as</span> f:
     content = f.read()
 <span class="t-comment"># 文件在这里已自动关闭</span>
@@ -1262,13 +1262,13 @@ output_file = <span class="t-string">&#x27;error_report.txt&#x27;</span>
 <span class="t-kw">import</span> utils
 utils.load_config()
 <span class="t-kw">print</span>(utils.count)
-b1 = utils.BaiZe(<span class="t-string">&quot;白泽&quot;</span>, <span class="t-num">20</span>)
-b1.speak()
+ic1 = utils.IceCola(<span class="t-string">&quot;冰可乐&quot;</span>, <span class="t-num">20</span>)
+ic1.speak()
 
 <span class="t-comment"># 2. 从模块中导入特定功能（常用）</span>
 <span class="t-kw">from</span> utils <span class="t-kw">import</span> load_config
 load_config()
-<span class="t-kw">from</span> utils <span class="t-kw">import</span> BaiZe
+<span class="t-kw">from</span> utils <span class="t-kw">import</span> IceCola
 
 <span class="t-comment"># 3. 给模块或函数起别名</span>
 <span class="t-kw">import</span> utils <span class="t-kw">as</span> us
@@ -1363,11 +1363,11 @@ data = fetch_data(<span class="t-string">&quot;https://httpbin.org/delay/2&quot;
     <span class="t-kw">print</span>(e)
 <span class="t-kw">except</span> <span class="t-kw">Exception</span> <span class="t-kw">as</span> e:
     <span class="t-kw">print</span>(f<span class="t-string">&quot;未知错误：{e}&quot;</span>)</code></pre></div><hr><h3 id="sec-20" class="hd"><a class="anchor" href="#sec-20">#</a>4. 正则表达式 —— 文本处理利器（了解）</h3><p>正则表达式（RegEx）是强大的文本模式匹配工具，在数据清洗和简单文本提取中偶尔用到。这里只做基本了解，<strong>需要时查阅手册即可</strong>。</p><h4 id="sec-21" class="hd"><a class="anchor" href="#sec-21">#</a>4.1 最常用的几个元字符和函数</h4><ul><li><p><strong>函数</strong>: <code class="ic">re.findall()</code> 返回所有匹配的列表，最常用。</p></li></ul><ul><li><p><strong>字符</strong>: <code class="ic">\d</code> (数字), <code class="ic">\w</code> (字母数字下划线), <code class="ic">.</code> (任意字符), <code class="ic">*</code> (0次或多次), <code class="ic">+</code> (1次或多次)。</p></li></ul><ul><li><p><strong>特别提醒</strong>：在 Python 正则表达式字符串前一定要加 <code class="ic">r</code>，如 <code class="ic">r&quot;\d+&quot;</code>，避免转义错误。</p></li></ul><h4 id="sec-22" class="hd"><a class="anchor" href="#sec-22">#</a>4.2 代码速览</h4><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-23">复制</button></div><pre><code id="code-23"><span class="t-comment"># 转义字符串</span>
-s = <span class="t-string">&quot;零基础，学AI，找\&quot;白泽\&quot;, 不踩坑&quot;</span>
+s = <span class="t-string">&quot;零基础，学AI，找\&quot;冰可乐\&quot;, 不踩坑&quot;</span>
 <span class="t-kw">print</span>(s)
 
 <span class="t-comment"># 原生字符串</span>
-s = r<span class="t-string">&quot;零基础，学AI，找\&quot;白泽\&quot;, 不踩坑&quot;</span>
+s = r<span class="t-string">&quot;零基础，学AI，找\&quot;冰可乐\&quot;, 不踩坑&quot;</span>
 <span class="t-kw">print</span>(s)</code></pre></div><div class="code-wrap"><div class="code-bar"><span class="code-lang">python</span><button class="copy-btn" data-target="code-24">复制</button></div><pre><code id="code-24"><span class="t-kw">import</span> re
 
 text = <span class="t-string">&quot;我的电话是138-0000-1234，邮箱是alice@example.com&quot;</span>
